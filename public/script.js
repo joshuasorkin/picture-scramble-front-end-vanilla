@@ -30,6 +30,7 @@ let gameId;
 async function startNewGame() {
     try {
         document.getElementById('game-result').textContent = `Generating new game...`;
+        document.getElementById('generating-message').style.display = 'block'; // Show generating message
         const response = await fetch('/api/new-game');
 
         if (!response.ok) {
@@ -49,6 +50,7 @@ async function startNewGame() {
             document.getElementById('scrambled-word').textContent = data.scramble;
             document.getElementById('scrambled-word').removeAttribute('hidden');
             document.getElementById('user-guess').removeAttribute('hidden');
+            document.getElementById('generating-message').style.display = 'none'; // Hide generating message
         };
         document.getElementById('game-image').src = data.picture;
         document.getElementById('game-result').textContent = ``;
@@ -67,6 +69,7 @@ document.getElementById('new-game-button').addEventListener('click', () => {
 function resetGame() {
     document.getElementById('game-image').style.transform = 'none'; // Reset image rotation
     document.getElementById('victory-message').style.display = 'none'; // Hide victory message
+    document.getElementById('generating-message').style.display = 'none'; // Hide generating message
     document.getElementById('new-game-button').setAttribute('hidden', true); // Hide New Game button
     document.getElementById('submit-guess').setAttribute('hidden',true);
     document.getElementById('user-guess').setAttribute('hidden',true);

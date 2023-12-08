@@ -1,4 +1,13 @@
-document.getElementById('submit-guess').addEventListener('click', async () => {
+document.getElementById('user-guess').addEventListener('keypress', function(event) {
+    if (event.key === 'Enter') {
+        event.preventDefault(); // Prevent the default action to avoid form submission or page reload
+        submitGuess();
+    }
+});
+
+document.getElementById('submit-guess').addEventListener('click', submitGuess);
+
+async function submitGuess(){
     try {
         const userInput = document.getElementById('user-guess').value.toLowerCase();
         console.log({userInput});
@@ -23,7 +32,7 @@ document.getElementById('submit-guess').addEventListener('click', async () => {
         console.error('Error:', error);
         document.getElementById('result').textContent = `Error: ${error.message}`;
     }
-});
+}
 
 let gameId;
 

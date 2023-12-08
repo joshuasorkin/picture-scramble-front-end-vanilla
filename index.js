@@ -2,7 +2,7 @@ const express = require('express');
 const dotenv = require('dotenv');
 dotenv.config();
 const app = express();
-const port = 1138;
+const port = 3000;
 
 app.get('/api/new-game', async (req, res) => {
     try {

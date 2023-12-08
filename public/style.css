@@ -1,0 +1,61 @@
+body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    background-color: #f4f4f4;
+}
+
+#game-area {
+    text-align: center;
+    padding: 20px;
+    background-color: white;
+    box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.1);
+}
+
+#game-image {
+    max-width: 100%;  /* Maximum width of 100% of the viewport width */
+    max-height: 50vh; /* Maximum height of 50% of the viewport height */
+    height: auto;     /* Maintain aspect ratio */
+    margin-bottom: 20px;
+}
+
+#image-container {
+    position: relative;
+    max-width: 100%;
+    max-height: 50vh;
+}
+
+#victory-message {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #FFF; /* Choose a color that stands out */
+    font-size: 2em; /* Adjust size as needed */
+    font-weight: bold;
+    text-align: center;
+    display: none; /* Initially hidden */
+    animation: glitter 1s linear infinite;
+}
+
+#user-guess {
+    margin-top: 10px;
+}
+
+@keyframes glitter {
+    0% {
+        color: #FFC0CB; /* Light Pink */
+        text-shadow: 0 0 10px #FFD700, 0 0 20px #FFD700, 0 0 30px #FFD700, 0 0 40px #FF8C00, 0 0 70px #FF8C00, 0 0 80px #FF8C00, 0 0 100px #FF8C00, 0 0 150px #FF8C00;
+    }
+    50% {
+        color: #FFFFFF; /* White */
+        text-shadow: 0 0 5px #E0FFFF, 0 0 10px #E0FFFF, 0 0 15px #E0FFFF, 0 0 20px #E0FFFF, 0 0 35px #E0FFFF, 0 0 40px #E0FFFF, 0 0 50px #E0FFFF, 0 0 75px #E0FFFF;
+    }
+    100% {
+        color: #FFC0CB; /* Light Pink */
+        text-shadow: 0 0 10px #FFD700, 0 0 20px #FFD700, 0 0 30px #FFD700, 0 0 40px #FF8C00, 0 0 70px #FF8C00, 0 0 80px #FF8C00, 0 0 100px #FF8C00, 0 0 150px #FF8C00;
+    }
+}

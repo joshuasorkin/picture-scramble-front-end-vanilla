@@ -22,6 +22,12 @@ body {
     margin-bottom: 20px;
 }
 
+#overlay-canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
 #image-container {
     position: relative;
     max-width: 100%;

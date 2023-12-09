@@ -1,3 +1,8 @@
+const img = document.getElementById('game-image');
+const canvas = document.getElementById('overlay-canvas');
+const ctx = canvas.getContext('2d');
+
+
 document.getElementById('user-guess').addEventListener('keypress', function(event) {
     if (event.key === 'Enter') {
         event.preventDefault(); // Prevent the default action to avoid form submission or page reload
@@ -40,11 +45,65 @@ async function submitGuess(){
 let gameId;
 let playerScore = 0;
 
+async function fetchData() {
+    try {
+        const response = await fetch('/api/new-game'); // Replace with your API endpoint
+        const data = await response.json(); // Assuming the response is JSON
+        return data; // Return the data for further use
+    } catch (error) {
+        console.error('Error fetching data:', error);
+    }
+}
+
+async function sparkleWhileFetching() {
+    // Set canvas size to image size
+    canvas.width = img.width;
+    canvas.height = img.height;
+
+    // Function to change and reset a pixel
+    function togglePixel(x, y) {
+        const randomColor = `rgba(${Math.random() * 255}, ${Math.random() * 255}, ${Math.random() * 255}, 1)`;
+        ctx.fillStyle = randomColor;
+        ctx.fillRect(x, y, 1, 1);
+
+        setTimeout(() => {
+            ctx.clearRect(x, y, 1, 1);
+        }, 50);
+    }
+
+    // Asynchronous loop function
+    async function loop() {
+        if (!fetchDataPromise) { // If fetchDataPromise is still unresolved
+            // Choose a random pixel
+            const x = Math.floor(Math.random() * canvas.width);
+            const y = Math.floor(Math.random() * canvas.height);
+
+            // Toggle the pixel color
+            togglePixel(x, y);
+
+            // Request the next frame in the loop
+            requestAnimationFrame(loop);
+        }
+    }
+
+    const fetchDataPromise = fetchData();
+    loop(); // Start the loop
+
+    const data = await fetchDataPromise; // Wait for the fetch to complete
+    console.log('Data received:', data); // Do something with the data
+    return data;
+}
+
 async function startNewGame() {
     try {
         document.getElementById('game-result').textContent = `Generating new game...`;
         document.getElementById('generating-message').style.display = 'block'; // Show generating message
-        const response = await fetch('/api/new-game');
+
+        // Set canvas size to image size
+        canvas.width = img.width;
+        canvas.height = img.height;
+
+        const response = await sparkleWhileFetching();
 
         if (!response.ok) {
             throw new Error(`HTTP error! status: ${response.status}`);

@@ -27,6 +27,7 @@ async function submitGuess(){
             document.getElementById('submit-guess').setAttribute('hidden',true);
             document.getElementById('game-result').textContent = "";
             spinImage();
+            document.getElementById('game-image').addEventListener('click', resetGame);
             //createGridOverlay(playerScore);
         } else {
             document.getElementById('game-result').textContent = "Try again";
@@ -80,6 +81,7 @@ document.getElementById('new-game-button').addEventListener('click', () => {
 });
 
 function resetGame() {
+    document.getElementById('game-image').removeEventListener('click',resetGame);
     document.getElementById('game-image').style.transform = 'none'; // Reset image rotation
     document.getElementById('victory-message').style.display = 'none'; // Hide victory message
     document.getElementById('generating-message').style.display = 'none'; // Hide generating message

@@ -98,10 +98,6 @@ async function startNewGame() {
         document.getElementById('game-result').textContent = `Generating new game...`;
         document.getElementById('generating-message').style.display = 'block'; // Show generating message
 
-        // Set canvas size to image size
-        canvas.width = img.width;
-        canvas.height = img.height;
-
         const response = await sparkleWhileFetching();
 
         if (!response.ok) {

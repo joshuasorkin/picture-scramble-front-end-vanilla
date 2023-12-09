@@ -23,7 +23,6 @@ async function submitGuess(){
             playerScore++;
             document.getElementById('score').textContent = playerScore;
             document.getElementById('victory-message').style.display = 'block'; // Show victory message
-            document.getElementById('new-game-button').removeAttribute('hidden'); // Show New Game button
             document.getElementById('submit-guess').setAttribute('hidden',true);
             document.getElementById('game-result').textContent = "";
             spinImage();
@@ -75,17 +74,11 @@ async function startNewGame() {
     }
 }
 
-// New Game button event listener
-document.getElementById('new-game-button').addEventListener('click', () => {
-    resetGame();
-});
-
 function resetGame() {
     document.getElementById('game-image').removeEventListener('click',resetGame);
     document.getElementById('game-image').style.transform = 'none'; // Reset image rotation
     document.getElementById('victory-message').style.display = 'none'; // Hide victory message
     document.getElementById('generating-message').style.display = 'none'; // Hide generating message
-    document.getElementById('new-game-button').setAttribute('hidden', true); // Hide New Game button
     document.getElementById('submit-guess').setAttribute('hidden',true);
     document.getElementById('user-guess').setAttribute('hidden',true);
     document.getElementById('user-guess').value = '';

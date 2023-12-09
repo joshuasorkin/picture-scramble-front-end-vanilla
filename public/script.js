@@ -43,7 +43,6 @@ let playerScore = 0;
 async function fetchData() {
     try {
         const response = await fetch('/api/new-game'); // Replace with your API endpoint
-        const data = await response.json(); // Assuming the response is JSON
         return data; // Return the data for further use
     } catch (error) {
         console.error('Error fetching data:', error);

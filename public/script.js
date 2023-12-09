@@ -20,11 +20,13 @@ async function submitGuess(){
         const result = await response.json();
         console.log({result});
         if (result.checkResult) {
+            playerScore++;
             document.getElementById('victory-message').style.display = 'block'; // Show victory message
             document.getElementById('new-game-button').removeAttribute('hidden'); // Show New Game button
             document.getElementById('submit-guess').setAttribute('hidden',true);
             document.getElementById('game-result').textContent = "";
             spinImage();
+            //createGridOverlay(playerScore);
         } else {
             document.getElementById('game-result').textContent = "Try again";
         }
@@ -35,6 +37,7 @@ async function submitGuess(){
 }
 
 let gameId;
+let playerScore = 0;
 
 async function startNewGame() {
     try {
@@ -98,5 +101,29 @@ function spinImage() {
     img.style.transition = "transform 2s";
     img.style.transform = "rotate(360deg)";
 }
+
+function createGridOverlay(score) {
+    // Clear any existing grid
+    const container = document.getElementById('imageContainer');
+    container.querySelectorAll('.grid-overlay').forEach(grid => grid.remove());
+
+    // Create the grid overlay
+    const grid = document.createElement('div');
+    grid.className = 'grid-overlay';
+    grid.style.gridTemplateColumns = `repeat(${score}, 1fr)`;
+    grid.style.gridTemplateRows = `repeat(${score}, 1fr)`;
+
+    // Add cells to the grid
+    for (let i = 0; i < score * score; i++) {
+        const cell = document.createElement('div');
+        cell.className = 'grid-cell';
+        grid.appendChild(cell);
+    }
+
+    // Append the grid overlay to the container
+    container.appendChild(grid);
+}
+
+
 
 resetGame();

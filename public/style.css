@@ -45,6 +45,20 @@ body {
     margin-top: 10px;
 }
 
+.grid-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: grid;
+    pointer-events: none; /* So it doesn't interfere with image interaction */
+}
+.grid-cell {
+    border: 1px solid #fff; /* Adjust the border as needed */
+}
+
+
 #gameTitle {
     white-space: nowrap;
     font-family: 'Brush Script MT', cursive; /* For a rustic look */

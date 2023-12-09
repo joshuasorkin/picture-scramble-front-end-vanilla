@@ -4,10 +4,13 @@ dotenv.config();
 const app = express();
 const port = 3000;
 
-app.get('/api/new-game', async (req, res) => {
+app.get('/api/new-game/:topic?', async (req, res) => {
     try {
         console.log("generating game...");
-        const response = await fetch(process.env.BACK_END_URI+'/new-game');
+        const topic = req.params.topic;
+        const response = topic ?
+            await fetch(process.env.BACK_END_URI+`/new-game/${topic}`) :
+            await fetch(process.env.BACK_END_URI+`/new-game`);
         if (!response.ok) {
             throw new Error(`HTTP error! status: ${response.status}`);
         }

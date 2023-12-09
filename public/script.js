@@ -1,8 +1,3 @@
-const img = document.getElementById('game-image');
-const canvas = document.getElementById('overlay-canvas');
-const ctx = canvas.getContext('2d');
-
-
 document.getElementById('user-guess').addEventListener('keypress', function(event) {
     if (event.key === 'Enter') {
         event.preventDefault(); // Prevent the default action to avoid form submission or page reload
@@ -56,6 +51,10 @@ async function fetchData() {
 }
 
 async function sparkleWhileFetching() {
+    const img = document.getElementById('game-image');
+    const canvas = document.getElementById('overlay-canvas');
+    const ctx = canvas.getContext('2d');
+
     // Set canvas size to image size
     canvas.width = img.width;
     canvas.height = img.height;

@@ -21,6 +21,7 @@ async function submitGuess(){
         console.log({result});
         if (result.checkResult) {
             playerScore++;
+            document.getElementById('score').textContent = playerScore;
             document.getElementById('victory-message').style.display = 'block'; // Show victory message
             document.getElementById('new-game-button').removeAttribute('hidden'); // Show New Game button
             document.getElementById('submit-guess').setAttribute('hidden',true);

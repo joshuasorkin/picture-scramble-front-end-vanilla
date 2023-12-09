@@ -60,6 +60,7 @@ async function sparkleWhileFetching() {
 
     // Function to change and reset a pixel
     function togglePixel(x, y) {
+        console.log("toggling",x,y);
         const randomColor = `rgba(${Math.random() * 255}, ${Math.random() * 255}, ${Math.random() * 255}, 1)`;
         ctx.fillStyle = randomColor;
         ctx.fillRect(x, y, 1, 1);

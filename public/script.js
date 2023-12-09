@@ -64,9 +64,11 @@ async function sparkleWhileFetching() {
         ctx.fillStyle = randomColor;
         ctx.fillRect(x, y, 1, 1);
 
+        /*
         setTimeout(() => {
             ctx.clearRect(x, y, 1, 1);
         }, 50);
+        */
     }
 
     // Asynchronous loop function

@@ -41,12 +41,15 @@ app.get('/api/check-game', async (req, res) => {
     }
 });
 
+app.use(express.static('public'));
+
 app.get('/:topic?',(req,res) => {
     res.sendFile(path.join(__dirname,'public','index.html'));
-})
+});
 
 
-app.use(express.static('public'));
+
+
 
 app.listen(port, () => {
     console.log(`Server is running on http://localhost:${port}`);

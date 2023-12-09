@@ -122,3 +122,16 @@ body {
     width: 100%; /* Or set a specific width */
     margin: auto; /* Centering if needed */
 }
+
+#footer {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+#score-container {
+    /* Add your desired styles for the score container */
+    padding: 20px;
+    border: 1px solid #ddd; /* example border */
+    border-radius: 5px; /* rounded corners */
+}

@@ -9,9 +9,11 @@ app.get('/api/new-game/:topic?', async (req, res) => {
     try {
         console.log("generating game...");
         const topic = req.params.topic;
-        const response = topic ?
-            await fetch(process.env.BACK_END_URI+`/new-game/${topic}`) :
-            await fetch(process.env.BACK_END_URI+`/new-game`);
+        const url = topic ?
+            process.env.BACK_END_URI+`/new-game/${topic}` :
+            process.env.BACK_END_URI+`/new-game`;
+        console.log({url});
+        const response = await fetch(url);
         if (!response.ok) {
             throw new Error(`HTTP error! status: ${response.status}`);
         }

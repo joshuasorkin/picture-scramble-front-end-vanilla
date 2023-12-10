@@ -100,7 +100,7 @@ async function startNewGame() {
         document.getElementById('game-result').textContent = `Generating new game...`;
         document.getElementById('generating-message').style.display = 'block'; // Show generating message
 
-        const response = await sparkleWhileFetching();
+        const response = await fetch('/api/new-game');
 
         if (!response.ok) {
             throw new Error(`HTTP error! status: ${response.status}`);

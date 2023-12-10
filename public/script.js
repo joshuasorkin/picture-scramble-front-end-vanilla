@@ -102,9 +102,9 @@ async function startNewGame() {
         let gameResult = document.getElementById('game-result');
 
         // Set the text to rainbow flashing
-        textElement.classList.add('rainbow-text');
+        gameResult.classList.add('rainbow-text');
         const response = await fetch('/api/new-game');
-        textElement.classList.remove('rainbow-text');
+        gameResult.classList.remove('rainbow-text');
 
         if (!response.ok) {
             throw new Error(`HTTP error! status: ${response.status}`);

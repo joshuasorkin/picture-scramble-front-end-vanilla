@@ -99,8 +99,12 @@ async function startNewGame() {
     try {
         document.getElementById('game-result').textContent = `Generating new game...`;
         document.getElementById('generating-message').style.display = 'block'; // Show generating message
+        let gameResult = document.getElementById('game-result');
 
+        // Set the text to rainbow flashing
+        textElement.classList.add('rainbow-text');
         const response = await fetch('/api/new-game');
+        textElement.classList.remove('rainbow-text');
 
         if (!response.ok) {
             throw new Error(`HTTP error! status: ${response.status}`);

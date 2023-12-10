@@ -8,6 +8,25 @@ body {
     background-color: #f4f4f4;
 }
 
+@keyframes rainbow {
+    0%,100% { color: red; }
+    8% { color: orange; }
+    16% { color: yellow; }
+    25% { color: green; }
+    33% { color: blue; }
+    41% { color: indigo; }
+    50% { color: violet; }
+    58% { color: indigo; }
+    66% { color: blue; }
+    75% { color: green; }
+    83% { color: yellow; }
+    91% { color: orange; }
+}
+
+#rainbow-text {
+    animation: rainbow 2s linear infinite;
+}
+
 #game-area {
     text-align: center;
     padding: 20px;

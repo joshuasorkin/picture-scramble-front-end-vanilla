@@ -23,7 +23,7 @@ body {
     91% { color: orange; }
 }
 
-#rainbow-text {
+.rainbow-text {
     animation: rainbow 2s linear infinite;
 }
 

@@ -1,15 +1,21 @@
-document.getElementById('user-guess').addEventListener('keypress', function(event) {
+const userGuess = document.getElementById('user-guess');
+const submitGuess = document.getElementById('submit-guess');
+const score = document.getElementById('score');
+const victoryMessage = document.getElementById('victory-message');
+const gameResult = document.getElementById('game-result');
+
+userGuess.addEventListener('keypress', function(event) {
     if (event.key === 'Enter') {
         event.preventDefault(); // Prevent the default action to avoid form submission or page reload
         submitGuess();
     }
 });
 
-document.getElementById('submit-guess').addEventListener('click', submitGuess);
+submitGuess.addEventListener('click', submitGuess);
 
 async function submitGuess(){
     try {
-        const userInput = document.getElementById('user-guess').value.toLowerCase();
+        const userInput = userGuess.value.toLowerCase();
         console.log({userInput});
         const response = await fetch(`/api/check-game?gameId=${gameId}&playerSolution=${userInput}`);
         console.log("fetch complete")
@@ -21,15 +27,15 @@ async function submitGuess(){
         console.log({result});
         if (result.checkResult) {
             playerScore++;
-            document.getElementById('score').textContent = playerScore;
-            document.getElementById('victory-message').style.display = 'block'; // Show victory message
-            document.getElementById('submit-guess').setAttribute('hidden',true);
-            document.getElementById('game-result').textContent = "";
+            score.textContent = playerScore;
+            victoryMessage.style.display = 'block'; // Show victory message
+            submitGuess.setAttribute('hidden',true);
+            gameResult.textContent = "";
             spinImage();
             document.getElementById('game-image').addEventListener('click', resetGame);
             //createGridOverlay(playerScore);
         } else {
-            document.getElementById('game-result').textContent = "Try again";
+            gameResult.textContent = "Try again";
         }
     } catch (error) {
         console.error('Error:', error);
@@ -97,9 +103,9 @@ async function sparkleWhileFetching() {
 
 async function startNewGame() {
     try {
-        document.getElementById('game-result').textContent = `Generating new game...`;
+        gameResult.textContent = `Generating new game...`;
         document.getElementById('generating-message').style.display = 'block'; // Show generating message
-        let gameResult = document.getElementById('game-result');
+        let gameResult = gameResult;
 
         // Set the text to rainbow flashing
         gameResult.classList.add('rainbow-text');
@@ -115,35 +121,35 @@ async function startNewGame() {
         const img = document.getElementById('game-image');
         img.onerror = () => {
             console.error('Error loading image:', data.picture);
-            document.getElementById('game-result').textContent = 'Error loading image.';
+            gameResult.textContent = 'Error loading image.';
         };
         img.onload = () => {
             img.removeAttribute('hidden'); // Remove 'hidden' attribute when the image is loaded
-            document.getElementById('submit-guess').removeAttribute('hidden');
+            submitGuess.removeAttribute('hidden');
             document.getElementById('scrambled-word').textContent = data.scramble;
             document.getElementById('scrambled-word').removeAttribute('hidden');
-            document.getElementById('user-guess').removeAttribute('hidden');
+            userGuess.removeAttribute('hidden');
             document.getElementById('generating-message').style.display = 'none'; // Hide generating message
         };
         document.getElementById('game-image').src = data.picture;
-        document.getElementById('game-result').textContent = ``;
+        gameResult.textContent = ``;
 
     } catch (error) {
         console.error('Error:', error);
-        document.getElementById('game-result').textContent = `Error: ${error.message}`;
+        gameResult.textContent = `Error: ${error.message}`;
     }
 }
 
 function resetGame() {
     document.getElementById('game-image').removeEventListener('click',resetGame);
     document.getElementById('game-image').style.transform = 'none'; // Reset image rotation
-    document.getElementById('victory-message').style.display = 'none'; // Hide victory message
+    victoryMessage.style.display = 'none'; // Hide victory message
     document.getElementById('generating-message').style.display = 'none'; // Hide generating message
-    document.getElementById('submit-guess').setAttribute('hidden',true);
-    document.getElementById('user-guess').setAttribute('hidden',true);
-    document.getElementById('user-guess').value = '';
+    submitGuess.setAttribute('hidden',true);
+    userGuess.setAttribute('hidden',true);
+    userGuess.value = '';
     document.getElementById('scrambled-word').innerText = '';
-    document.getElementById('game-result').textContent = ''; // Clear result text
+    gameResult.textContent = ''; // Clear result text
     const img = document.getElementById('game-image');
     img.onload = () => {
         img.removeAttribute('hidden'); // Remove 'hidden' attribute when the image is loaded

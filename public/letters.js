@@ -24,6 +24,7 @@ function isInsideBox(x, y, box) {
 }
 
 canvas.addEventListener('mousedown', function(e) {
+    console.log("mousedown event");
     const rect = canvas.getBoundingClientRect();
     const mouseX = e.clientX - rect.left;
     const mouseY = e.clientY - rect.top;
@@ -39,6 +40,7 @@ canvas.addEventListener('mousedown', function(e) {
 });
 
 canvas.addEventListener('mousemove', function(e) {
+    console.log("mouse move event");
     if (selectedLetter !== null) {
         const rect = canvas.getBoundingClientRect();
         const mouseX = e.clientX - rect.left;

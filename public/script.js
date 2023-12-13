@@ -1,5 +1,5 @@
 const userGuess = document.getElementById('user-guess');
-const submitGuess = document.getElementById('submit-guess-button');
+const submitGuessButton = document.getElementById('submit-guess-button');
 const score = document.getElementById('score');
 const victoryMessage = document.getElementById('victory-message');
 const gameResult = document.getElementById('game-result');
@@ -12,7 +12,7 @@ userGuess.addEventListener('keypress', function(event) {
     }
 });
 
-submitGuess.addEventListener('click', submitGuess);
+submitGuessButton.addEventListener('click', submitGuess);
 
 async function submitGuess(){
     try {
@@ -30,7 +30,7 @@ async function submitGuess(){
             playerScore++;
             score.textContent = playerScore;
             victoryMessage.style.display = 'block'; // Show victory message
-            submitGuess.setAttribute('hidden',true);
+            submitGuessButton.setAttribute('hidden',true);
             gameResult.textContent = "";
             spinImage();
             gameImage.addEventListener('click', resetGame);
@@ -126,7 +126,7 @@ async function startNewGame() {
         };
         img.onload = () => {
             img.removeAttribute('hidden'); // Remove 'hidden' attribute when the image is loaded
-            submitGuess.removeAttribute('hidden');
+            submitGuessButton.removeAttribute('hidden');
             document.getElementById('scrambled-word').textContent = data.scramble;
             document.getElementById('scrambled-word').removeAttribute('hidden');
             userGuess.removeAttribute('hidden');
@@ -146,7 +146,7 @@ function resetGame() {
     gameImage.style.transform = 'none'; // Reset image rotation
     victoryMessage.style.display = 'none'; // Hide victory message
     document.getElementById('generating-message').style.display = 'none'; // Hide generating message
-    submitGuess.setAttribute('hidden',true);
+    submitGuessButton.setAttribute('hidden',true);
     userGuess.setAttribute('hidden',true);
     userGuess.value = '';
     document.getElementById('scrambled-word').innerText = '';

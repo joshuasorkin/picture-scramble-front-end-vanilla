@@ -235,7 +235,6 @@ function pieceDropped(e){
     currentDropPiece = null;
     console.log("resetting puzzle");
     console.log("resetting redraw");
-    setRedraw(true);
 }
 
 function setValuesFromSourcePiece(destinationPiece,sourcePiece){
@@ -243,6 +242,8 @@ function setValuesFromSourcePiece(destinationPiece,sourcePiece){
     destinationPiece.sy = sourcePiece.sy;
     destinationPiece.id = sourcePiece.id;
 }
+
+puzzle(testWord);
 
 
 

@@ -151,9 +151,8 @@ function resetGame() {
     userGuess.value = '';
     document.getElementById('scrambled-word').innerText = '';
     gameResult.textContent = ''; // Clear result text
-    const img = document.getElementById('gameResult');
-    img.onload = () => {
-        img.removeAttribute('hidden'); // Remove 'hidden' attribute when the image is loaded
+    gameImage.onload = () => {
+        gameImage.removeAttribute('hidden'); // Remove 'hidden' attribute when the image is loaded
         startNewGame();
     };
     document.getElementById('gameResult').src = 'utu-generating-game.png'; // Show Utu

@@ -1,8 +1,9 @@
 const userGuess = document.getElementById('user-guess');
-const submitGuess = document.getElementById('submit-guess');
+const submitGuess = document.getElementById('submit-guess-button');
 const score = document.getElementById('score');
 const victoryMessage = document.getElementById('victory-message');
 const gameResult = document.getElementById('game-result');
+const gameImage = document.getElementById('game-image');
 
 userGuess.addEventListener('keypress', function(event) {
     if (event.key === 'Enter') {
@@ -32,14 +33,14 @@ async function submitGuess(){
             submitGuess.setAttribute('hidden',true);
             gameResult.textContent = "";
             spinImage();
-            document.getElementById('game-image').addEventListener('click', resetGame);
+            gameImage.addEventListener('click', resetGame);
             //createGridOverlay(playerScore);
         } else {
             gameResult.textContent = "Try again";
         }
     } catch (error) {
         console.error('Error:', error);
-        document.getElementById('result').textContent = `Error: ${error.message}`;
+        gameResult.textContent = `Error: ${error.message}`;
     }
 }
 
@@ -56,7 +57,7 @@ async function fetchData() {
 }
 
 async function sparkleWhileFetching() {
-    const img = document.getElementById('game-image');
+    const img = gameImage;
     const canvas = document.getElementById('overlay-canvas');
     const ctx = canvas.getContext('2d');
 
@@ -118,7 +119,7 @@ async function startNewGame() {
         const data = await response.json();
         console.log({data});
         gameId = data.gameId;
-        const img = document.getElementById('game-image');
+        const img = gameImage;
         img.onerror = () => {
             console.error('Error loading image:', data.picture);
             gameResult.textContent = 'Error loading image.';
@@ -131,7 +132,7 @@ async function startNewGame() {
             userGuess.removeAttribute('hidden');
             document.getElementById('generating-message').style.display = 'none'; // Hide generating message
         };
-        document.getElementById('game-image').src = data.picture;
+        gameImage.src = data.picture;
         gameResult.textContent = ``;
 
     } catch (error) {
@@ -141,8 +142,8 @@ async function startNewGame() {
 }
 
 function resetGame() {
-    document.getElementById('game-image').removeEventListener('click',resetGame);
-    document.getElementById('game-image').style.transform = 'none'; // Reset image rotation
+    gameImage.removeEventListener('click',resetGame);
+    gameImage.style.transform = 'none'; // Reset image rotation
     victoryMessage.style.display = 'none'; // Hide victory message
     document.getElementById('generating-message').style.display = 'none'; // Hide generating message
     submitGuess.setAttribute('hidden',true);
@@ -150,16 +151,16 @@ function resetGame() {
     userGuess.value = '';
     document.getElementById('scrambled-word').innerText = '';
     gameResult.textContent = ''; // Clear result text
-    const img = document.getElementById('game-image');
+    const img = document.getElementById('gameResult');
     img.onload = () => {
         img.removeAttribute('hidden'); // Remove 'hidden' attribute when the image is loaded
         startNewGame();
     };
-    document.getElementById('game-image').src = 'utu-generating-game.png'; // Show Utu
+    document.getElementById('gameResult').src = 'utu-generating-game.png'; // Show Utu
 }
 
 function spinImage() {
-    const img = document.getElementById('game-image');
+    const img = document.getElementById('gameResult');
     img.style.transition = "transform 2s";
     img.style.transform = "rotate(360deg)";
 }

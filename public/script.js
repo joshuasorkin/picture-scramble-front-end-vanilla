@@ -155,11 +155,11 @@ function resetGame() {
         gameImage.removeAttribute('hidden'); // Remove 'hidden' attribute when the image is loaded
         startNewGame();
     };
-    document.getElementById('gameResult').src = 'utu-generating-game.png'; // Show Utu
+    gameImage.src = 'utu-generating-game.png'; // Show Utu
 }
 
 function spinImage() {
-    const img = document.getElementById('gameResult');
+    const img = gameImage;
     img.style.transition = "transform 2s";
     img.style.transform = "rotate(360deg)";
 }

@@ -4,6 +4,7 @@ const score = document.getElementById('score');
 const victoryMessage = document.getElementById('victory-message');
 const gameResult = document.getElementById('game-result');
 const gameImage = document.getElementById('game-image');
+const scrambledWord = document.getElementById('scrambled-word');
 
 userGuess.addEventListener('keypress', function(event) {
     if (event.key === 'Enter') {
@@ -13,6 +14,15 @@ userGuess.addEventListener('keypress', function(event) {
 });
 
 submitGuessButton.addEventListener('click', submitGuess);
+
+scrambledWord.addEventListener('click', function() {
+    const text = this.innerText;
+    navigator.clipboard.writeText(text).then(() => {
+        console.log('Text copied to clipboard');
+    }).catch(err => {
+        console.error('Failed to copy text: ', err);
+    });
+});
 
 async function submitGuess(){
     try {
@@ -106,7 +116,6 @@ async function startNewGame() {
     try {
         gameResult.textContent = `Generating new game...`;
         document.getElementById('generating-message').style.display = 'block'; // Show generating message
-        let gameResult = gameResult;
 
         // Set the text to rainbow flashing
         gameResult.classList.add('rainbow-text');

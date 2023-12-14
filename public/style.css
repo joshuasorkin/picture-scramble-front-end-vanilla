@@ -25,6 +25,9 @@ body {
 
 .rainbow-text {
     animation: rainbow 2s linear infinite, expandContract 2s ease-in-out infinite;
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
 }
 
 #game-area {

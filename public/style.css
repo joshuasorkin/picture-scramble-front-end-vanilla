@@ -27,6 +27,25 @@ body {
     animation: rainbow 2s linear infinite;
 }
 
+@keyframes polychrome {
+    0%,100% { color: red; }
+    8% { color: pink; }
+    16% { color: purple; }
+    25% { color: green; }
+    33% { color: orange; }
+    41% { color: skyblue; }
+    50% { color: navy; }
+    58% { color: orangered; }
+    66% { color: indigo; }
+    75% { color: black; }
+    83% { color: yellow; }
+    91% { color: chartreuse; }
+}
+
+.polychrome-text {
+    animation: polychrome 2s linear infinite;
+}
+
 #game-area {
     text-align: center;
     padding: 20px;

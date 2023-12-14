@@ -157,15 +157,6 @@ body {
     }
 }
 
-#continue-message {
-    /* Existing styles */
-    color: transparent;
-    background: linear-gradient(90deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.8) 50%, rgba(255,255,255,0) 100%);
-    background-size: 200%;
-    animation: shimmer 2s linear infinite, wave 1s linear infinite;
-    text-shadow: 0 0 2px #fff;
-}
-
 #linkedImageContainer img {
     max-width: 40%; /* Ensures the image is responsive */
     height: auto;    /* Maintains the aspect ratio */

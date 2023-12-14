@@ -2,7 +2,6 @@ const userGuess = document.getElementById('user-guess');
 const submitGuessButton = document.getElementById('submit-guess-button');
 const score = document.getElementById('score');
 const victoryMessage = document.getElementById('victory-message');
-const continueMessage = document.getElementById('continue-message');
 const gameResult = document.getElementById('game-result');
 const gameImage = document.getElementById('game-image');
 const scrambledWord = document.getElementById('scrambled-word');
@@ -41,7 +40,6 @@ async function submitGuess(){
             playerScore++;
             score.textContent = playerScore;
             victoryMessage.style.display = 'block'; // Show victory message
-            continueMessage.style.display = 'block'; // show continue message
             submitGuessButton.setAttribute('hidden',true);
             gameResult.textContent = "";
             spinImage();
@@ -154,7 +152,6 @@ function resetGame() {
     gameImage.removeEventListener('click',resetGame);
     gameImage.style.transform = 'none'; // Reset image rotation
     victoryMessage.style.display = 'none'; // Hide victory message
-    continueMessage.style.display = 'none'; // Hide continue message
     submitGuessButton.setAttribute('hidden',true);
     userGuess.setAttribute('hidden',true);
     userGuess.value = '';

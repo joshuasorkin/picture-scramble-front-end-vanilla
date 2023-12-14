@@ -36,7 +36,6 @@ async function submitGuess(){
         gameMessage.textContent = 'Checking Answer';
         const response = await fetch(`/api/check-game?gameId=${gameId}&playerSolution=${userInput}`);
         gameMessage.classList.remove('rainbow-text');
-        gameMessage.setAttribute('hidden',true);
         console.log("fetch complete")
         console.log({response});
         if (!response.ok) {
@@ -45,6 +44,7 @@ async function submitGuess(){
         const result = await response.json();
         console.log({result});
         if (result.checkResult) {
+            gameMessage.setAttribute('hidden',true);
             playerScore++;
             score.textContent = playerScore;
             victoryMessage.style.display = 'block'; // Show victory message

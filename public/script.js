@@ -6,7 +6,7 @@ const gameMessage = document.getElementById('game-message');
 const gameImage = document.getElementById('game-image');
 const scrambledWord = document.getElementById('scrambled-word');
 const guessControl = document.getElementById('guess-control');
-const tileContainer = document.getElementById('tileContainer');
+const tileContainer = document.getElementById('tile-container');
 
 victoryMessage.addEventListener('click',resetGame);
 

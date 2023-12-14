@@ -45,6 +45,7 @@ async function submitGuess(){
         }
         const result = await response.json();
         console.log({result});
+        guessControl.removeAttribute('hidden');
         if (result.checkResult) {
             gameMessage.setAttribute('hidden',true);
             playerScore++;
@@ -56,7 +57,6 @@ async function submitGuess(){
             gameImage.addEventListener('click', resetGame);
             //createGridOverlay(playerScore);
         } else {
-            guessControl.removeAttribute('hidden');
             gameMessage.textContent = "Try again";
         }
     } catch (error) {

@@ -34,7 +34,8 @@ body {
     text-align: center;
     padding: 20px;
     background-color: white;
-    background: linear-gradient(to bottom, orange, salmon);
+    /*background: linear-gradient(to bottom, orange, salmon);*/
+    background: linear-gradient(to bottom, yellow, #8B4513); /* Gold to SaddleBrown */
     box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.1);
     border: 1px solid #000; /* Optional: adds a border */
 }

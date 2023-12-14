@@ -24,7 +24,7 @@ body {
 }
 
 .rainbow-text {
-    animation: rainbow 2s linear infinite;
+    animation: rainbow 2s linear infinite, expandContract 2s ease-in-out infinite;
 }
 
 #game-area {
@@ -66,20 +66,6 @@ body {
     animation: glitter 1s linear infinite;
 }
 
-#continue-message {
-    position: absolute;
-    top: 55%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    color: #FFF; /* Choose a color that stands out */
-    font-size: 2em; /* Adjust size as needed */
-    font-weight: bold;
-    text-align: center;
-    display: none; /* Initially hidden */
-    animation: glitter-alt 1s linear infinite;
-    text-shadow: 0 0 2px #fff;
-}
-
 @keyframes glitter {
     0% {
         color: #FFC0CB; /* Light Pink */
@@ -95,20 +81,15 @@ body {
     }
 }
 
-@keyframes glitter-alt {
-    0% {
-        color: orange; 
-        text-shadow: 0 0 10px #FFD700, 0 0 20px #FFD700, 0 0 30px #FFD700, 0 0 40px #FF8C00, 0 0 70px #FF8C00, 0 0 80px #FF8C00, 0 0 100px #FF8C00, 0 0 150px #FF8C00;
+/* Define the keyframes for expanding and contracting */
+@keyframes expandContract {
+    0%, 100% {
+      transform: scale(1); /* Normal size */
     }
     50% {
-        color: #FFFFFF; /* white */
-        text-shadow: 0 0 5px #E0FFFF, 0 0 10px #E0FFFF, 0 0 15px #E0FFFF, 0 0 20px #E0FFFF, 0 0 35px #E0FFFF, 0 0 40px #E0FFFF, 0 0 50px #E0FFFF, 0 0 75px #E0FFFF;
+      transform: scale(1.5); /* 1.5 times the normal size */
     }
-    100% {
-        color: orange; /* Light Pink */
-        text-shadow: 0 0 10px #FFD700, 0 0 20px #FFD700, 0 0 30px #FFD700, 0 0 40px #FF8C00, 0 0 70px #FF8C00, 0 0 80px #FF8C00, 0 0 100px #FF8C00, 0 0 150px #FF8C00;
-    }
-}
+  }
 
 #user-guess {
     margin-top: 10px;

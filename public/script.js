@@ -208,6 +208,7 @@ async function startNewGame() {
             document.getElementById('scrambled-word').textContent = data.scramble;
             document.getElementById('scrambled-word').removeAttribute('hidden');
             userGuess.removeAttribute('hidden');
+            loadTiles(data.scramble);
         };
         gameImage.src = data.picture;
         gameMessage.textContent = ``;

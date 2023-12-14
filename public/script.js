@@ -117,7 +117,6 @@ async function sparkleWhileFetching() {
 async function startNewGame() {
     try {
         gameResult.textContent = `Generating new game...`;
-        document.getElementById('generating-message').style.display = 'block'; // Show generating message
 
         // Set the text to rainbow flashing
         gameResult.classList.add('rainbow-text');
@@ -141,7 +140,6 @@ async function startNewGame() {
             document.getElementById('scrambled-word').textContent = data.scramble;
             document.getElementById('scrambled-word').removeAttribute('hidden');
             userGuess.removeAttribute('hidden');
-            document.getElementById('generating-message').style.display = 'none'; // Hide generating message
         };
         gameImage.src = data.picture;
         gameResult.textContent = ``;
@@ -157,7 +155,6 @@ function resetGame() {
     gameImage.style.transform = 'none'; // Reset image rotation
     victoryMessage.style.display = 'none'; // Hide victory message
     continueMessage.style.display = 'none'; // Hide continue message
-    document.getElementById('generating-message').style.display = 'none'; // Hide generating message
     submitGuessButton.setAttribute('hidden',true);
     userGuess.setAttribute('hidden',true);
     userGuess.value = '';

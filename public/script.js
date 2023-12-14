@@ -19,38 +19,67 @@ function removeAllTiles() {
 
 function loadTiles(word){
 
+    const container = tileContainer;
+    
     let draggedTile = null;
 
     word.split('').forEach(letter => {
         const tile = document.createElement('div');
         tile.classList.add('tile');
         tile.textContent = letter;
-        tile.draggable = true;
-        tileContainer.appendChild(tile);
+        container.appendChild(tile);
 
-        tile.addEventListener('dragstart', function (e) {
-            draggedTile = this;
-            setTimeout(() => this.classList.add('hidden'), 0);
-        });
+        // Desktop Events
+        tile.addEventListener('dragstart', onDragStart);
+        tile.addEventListener('dragend', onDragEnd);
 
-        tile.addEventListener('dragend', function (e) {
-            this.classList.remove('hidden');
-        });
+        // Mobile Events
+        tile.addEventListener('touchstart', onTouchStart);
+        tile.addEventListener('touchmove', onTouchMove);
+        tile.addEventListener('touchend', onTouchEnd);
     });
 
-    tileContainer.addEventListener('dragover', function (e) {
+    container.addEventListener('dragover', function (e) {
         e.preventDefault();
-        const afterElement = getDragAfterElement(tileContainer, e.clientX);
-        const draggable = document.querySelector('.dragging');
+        const afterElement = getDragAfterElement(container, e.clientX);
         if (afterElement == null) {
-            tileContainer.appendChild(draggedTile);
+            container.appendChild(draggedTile);
         } else {
-            tileContainer.insertBefore(draggedTile, afterElement);
+            container.insertBefore(draggedTile, afterElement);
         }
     });
 
-    function getDragAfterElement(tileContainer, x) {
-        const draggableElements = [...tileContainer.querySelectorAll('.tile:not(.hidden)')];
+    function onDragStart(e) {
+        draggedTile = this;
+        setTimeout(() => this.classList.add('hidden'), 0);
+    }
+
+    function onDragEnd(e) {
+        this.classList.remove('hidden');
+    }
+
+    function onTouchStart(e) {
+        draggedTile = this;
+        this.classList.add('hidden');
+    }
+
+    function onTouchMove(e) {
+        e.preventDefault();
+        const touchLocation = e.targetTouches[0];
+        const afterElement = getDragAfterElement(container, touchLocation.clientX);
+        if (afterElement == null) {
+            container.appendChild(draggedTile);
+        } else {
+            container.insertBefore(draggedTile, afterElement);
+        }
+    }
+
+    function onTouchEnd(e) {
+        this.classList.remove('hidden');
+    }
+
+    function getDragAfterElement(container, x) {
+        const draggableElements = [...container.querySelectorAll('.tile:not(.hidden)')];
 
         return draggableElements.reduce((closest, child) => {
             const box = child.getBoundingClientRect();

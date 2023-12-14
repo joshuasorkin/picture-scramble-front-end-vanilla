@@ -42,7 +42,6 @@ function initPuzzle() {
     currentPiece = null;
     currentDropPiece = null;
 
-    setRedraw();
     console.log(puzzleWidth,puzzleHeight);
     buildPieces();
 }
@@ -76,6 +75,7 @@ function buildPieces() {
             yPos += pieceHeight;
         }
     }
+    console.log({pieces});
     drawPuzzle();
 }
 
@@ -88,12 +88,14 @@ function drawPuzzle(){
     stage.clearRect(0,0,puzzleWidth,puzzleHeight);
     let xPos = 0;
     let yPos = 0;  
-
+    let fontsize = 40;
+    stage.font = `${fontsize}px Arial`
     for (const piece of pieces) {
         piece.xPos = xPos;
         piece.yPos = yPos;
         stage.strokeRect(xPos, yPos, pieceWidth, pieceHeight);
-        stage.fillText(piece.content, xPos, yPos);
+        console.log("filltext")
+        stage.fillText(piece.content, xPos + 10, yPos+40);
         //todo: refactor to:
         //<incrementPiece(xPos,pieceWidth,yPos,pieceHeight)>
         xPos += pieceWidth;
@@ -118,6 +120,7 @@ function setMouse(e){
 }
 
 function onPuzzleClick(e){
+    console.log("puzzle click");
     console.log(e.srcElement.id);
     if(e.srcElement.id !== "letters-canvas"){
         return;
@@ -126,6 +129,7 @@ function onPuzzleClick(e){
     setMouse(e);
     currentPiece = checkPieceClicked();
     if (currentPiece !== null) {
+        console.log({currentPiece});
         stage.clearRect(
             currentPiece.xPos,
             currentPiece.yPos,
@@ -146,6 +150,7 @@ function onPuzzleClick(e){
 function checkPieceClicked() {
     //todo: is there a way to just calculate the piece's index via div/mod/quotient/etc?
     //iterate through pieces
+    console.log(mouse.x,mouse.y);
     for (const piece of pieces) {
         //check if mouse click coordinates are outside the boundaries of this piece
         if (

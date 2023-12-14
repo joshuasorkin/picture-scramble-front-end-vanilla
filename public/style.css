@@ -78,7 +78,7 @@ body {
     display: none; /* Initially hidden */
     background: linear-gradient(90deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.8) 50%, rgba(255,255,255,0) 100%);
     background-size: 200%;
-    animation: shimmer 2s linear infinite, wave 1s linear infinite;
+    animation: glitter-alt 1s linear infinite;
     text-shadow: 0 0 2px #fff;
 }
 
@@ -124,20 +124,22 @@ body {
     }
 }
 
-@keyframes polychrome {
-    0%,100% { color: red; }
-    8% { color: pink; }
-    16% { color: purple; }
-    25% { color: green; }
-    33% { color: orange; }
-    41% { color: skyblue; }
-    50% { color: navy; }
-    58% { color: orangered; }
-    66% { color: indigo; }
-    75% { color: black; }
-    83% { color: yellow; }
-    91% { color: chartreuse; }
+@keyframes glitter-alt {
+    0% {
+        color: orange; 
+        text-shadow: 0 0 10px #FFD700, 0 0 20px #FFD700, 0 0 30px #FFD700, 0 0 40px #FF8C00, 0 0 70px #FF8C00, 0 0 80px #FF8C00, 0 0 100px #FF8C00, 0 0 150px #FF8C00;
+    }
+    50% {
+        color: #FFC0CB; /* Light Pink */
+        text-shadow: 0 0 5px #E0FFFF, 0 0 10px #E0FFFF, 0 0 15px #E0FFFF, 0 0 20px #E0FFFF, 0 0 35px #E0FFFF, 0 0 40px #E0FFFF, 0 0 50px #E0FFFF, 0 0 75px #E0FFFF;
+    }
+    100% {
+        color: orange; /* Light Pink */
+        text-shadow: 0 0 10px #FFD700, 0 0 20px #FFD700, 0 0 30px #FFD700, 0 0 40px #FF8C00, 0 0 70px #FF8C00, 0 0 80px #FF8C00, 0 0 100px #FF8C00, 0 0 150px #FF8C00;
+    }
 }
+
+
 
 @keyframes shimmer {
     0% {

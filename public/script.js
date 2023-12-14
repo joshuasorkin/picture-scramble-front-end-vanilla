@@ -30,7 +30,13 @@ async function submitGuess(){
     try {
         const userInput = userGuess.value.toLowerCase();
         console.log({userInput});
+        // Set the text to rainbow flashing
+        gameMessage.classList.add('rainbow-text');
+        gameMessage.removeAttribute('hidden');
+        gameMessage.textContent = 'Checking Answer';
         const response = await fetch(`/api/check-game?gameId=${gameId}&playerSolution=${userInput}`);
+        gameMessage.classList.remove('rainbow-text');
+        gameMessage.setAttribute('hidden',true);
         console.log("fetch complete")
         console.log({response});
         if (!response.ok) {

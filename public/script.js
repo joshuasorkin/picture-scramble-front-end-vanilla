@@ -125,6 +125,7 @@ async function sparkleWhileFetching() {
 
 async function startNewGame() {
     try {
+        gameMessage.removeAttribute('hidden');
         gameMessage.textContent = `Generating new game...`;
 
         // Set the text to rainbow flashing

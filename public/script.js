@@ -2,7 +2,7 @@ const userGuess = document.getElementById('user-guess');
 const submitGuessButton = document.getElementById('submit-guess-button');
 const score = document.getElementById('score');
 const victoryMessage = document.getElementById('victory-message');
-const gameResult = document.getElementById('game-result');
+const gameMessage = document.getElementById('game-message');
 const gameImage = document.getElementById('game-image');
 const scrambledWord = document.getElementById('scrambled-word');
 
@@ -43,16 +43,16 @@ async function submitGuess(){
             score.textContent = playerScore;
             victoryMessage.style.display = 'block'; // Show victory message
             submitGuessButton.setAttribute('hidden',true);
-            gameResult.textContent = "";
+            gameMessage.textContent = "";
             spinImage();
             gameImage.addEventListener('click', resetGame);
             //createGridOverlay(playerScore);
         } else {
-            gameResult.textContent = "Try again";
+            gameMessage.textContent = "Try again";
         }
     } catch (error) {
         console.error('Error:', error);
-        gameResult.textContent = `Error: ${error.message}`;
+        gameMessage.textContent = `Error: ${error.message}`;
     }
 }
 
@@ -116,12 +116,12 @@ async function sparkleWhileFetching() {
 
 async function startNewGame() {
     try {
-        gameResult.textContent = `Generating new game...`;
+        gameMessage.textContent = `Generating new game...`;
 
         // Set the text to rainbow flashing
-        gameResult.classList.add('rainbow-text');
+        gameMessage.classList.add('rainbow-text');
         const response = await fetch('/api/new-game');
-        gameResult.classList.remove('rainbow-text');
+        gameMessage.classList.remove('rainbow-text');
 
         if (!response.ok) {
             throw new Error(`HTTP error! status: ${response.status}`);
@@ -132,7 +132,7 @@ async function startNewGame() {
         const img = gameImage;
         img.onerror = () => {
             console.error('Error loading image:', data.picture);
-            gameResult.textContent = 'Error loading image.';
+            gameMessage.textContent = 'Error loading image.';
         };
         img.onload = () => {
             img.removeAttribute('hidden'); // Remove 'hidden' attribute when the image is loaded
@@ -142,11 +142,11 @@ async function startNewGame() {
             userGuess.removeAttribute('hidden');
         };
         gameImage.src = data.picture;
-        gameResult.textContent = ``;
+        gameMessage.textContent = ``;
 
     } catch (error) {
         console.error('Error:', error);
-        gameResult.textContent = `Error: ${error.message}`;
+        gameMessage.textContent = `Error: ${error.message}`;
     }
 }
 
@@ -158,7 +158,7 @@ function resetGame() {
     userGuess.setAttribute('hidden',true);
     userGuess.value = '';
     document.getElementById('scrambled-word').innerText = '';
-    gameResult.textContent = ''; // Clear result text
+    gameMessage.textContent = ''; // Clear result text
     gameImage.onload = () => {
         gameImage.removeAttribute('hidden'); // Remove 'hidden' attribute when the image is loaded
         startNewGame();

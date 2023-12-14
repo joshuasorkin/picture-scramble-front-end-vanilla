@@ -9,18 +9,18 @@ body {
 }
 
 @keyframes rainbow {
-    0%, 100% { color: red; }
-    8% { color: red; background-image: linear-gradient(to right, red, orange); }
-    16% { color: orange; }
-    25% { color: orange; background-image: linear-gradient(to right, orange, yellow); }
-    33% { color: yellow; }
-    41% { color: yellow; background-image: linear-gradient(to right, yellow, green); }
-    50% { color: green; }
-    58% { color: green; background-image: linear-gradient(to right, green, blue); }
-    66% { color: blue; }
-    75% { color: blue; background-image: linear-gradient(to right, blue, indigo); }
-    83% { color: indigo; }
-    91% { color: indigo; background-image: linear-gradient(to right, indigo, violet); }
+    0%, 100% { background-image: linear-gradient(to right, red, orange); }
+    8% { background-image: linear-gradient(to right, orange, yellow); }
+    16% { background-image: linear-gradient(to right, yellow, green); }
+    25% { background-image: linear-gradient(to right, green, blue); }
+    33% { background-image: linear-gradient(to right, blue, indigo); }
+    41% { background-image: linear-gradient(to right, indigo, violet); }
+    50% { background-image: linear-gradient(to right, violet, indigo); }
+    58% { background-image: linear-gradient(to right, indigo, blue); }
+    66% { background-image: linear-gradient(to right, blue, green); }
+    75% { background-image: linear-gradient(to right, green, yellow); }
+    83% { background-image: linear-gradient(to right, yellow, orange); }
+    91% { background-image: linear-gradient(to right, orange, red); }
 }
 
 .rainbow-text {

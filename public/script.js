@@ -6,8 +6,66 @@ const gameMessage = document.getElementById('game-message');
 const gameImage = document.getElementById('game-image');
 const scrambledWord = document.getElementById('scrambled-word');
 const guessControl = document.getElementById('guess-control');
+const tileContainer = document.getElementById('tileContainer');
 
 victoryMessage.addEventListener('click',resetGame);
+
+
+function removeAllTiles() {
+    while (tileContainer.firstChild) {
+        tileContainer.removeChild(tileContainer.firstChild);
+    }
+}
+
+function loadTiles(word){
+
+    let draggedTile = null;
+
+    word.split('').forEach(letter => {
+        const tile = document.createElement('div');
+        tile.classList.add('tile');
+        tile.textContent = letter;
+        tile.draggable = true;
+        tileContainer.appendChild(tile);
+
+        tile.addEventListener('dragstart', function (e) {
+            draggedTile = this;
+            setTimeout(() => this.classList.add('hidden'), 0);
+        });
+
+        tile.addEventListener('dragend', function (e) {
+            this.classList.remove('hidden');
+        });
+    });
+
+    tileContainer.addEventListener('dragover', function (e) {
+        e.preventDefault();
+        const afterElement = getDragAfterElement(tileContainer, e.clientX);
+        const draggable = document.querySelector('.dragging');
+        if (afterElement == null) {
+            tileContainer.appendChild(draggedTile);
+        } else {
+            tileContainer.insertBefore(draggedTile, afterElement);
+        }
+    });
+
+    function getDragAfterElement(tileContainer, x) {
+        const draggableElements = [...tileContainer.querySelectorAll('.tile:not(.hidden)')];
+
+        return draggableElements.reduce((closest, child) => {
+            const box = child.getBoundingClientRect();
+            const offset = x - box.left - box.width / 2;
+            if (offset < 0 && offset > closest.offset) {
+                return { offset: offset, element: child };
+            } else {
+                return closest;
+            }
+        }, { offset: Number.NEGATIVE_INFINITY }).element;
+    }
+}
+
+
+
 
 userGuess.addEventListener('keypress', function(event) {
     if (event.key === 'Enter') {

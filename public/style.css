@@ -42,10 +42,6 @@ body {
     91% { color: chartreuse; }
 }
 
-.polychrome-text {
-    animation: polychrome 2s linear infinite;
-}
-
 #game-area {
     text-align: center;
     padding: 20px;
@@ -83,6 +79,19 @@ body {
     text-align: center;
     display: none; /* Initially hidden */
     animation: glitter 1s linear infinite;
+}
+
+#continue-message {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #FFF; /* Choose a color that stands out */
+    font-size: 2em; /* Adjust size as needed */
+    font-weight: bold;
+    text-align: center;
+    display: none; /* Initially hidden */
+    animation: polychrome 1s linear infinite;
 }
 
 #user-guess {

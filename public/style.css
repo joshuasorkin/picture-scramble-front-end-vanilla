@@ -9,18 +9,18 @@ body {
 }
 
 @keyframes rainbow {
-    0%,100% { color: red; }
-    8% { color: orange; }
-    16% { color: yellow; }
-    25% { color: green; }
-    33% { color: blue; }
-    41% { color: indigo; }
-    50% { color: violet; }
-    58% { color: indigo; }
+    0%, 100% { color: red; }
+    8% { color: red; background-image: linear-gradient(to right, red, orange); }
+    16% { color: orange; }
+    25% { color: orange; background-image: linear-gradient(to right, orange, yellow); }
+    33% { color: yellow; }
+    41% { color: yellow; background-image: linear-gradient(to right, yellow, green); }
+    50% { color: green; }
+    58% { color: green; background-image: linear-gradient(to right, green, blue); }
     66% { color: blue; }
-    75% { color: green; }
-    83% { color: yellow; }
-    91% { color: orange; }
+    75% { color: blue; background-image: linear-gradient(to right, blue, indigo); }
+    83% { color: indigo; }
+    91% { color: indigo; background-image: linear-gradient(to right, indigo, violet); }
 }
 
 .rainbow-text {

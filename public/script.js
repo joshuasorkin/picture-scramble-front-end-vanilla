@@ -6,6 +6,8 @@ const gameResult = document.getElementById('game-result');
 const gameImage = document.getElementById('game-image');
 const scrambledWord = document.getElementById('scrambled-word');
 
+victoryMessage.addEventListener('click',resetGame);
+
 userGuess.addEventListener('keypress', function(event) {
     if (event.key === 'Enter') {
         event.preventDefault(); // Prevent the default action to avoid form submission or page reload

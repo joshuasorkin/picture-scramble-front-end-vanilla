@@ -5,6 +5,7 @@ const victoryMessage = document.getElementById('victory-message');
 const gameMessage = document.getElementById('game-message');
 const gameImage = document.getElementById('game-image');
 const scrambledWord = document.getElementById('scrambled-word');
+const guessControl = document.getElementById('guess-control');
 
 victoryMessage.addEventListener('click',resetGame);
 
@@ -31,6 +32,7 @@ async function submitGuess(){
         const userInput = userGuess.value.toLowerCase();
         console.log({userInput});
         // Set the text to rainbow flashing
+        guessControl.setAttribute('hidden',true);
         gameMessage.classList.add('rainbow-text');
         gameMessage.removeAttribute('hidden');
         gameMessage.textContent = 'Checking Answer';
@@ -54,6 +56,7 @@ async function submitGuess(){
             gameImage.addEventListener('click', resetGame);
             //createGridOverlay(playerScore);
         } else {
+            guessControl.removeAttribute('hidden');
             gameMessage.textContent = "Try again";
         }
     } catch (error) {

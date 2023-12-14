@@ -35,9 +35,13 @@ body {
     padding: 20px;
     background-color: white;
     /*background: linear-gradient(to bottom, orange, salmon);*/
-    background: linear-gradient(to bottom, yellow, #8B4513); /* Gold to SaddleBrown */
+    background: linear-gradient(to bottom, orange, #8B4513); /* Gold to SaddleBrown */
     box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.1);
     border: 1px solid #000; /* Optional: adds a border */
+    display: block;
+    width: 100%; /* Or set a specific width */
+    margin: auto; /* Centering if needed */
+    position: relative; /* Added to position children absolutely within it */
 }
 
 #game-image {

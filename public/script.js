@@ -18,9 +18,9 @@ function removeAllTiles() {
 }
 
 function loadTiles(word){
-
+    removeAllTiles();
     const container = tileContainer;
-    
+
     let draggedTile = null;
 
     word.split('').forEach(letter => {

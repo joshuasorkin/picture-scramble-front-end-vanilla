@@ -16,8 +16,11 @@
             <div id="victory-message" hidden>You Win!<br>Click to continue</div>
         </div>
         <p id="scrambled-word"></p>
-        <div id="tile-container"></div>
-        <!--<canvas id="letters-canvas"></canvas>-->
+        <svg id="rack-container" width="400" height="100">
+            <!-- Rack -->
+            <rect x="10" y="30" width="380" height="40" class="rack" />
+            <!-- Tiles will be added here -->
+        </svg>
         <div id="guess-control">
             <input type="text" id="user-guess">
             <button id="submit-guess-button">Submit</button>

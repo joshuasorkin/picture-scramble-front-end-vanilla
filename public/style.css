@@ -176,26 +176,26 @@ body {
     border-radius: 5px; /* rounded corners */
 }
 
-#tile-container {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    max-width: 100%;
-    margin: auto;
-    overflow: hidden; /* Prevents overflow if the word is too long */
+.rack {
+    fill: #deb887; /* Burlywood color */
+    stroke: #a52a2a; /* Brown color */
+    stroke-width: 2px;
+}
+.tile {
+    fill: #f5f5f5; /* White smoke color */
+    stroke: #8b4513; /* Saddle brown color */
+    stroke-width: 1px;
+}
+.tile-text {
+    font-size: 14px;
+    font-family: Arial, sans-serif;
+    text-anchor: middle;
+    dominant-baseline: middle;
 }
 
-.tile {
+.no-select {
     user-select: none;
-    flex-grow: 1;
-    flex-basis: 0;
-    border: 1px solid black;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin: 2px;
-    cursor: pointer;
-    background-color: lightgray;
-    text-align: center;
+    -moz-user-select: none; /* Firefox */
+    -webkit-user-select: none; /* Chrome/Safari */
+    -ms-user-select: none; /* IE/Edge */
 }

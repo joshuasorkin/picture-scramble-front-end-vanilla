@@ -156,6 +156,7 @@ async function startNewGame() {
         img.onload = () => {
             img.removeAttribute('hidden'); // Remove 'hidden' attribute when the image is loaded
             submitGuessButton.removeAttribute('hidden');
+            rackContainer.removeAttribute('hidden');
             //document.getElementById('scrambled-word').textContent = data.scramble;
             //document.getElementById('scrambled-word').removeAttribute('hidden');
             createTiles(data.scramble.toUpperCase());
@@ -175,6 +176,7 @@ function resetGame() {
     gameImage.style.transform = 'none'; // Reset image rotation
     victoryMessage.style.display = 'none'; // Hide victory message
     submitGuessButton.setAttribute('hidden',true);
+    rackContainer.setAttribute('hidden',true);
     userGuess.setAttribute('hidden',true);
     userGuess.value = '';
     document.getElementById('scrambled-word').innerText = '';

@@ -7,15 +7,9 @@ const gameImage = document.getElementById('game-image');
 const scrambledWord = document.getElementById('scrambled-word');
 const guessControl = document.getElementById('guess-control');
 const rackContainer = document.getElementById('rack-container');
+let startY, originalY;
 
 victoryMessage.addEventListener('click',resetGame);
-
-
-function removeAllTiles() {
-    while (rackContainer.firstChild) {
-        rackContainer.removeChild(rackContainer.firstChild);
-    }
-}
 
 userGuess.addEventListener('keypress', function(event) {
     if (event.key === 'Enter') {
@@ -216,6 +210,41 @@ function createGridOverlay(score) {
     container.appendChild(grid);
 }
 
+function startDrag(evt) {
+    originalY = rackContainer.getBoundingClientRect().top;
+    startY = evt.touches ? evt.touches[0].clientY : evt.clientY;
+    rackContainer.style.transition = 'none'; // Disable any transition
+}
+
+function drag(evt) {
+    evt.preventDefault();
+    let currentY = evt.touches ? evt.touches[0].clientY : evt.clientY;
+    let diffY = currentY - startY;
+    rackContainer.style.transform = `translateY(${diffY}px)`;
+}
+
+function endDrag(evt) {
+    rackContainer.style.transition = 'transform 0.3s'; // Re-enable transition for smooth return
+    rackContainer.style.transform = 'translateY(0)'; // Return to original position
+
+    let rackRect = rackContainer.getBoundingClientRect();
+    let imageRect = gameImage.getBoundingClientRect();
+
+    // Check if rack overlaps with game image
+    if (rackRect.bottom > imageRect.top && rackRect.top < imageRect.bottom) {
+        console.log("Rack reached the game image!");
+        // Handle the event where rack overlaps with game image
+    }
+}
+
+rackContainer.addEventListener('touchstart', startDrag);
+rackContainer.addEventListener('touchmove', drag);
+rackContainer.addEventListener('touchend', endDrag);
+
+// Add corresponding mouse event listeners for non-touch devices
+rackContainer.addEventListener('mousedown', startDrag);
+document.addEventListener('mousemove', drag);
+document.addEventListener('mouseup', endDrag);
 
 
 resetGame();

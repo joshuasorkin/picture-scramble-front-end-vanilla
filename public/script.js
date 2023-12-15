@@ -38,7 +38,7 @@ scrambledWord.addEventListener('click', function() {
 async function submitGuess(){
     try {
         //const userInput = userGuess.value.toLowerCase();
-        const userInput = getRackString().toLowerCase();
+        const userInput = rackString.toLowerCase();
         console.log({userInput});
         // Set the text to rainbow flashing
         guessControl.setAttribute('hidden',true);

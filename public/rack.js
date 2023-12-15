@@ -1,4 +1,4 @@
-    const rack = document.getElementById('rack-container');
+const rack = document.getElementById('rack-container');
     let draggingTile = null;
     let startX;
     let tiles = [];
@@ -11,10 +11,10 @@
     let containerPadding;
     let rackWidth;
     let containerWidth;
+    let rackString;
 
     function getRackString() {
         const tileElements = rack.querySelectorAll('.tile');
-    
         return Array.from(tileElements).reduce((currentString, tile) => {
             const textElement = tile.querySelector('text');
             return textElement ? currentString + textElement.textContent : currentString;
@@ -40,7 +40,11 @@
         //set the width of the rack container
         rack.setAttribute('width', containerWidth.toString());
 
+        //reset rackString
+        rackString = '';
+
         tiles = [...str].map((char, index) => {
+            rackString += char;
             const x = xOffsetStart + index * tileSpacing;
 
             const group = document.createElementNS("http://www.w3.org/2000/svg", 'g');
@@ -64,6 +68,8 @@
 
             return { element: group, x, char };
         });
+        console.log({tiles});
+        console.log({rackString});
     }
 
     function startDrag(evt) {
@@ -142,6 +148,7 @@
             newIndex = tiles.length - 1;
         }
         console.log({newIndex});
+        rackString = '';
         if (newIndex !== draggingIndex && newIndex >= 0 && newIndex < tiles.length) {
             // Remove the dragging tile from the array and splice it into the new position
             const [movedTile] = tiles.splice(draggingIndex, 1);
@@ -152,7 +159,9 @@
                 const x = xOffsetStart + index * tileSpacing;
                 tile.element.setAttribute('transform', `translate(${x}, ${yOffset})`);
                 tile.element.dataset.index = index;
+                rackString += tile.char;
             });
+            console.log({rackString});
         }
     }
 

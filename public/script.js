@@ -241,9 +241,9 @@ function endTabDrag(evt) {
     rackIsBeingDragged = false;
 }
 
-dragTab.addEventListener('touchstart', startRackDrag);
-dragTab.addEventListener('touchmove', rackDrag);
-dragTab.addEventListener('touchend', endRackDrag);
+dragTab.addEventListener('touchstart', startTabDrag);
+dragTab.addEventListener('touchmove', tabDrag);
+dragTab.addEventListener('touchend', endTabDrag);
 
 // Add corresponding mouse event listeners for non-touch devices
 dragTab.addEventListener('mousedown', startTabDrag);

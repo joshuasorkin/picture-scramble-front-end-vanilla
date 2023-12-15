@@ -60,7 +60,7 @@ async function submitGuess(){
             submitGuessButton.setAttribute('hidden',true);
             gameMessage.textContent = "";
             spinImage();
-            victoryMessage.innerText = result.compliment;
+            victoryMessage.innerText = result.compliment+"\nClick to continue...";
             gameImage.addEventListener('click', resetGame);
             //createGridOverlay(playerScore);
         } else {

@@ -32,6 +32,7 @@ body {
 
 #game-area {
     text-align: center;
+    align-items: center;
     padding: 20px;
     background-color: white;
     /*background: linear-gradient(to bottom, orange, salmon);*/

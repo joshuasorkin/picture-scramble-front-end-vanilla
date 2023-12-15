@@ -9,11 +9,10 @@ const guessControl = document.getElementById('guess-control');
 const rackContainer = document.getElementById('rack-container');
 const dragTabLeft = document.getElementById('drag-tab-left');
 const dragTabRight = document.getElementById('drag-tab-right');
-const fastForwardButton = document.querySelector('.fast-forward-button');
+const skipButton = document.querySelector('.skip-button');
 let startY, originalY;
 
-victoryMessage.addEventListener('click',resetGame);
-fastForwardButton.addEventListener('click',resetGame);
+skipButton.addEventListener('click',resetGame);
 
 userGuess.addEventListener('keypress', function(event) {
     if (event.key === 'Enter') {
@@ -54,6 +53,7 @@ async function submitGuess(){
         console.log({result});
         guessControl.removeAttribute('hidden');
         if (result.checkResult) {
+            skipButton.style.display = 'none';
             gameMessage.setAttribute('hidden',true);
             playerScore++;
             score.textContent = playerScore;
@@ -83,7 +83,7 @@ let playerScore = 0;
 
 async function fetchData() {
     try {
-        const response = await fetch('/api/new-game'); // Replace with your API endpoint
+        const response = await fetch(`/api/new-game?score=${playerScore}`); // Replace with your API endpoint
         return response; // Return the data for further use
     } catch (error) {
         console.error('Error fetching data:', error);
@@ -164,7 +164,7 @@ async function startNewGame() {
             //document.getElementById('scrambled-word').textContent = data.scramble;
             //document.getElementById('scrambled-word').removeAttribute('hidden');
             createTiles(data.scramble.toUpperCase());
-            //userGuess.removeAttribute('hidden');
+            skipButton.style.display = 'block';
         };
         gameImage.src = data.picture;
         gameMessage.textContent = ``;

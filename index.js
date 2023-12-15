@@ -5,13 +5,17 @@ dotenv.config();
 const app = express();
 const port = 3000;
 
-app.get('/api/new-game/:topic?', async (req, res) => {
+app.get('/api/new-game', async (req, res) => {
     try {
         console.log("generating game...");
-        const topic = req.params.topic;
-        const url = topic ?
-            process.env.BACK_END_URI+`/new-game/${topic}` :
-            process.env.BACK_END_URI+`/new-game`;
+        const score = req.query.score;
+        let url;
+        if (score !== undefined){
+            url = process.env.BACK_END_URI+`/new-game?score=${score}`
+        }
+        else{
+            url = process.env.BACK_END_URI+`/new-game`;
+        }
         console.log({url});
         const response = await fetch(url);
         if (!response.ok) {

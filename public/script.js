@@ -9,7 +9,7 @@ const guessControl = document.getElementById('guess-control');
 const rackContainer = document.getElementById('rack-container');
 const dragTabLeft = document.getElementById('drag-tab-left');
 const dragTabRight = document.getElementById('drag-tab-right');
-const fastForwardButton = document.getElementById('fast-forward-button');
+const fastForwardButton = document.querySelector('.fast-forward-button');
 let startY, originalY;
 
 victoryMessage.addEventListener('click',resetGame);

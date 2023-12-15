@@ -6,14 +6,14 @@ const gameMessage = document.getElementById('game-message');
 const gameImage = document.getElementById('game-image');
 const scrambledWord = document.getElementById('scrambled-word');
 const guessControl = document.getElementById('guess-control');
-const tileContainer = document.getElementById('tile-container');
+const rackContainer = document.getElementById('rack-container');
 
 victoryMessage.addEventListener('click',resetGame);
 
 
 function removeAllTiles() {
-    while (tileContainer.firstChild) {
-        tileContainer.removeChild(tileContainer.firstChild);
+    while (rackContainer.firstChild) {
+        rackContainer.removeChild(rackContainer.firstChild);
     }
 }
 
@@ -157,8 +157,8 @@ async function startNewGame() {
             submitGuessButton.removeAttribute('hidden');
             document.getElementById('scrambled-word').textContent = data.scramble;
             document.getElementById('scrambled-word').removeAttribute('hidden');
+            createTiles(data.scramble);
             userGuess.removeAttribute('hidden');
-            loadTiles(data.scramble);
         };
         gameImage.src = data.picture;
         gameMessage.textContent = ``;

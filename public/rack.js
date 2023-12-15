@@ -13,6 +13,15 @@ document.addEventListener("DOMContentLoaded", function() {
     let rackWidth;
     let containerWidth;
 
+    function getRackString() {
+        const tileElements = rack.querySelectorAll('.tile');
+    
+        return Array.from(tileElements).reduce((currentString, tile) => {
+            const textElement = tile.querySelector('text');
+            return textElement ? currentString + textElement.textContent : currentString;
+        }, '');
+    }
+
     function createTiles(str) {
         xOffsetStart = 25;
         yOffset = 35;

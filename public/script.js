@@ -7,7 +7,7 @@ const gameImage = document.getElementById('game-image');
 const scrambledWord = document.getElementById('scrambled-word');
 const guessControl = document.getElementById('guess-control');
 const rackContainer = document.getElementById('rack-container');
-const dragTab = document.getElementById('drag-tab');
+const dragTabLeft = document.getElementById('drag-tab-left');
 const dragTabRight = document.getElementById('drag-tab-right');
 let startY, originalY;
 
@@ -244,12 +244,12 @@ function endTabDrag(evt) {
     rackIsBeingDragged = false;
 }
 
-dragTab.addEventListener('touchstart', startTabDrag);
-dragTab.addEventListener('touchmove', tabDrag);
-dragTab.addEventListener('touchend', endTabDrag);
+dragTabLeft.addEventListener('touchstart', startTabDrag);
+dragTabLeft.addEventListener('touchmove', tabDrag);
+dragTabLeft.addEventListener('touchend', endTabDrag);
 
 // Add corresponding mouse event listeners for non-touch devices
-dragTab.addEventListener('mousedown', startTabDrag);
+dragTabLeft.addEventListener('mousedown', startTabDrag);
 document.addEventListener('mousemove', tabDrag);
 document.addEventListener('mouseup', endTabDrag);
 

@@ -199,3 +199,9 @@ body {
     -webkit-user-select: none; /* Chrome/Safari */
     -ms-user-select: none; /* IE/Edge */
 }
+
+#rack-container {
+    width: 100%; /* Make the SVG responsive */
+    max-width: 400px; /* Maximum width */
+    height: auto; /* Maintain aspect ratio */
+}

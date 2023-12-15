@@ -55,12 +55,12 @@ async function submitGuess(){
             gameMessage.setAttribute('hidden',true);
             playerScore++;
             score.textContent = playerScore;
-            victoryMessage.innerText = "You Win!";
             victoryMessage.style.display = 'block'; // Show victory message
+            victoryMessage.innerText = 'You win!';
             submitGuessButton.setAttribute('hidden',true);
             gameMessage.textContent = "";
             spinImage();
-            victoryMessage.innerText += "\nClick to continue"
+            victoryMessage.innerText = result.compliment;
             gameImage.addEventListener('click', resetGame);
             //createGridOverlay(playerScore);
         } else {

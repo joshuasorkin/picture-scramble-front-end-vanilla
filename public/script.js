@@ -150,7 +150,7 @@ async function startNewGame() {
         };
         img.onload = () => {
             img.removeAttribute('hidden'); // Remove 'hidden' attribute when the image is loaded
-            submitGuessButton.removeAttribute('hidden');
+            //submitGuessButton.removeAttribute('hidden');
             rackContainer.style.display = 'block';
             //document.getElementById('scrambled-word').textContent = data.scramble;
             //document.getElementById('scrambled-word').removeAttribute('hidden');

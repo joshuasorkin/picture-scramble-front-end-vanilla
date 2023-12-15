@@ -1,4 +1,3 @@
-document.addEventListener("DOMContentLoaded", function() {
     const rack = document.getElementById('rack-container');
     let draggingTile = null;
     let startX;
@@ -175,4 +174,3 @@ document.addEventListener("DOMContentLoaded", function() {
     rack.addEventListener('touchend', function(evt) {
         endDrag(evt);
     }, false);
-});

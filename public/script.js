@@ -7,6 +7,7 @@ const gameImage = document.getElementById('game-image');
 const scrambledWord = document.getElementById('scrambled-word');
 const guessControl = document.getElementById('guess-control');
 const rackContainer = document.getElementById('rack-container');
+const dragTab = document.getElementById('drag-tab');
 let startY, originalY;
 
 victoryMessage.addEventListener('click',resetGame);
@@ -210,21 +211,21 @@ function createGridOverlay(score) {
     container.appendChild(grid);
 }
 
-function startRackDrag(evt) {
+function startTabDrag(evt) {
     originalY = rackContainer.getBoundingClientRect().top;
     startY = evt.touches ? evt.touches[0].clientY : evt.clientY;
     rackContainer.style.transition = 'none'; // Disable any transition
     rackIsBeingDragged = true;
 }
 
-function rackDrag(evt) {
+function tabDrag(evt) {
     evt.preventDefault();
     let currentY = evt.touches ? evt.touches[0].clientY : evt.clientY;
     let diffY = currentY - startY;
     rackContainer.style.transform = `translateY(${diffY}px)`;
 }
 
-function endRackDrag(evt) {
+function endTabDrag(evt) {
     rackContainer.style.transition = 'transform 0.3s'; // Re-enable transition for smooth return
     rackContainer.style.transform = 'translateY(0)'; // Return to original position
 
@@ -240,14 +241,14 @@ function endRackDrag(evt) {
     rackIsBeingDragged = false;
 }
 
-rackContainer.addEventListener('touchstart', startRackDrag);
-rackContainer.addEventListener('touchmove', rackDrag);
-rackContainer.addEventListener('touchend', endRackDrag);
+dragTab.addEventListener('touchstart', startRackDrag);
+dragTab.addEventListener('touchmove', rackDrag);
+dragTab.addEventListener('touchend', endRackDrag);
 
 // Add corresponding mouse event listeners for non-touch devices
-rackContainer.addEventListener('mousedown', startRackDrag);
-document.addEventListener('mousemove', rackDrag);
-document.addEventListener('mouseup', endRackDrag);
+dragTab.addEventListener('mousedown', startTabDrag);
+document.addEventListener('mousemove', tabDrag);
+document.addEventListener('mouseup', endTabDrag);
 
 
 resetGame();

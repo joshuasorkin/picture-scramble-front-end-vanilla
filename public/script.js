@@ -90,51 +90,6 @@ async function fetchData() {
     }
 }
 
-async function sparkleWhileFetching() {
-    const img = gameImage;
-    const canvas = document.getElementById('overlay-canvas');
-    const ctx = canvas.getContext('2d');
-
-    // Set canvas size to image size
-    canvas.width = img.width;
-    canvas.height = img.height;
-
-    // Function to change and reset a pixel
-    function togglePixel(x, y) {
-        console.log("toggling",x,y);
-        const randomColor = `rgba(${Math.random() * 255}, ${Math.random() * 255}, ${Math.random() * 255}, 1)`;
-        ctx.fillStyle = randomColor;
-        ctx.fillRect(x, y, 1, 1);
-
-        /*
-        setTimeout(() => {
-            ctx.clearRect(x, y, 1, 1);
-        }, 50);
-        */
-    }
-
-    // Asynchronous loop function
-    async function loop() {
-        if (!fetchDataPromise) { // If fetchDataPromise is still unresolved
-            // Choose a random pixel
-            const x = Math.floor(Math.random() * canvas.width);
-            const y = Math.floor(Math.random() * canvas.height);
-
-            // Toggle the pixel color
-            togglePixel(x, y);
-
-            // Request the next frame in the loop
-            requestAnimationFrame(loop);
-        }
-    }
-
-    const fetchDataPromise = fetchData();
-    loop(); // Start the loop
-
-    const data = await fetchDataPromise; // Wait for the fetch to complete
-    console.log('Data received:', data); // Do something with the data
-    return data;
-}
 
 async function startNewGame() {
     try {
@@ -143,7 +98,7 @@ async function startNewGame() {
 
         // Set the text to rainbow flashing
         gameMessage.classList.add('rainbow-text');
-        const response = await fetch('/api/new-game');
+        const response = await fetch(`/api/new-game?score=${playerScore}`);
         gameMessage.classList.remove('rainbow-text');
 
         if (!response.ok) {

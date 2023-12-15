@@ -166,6 +166,4 @@ document.addEventListener("DOMContentLoaded", function() {
     rack.addEventListener('touchend', function(evt) {
         endDrag(evt);
     }, false);
-
-    createTiles("surrender");
 });

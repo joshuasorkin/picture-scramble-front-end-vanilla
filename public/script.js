@@ -85,12 +85,11 @@ async function startNewGame() {
     try {
         gameMessage.removeAttribute('hidden');
         gameMessage.textContent = `Generating new game...`;
-
+        skipButton.style.display = 'none';
         // Set the text to rainbow flashing
         gameMessage.classList.add('rainbow-text');
         const response = await fetch(`/api/new-game?score=${playerScore}`);
         gameMessage.classList.remove('rainbow-text');
-
         if (!response.ok) {
             throw new Error(`HTTP error! status: ${response.status}`);
         }

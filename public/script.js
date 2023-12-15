@@ -210,20 +210,21 @@ function createGridOverlay(score) {
     container.appendChild(grid);
 }
 
-function startDrag(evt) {
+function startRackDrag(evt) {
     originalY = rackContainer.getBoundingClientRect().top;
     startY = evt.touches ? evt.touches[0].clientY : evt.clientY;
     rackContainer.style.transition = 'none'; // Disable any transition
+    rackIsBeingDragged = true;
 }
 
-function drag(evt) {
+function rackDrag(evt) {
     evt.preventDefault();
     let currentY = evt.touches ? evt.touches[0].clientY : evt.clientY;
     let diffY = currentY - startY;
     rackContainer.style.transform = `translateY(${diffY}px)`;
 }
 
-function endDrag(evt) {
+function endRackDrag(evt) {
     rackContainer.style.transition = 'transform 0.3s'; // Re-enable transition for smooth return
     rackContainer.style.transform = 'translateY(0)'; // Return to original position
 
@@ -235,16 +236,18 @@ function endDrag(evt) {
         console.log("Rack reached the game image!");
         // Handle the event where rack overlaps with game image
     }
+
+    rackIsBeingDragged = false;
 }
 
-rackContainer.addEventListener('touchstart', startDrag);
-rackContainer.addEventListener('touchmove', drag);
-rackContainer.addEventListener('touchend', endDrag);
+rackContainer.addEventListener('touchstart', startRackDrag);
+rackContainer.addEventListener('touchmove', rackDrag);
+rackContainer.addEventListener('touchend', endRackDrag);
 
 // Add corresponding mouse event listeners for non-touch devices
-rackContainer.addEventListener('mousedown', startDrag);
-document.addEventListener('mousemove', drag);
-document.addEventListener('mouseup', endDrag);
+rackContainer.addEventListener('mousedown', startRackDrag);
+document.addEventListener('mousemove', rackDrag);
+document.addEventListener('mouseup', endRackDrag);
 
 
 resetGame();

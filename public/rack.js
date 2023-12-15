@@ -13,6 +13,8 @@ const rack = document.getElementById('rack-container');
     let containerWidth;
     let rackString;
 
+    let rackIsBeingDragged = false;
+
     function getRackString() {
         const tileElements = rack.querySelectorAll('.tile');
         return Array.from(tileElements).reduce((currentString, tile) => {
@@ -72,23 +74,25 @@ const rack = document.getElementById('rack-container');
         console.log({rackString});
     }
 
-    function startDrag(evt) {
-        if (evt.target.classList.contains('tile') || evt.target.parentNode.classList.contains('tile')) {
-            draggingTile = evt.target.classList.contains('tile') ? evt.target : evt.target.parentNode;
-            if (evt.touches) {
-                evt.preventDefault(); // Prevents additional mouse event
-                startX = evt.touches[0].clientX;
-            } else {
-                startX = evt.clientX;
+    function startTileDrag(evt) {
+        if (!rackIsBeingDragged){
+            if (evt.target.classList.contains('tile') || evt.target.parentNode.classList.contains('tile')) {
+                draggingTile = evt.target.classList.contains('tile') ? evt.target : evt.target.parentNode;
+                if (evt.touches) {
+                    evt.preventDefault(); // Prevents additional mouse event
+                    startX = evt.touches[0].clientX;
+                } else {
+                    startX = evt.clientX;
+                }
+                draggingTile.classList.add('dragging');     
+                rack.classList.add('no-select');
+                // Move the dragging tile to the end of the SVG for higher stacking order
+                draggingTile.parentNode.appendChild(draggingTile);
             }
-            draggingTile.classList.add('dragging');     
-            rack.classList.add('no-select');
-            // Move the dragging tile to the end of the SVG for higher stacking order
-            draggingTile.parentNode.appendChild(draggingTile);
         }
     }
 
-    function drag(evt) {
+    function tileDrag(evt) {
         if (draggingTile) {
             const draggingIndex = parseInt(draggingTile.dataset.index);
             let currentX;
@@ -123,7 +127,7 @@ const rack = document.getElementById('rack-container');
     }
     
 
-    function endDrag(evt) {
+    function endTileDrag(evt) {
         if (draggingTile) {
             console.log("drag ended");
             draggingTile.classList.remove('dragging');
@@ -165,21 +169,21 @@ const rack = document.getElementById('rack-container');
         }
     }
 
-    rack.addEventListener('mousedown', startDrag);
-    document.addEventListener('mousemove', drag);
-    document.addEventListener('mouseup', endDrag);
+    rack.addEventListener('mousedown', startTileDrag);
+    document.addEventListener('mousemove', tileDrag);
+    document.addEventListener('mouseup', endTileDrag);
 
         // Attach touch event listeners
     rack.addEventListener('touchstart', function(evt) {
         evt.preventDefault(); // Prevents additional mouse event
-        startDrag(evt);
+        startTileDrag(evt);
     }, false);
 
     rack.addEventListener('touchmove', function(evt) {
         evt.preventDefault(); // Prevents scrolling while dragging
-        drag(evt);
+        tileDrag(evt);
     }, false);
 
     rack.addEventListener('touchend', function(evt) {
-        endDrag(evt);
+        endTileDrag(evt);
     }, false);

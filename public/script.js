@@ -84,7 +84,6 @@ let playerScore = 0;
 async function startNewGame() {
     try {
         gameMessage.removeAttribute('hidden');
-        skipButton.style.display = 'none';
         gameMessage.textContent = `Generating new game...`;
 
         // Set the text to rainbow flashing

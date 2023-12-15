@@ -156,10 +156,10 @@ async function startNewGame() {
         img.onload = () => {
             img.removeAttribute('hidden'); // Remove 'hidden' attribute when the image is loaded
             submitGuessButton.removeAttribute('hidden');
-            document.getElementById('scrambled-word').textContent = data.scramble;
-            document.getElementById('scrambled-word').removeAttribute('hidden');
-            createTiles(data.scramble);
-            userGuess.removeAttribute('hidden');
+            //document.getElementById('scrambled-word').textContent = data.scramble;
+            //document.getElementById('scrambled-word').removeAttribute('hidden');
+            createTiles(data.scramble.toUpperCase());
+            //userGuess.removeAttribute('hidden');
         };
         gameImage.src = data.picture;
         gameMessage.textContent = ``;

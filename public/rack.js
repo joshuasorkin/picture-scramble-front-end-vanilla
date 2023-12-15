@@ -112,7 +112,8 @@ const rack = document.getElementById('rack-container');
             
             // Define the boundaries
             const leftBoundary = rackPadding;
-            const rightBoundary = containerWidth - rackPadding;
+            const rightBoundary = containerWidth - (rackPadding + containerPadding);
+            console.log({rightBoundary},{containerWidth},{rackPadding});
     
             // Enforce the boundaries
             if (translateX < leftBoundary) {

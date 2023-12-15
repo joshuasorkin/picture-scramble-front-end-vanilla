@@ -237,6 +237,7 @@ function endTabDrag(evt) {
     if (rackRect.top < imageRect.bottom) {
         console.log("Rack reached the game image!");
         // Handle the event where rack overlaps with game image
+        submitGuess();
     }
 
     rackIsBeingDragged = false;

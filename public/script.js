@@ -59,10 +59,10 @@ async function submitGuess(){
             score.textContent = playerScore;
             victoryMessage.style.display = 'block'; // Show victory message
             victoryMessage.innerText = 'You win!';
-            submitGuessButton.setAttribute('hidden',true);
             gameMessage.textContent = "";
             spinImage();
             victoryMessage.innerText = result.compliment+"\nClick to continue...";
+            victoryMessage.addEventListener('click', resetGame);
             gameImage.addEventListener('click', resetGame);
             //createGridOverlay(playerScore);
         } else {
@@ -80,16 +80,6 @@ async function submitGuess(){
 
 let gameId;
 let playerScore = 0;
-
-async function fetchData() {
-    try {
-        const response = await fetch(`/api/new-game?score=${playerScore}`); // Replace with your API endpoint
-        return response; // Return the data for further use
-    } catch (error) {
-        console.error('Error fetching data:', error);
-    }
-}
-
 
 async function startNewGame() {
     try {
@@ -114,10 +104,7 @@ async function startNewGame() {
         };
         img.onload = () => {
             img.removeAttribute('hidden'); // Remove 'hidden' attribute when the image is loaded
-            //submitGuessButton.removeAttribute('hidden');
             rackContainer.style.display = 'block';
-            //document.getElementById('scrambled-word').textContent = data.scramble;
-            //document.getElementById('scrambled-word').removeAttribute('hidden');
             createTiles(data.scramble.toUpperCase());
             skipButton.style.display = 'block';
         };

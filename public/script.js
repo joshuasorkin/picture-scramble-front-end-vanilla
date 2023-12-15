@@ -55,14 +55,20 @@ async function submitGuess(){
             gameMessage.setAttribute('hidden',true);
             playerScore++;
             score.textContent = playerScore;
+            victoryMessage.innerText = "You Win!";
             victoryMessage.style.display = 'block'; // Show victory message
             submitGuessButton.setAttribute('hidden',true);
             gameMessage.textContent = "";
             spinImage();
+            victoryMessage.innerText += "\nClick to continue"
             gameImage.addEventListener('click', resetGame);
             //createGridOverlay(playerScore);
         } else {
             gameMessage.textContent = "Try again";
+            // Wait for 2 seconds and remove the text
+            setTimeout(() => {
+                gameMessage.textContent = '';
+            }, 2000); // 2000 milliseconds = 2 seconds
         }
     } catch (error) {
         console.error('Error:', error);

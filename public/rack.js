@@ -24,6 +24,10 @@ const rack = document.getElementById('rack-container');
     }
 
     function createTiles(str) {
+        // Remove existing tiles
+        const existingTiles = rackContainer.querySelectorAll('.tile');
+        existingTiles.forEach(tile => tile.remove());
+        
         xOffsetStart = 25;
         yOffset = 35;
         tileWidth = 30;

@@ -202,6 +202,6 @@ body {
 
 #rack-container {
     width: 100%; /* Make the SVG responsive */
-    max-width: 500px; /* Maximum width */
+    max-width: 600px; /* Maximum width */
     height: auto; /* Maintain aspect ratio */
 }

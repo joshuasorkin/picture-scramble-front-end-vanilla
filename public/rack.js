@@ -27,7 +27,7 @@ const rack = document.getElementById('rack-container');
         // Remove existing tiles
         const existingTiles = rackContainer.querySelectorAll('.tile');
         existingTiles.forEach(tile => tile.remove());
-        
+
         xOffsetStart = 25;
         yOffset = 35;
         tileWidth = 30;
@@ -38,6 +38,10 @@ const rack = document.getElementById('rack-container');
 
         rackWidth = str.length * tileSpacing + rackPadding;
         containerWidth = rackWidth + containerPadding;
+
+        // set position of drag tab right
+        const dragTabRight = document.getElementById('drag-tab-right');
+        dragTabRight.setAttribute('x',rackWidth.toString());
 
         // Set the width of the rack
         const rackElement = document.querySelector('.rack');
@@ -117,7 +121,6 @@ const rack = document.getElementById('rack-container');
             // Define the boundaries
             const leftBoundary = rackPadding;
             const rightBoundary = containerWidth - (rackPadding + containerPadding);
-            console.log({rightBoundary},{containerWidth},{rackPadding});
     
             // Enforce the boundaries
             if (translateX < leftBoundary) {

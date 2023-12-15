@@ -207,4 +207,5 @@ body {
     max-width: 600px; /* Maximum width */
     height: auto; /* Maintain aspect ratio */
     display: none; /* hide at start */
+    margin: auto
 }

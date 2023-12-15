@@ -8,6 +8,7 @@ const scrambledWord = document.getElementById('scrambled-word');
 const guessControl = document.getElementById('guess-control');
 const rackContainer = document.getElementById('rack-container');
 const dragTab = document.getElementById('drag-tab');
+const dragTabRight = document.getElementById('drag-tab-right');
 let startY, originalY;
 
 victoryMessage.addEventListener('click',resetGame);
@@ -252,5 +253,13 @@ dragTab.addEventListener('mousedown', startTabDrag);
 document.addEventListener('mousemove', tabDrag);
 document.addEventListener('mouseup', endTabDrag);
 
+dragTabRight.addEventListener('touchstart', startTabDrag);
+dragTabRight.addEventListener('touchmove', tabDrag);
+dragTabRight.addEventListener('touchend', endTabDrag);
+
+// Add corresponding mouse event listeners for non-touch devices
+dragTabRight.addEventListener('mousedown', startTabDrag);
+document.addEventListener('mousemove', tabDrag);
+document.addEventListener('mouseup', endTabDrag);
 
 resetGame();

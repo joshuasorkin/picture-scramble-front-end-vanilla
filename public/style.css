@@ -204,4 +204,5 @@ body {
     width: 100%; /* Make the SVG responsive */
     max-width: 600px; /* Maximum width */
     height: auto; /* Maintain aspect ratio */
+    display: none; /* hide at start */
 }

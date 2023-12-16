@@ -14,24 +14,6 @@ let startY, originalY;
 
 skipButton.addEventListener('click',resetGame);
 
-userGuess.addEventListener('keypress', function(event) {
-    if (event.key === 'Enter') {
-        event.preventDefault(); // Prevent the default action to avoid form submission or page reload
-        submitGuess();
-    }
-});
-
-submitGuessButton.addEventListener('click', submitGuess);
-
-scrambledWord.addEventListener('click', function() {
-    const text = this.innerText;
-    navigator.clipboard.writeText(text).then(() => {
-        console.log('Text copied to clipboard');
-    }).catch(err => {
-        console.error('Failed to copy text: ', err);
-    });
-});
-
 async function submitGuess(){
     try {
         //const userInput = userGuess.value.toLowerCase();

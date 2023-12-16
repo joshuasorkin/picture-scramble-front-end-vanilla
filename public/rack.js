@@ -86,7 +86,7 @@ const rack = document.getElementById('rack-container');
         if (!rackIsBeingDragged){
             if (evt.target.classList.contains('tile') || evt.target.parentNode.classList.contains('tile')) {
                 draggingTile = evt.target.classList.contains('tile') ? evt.target : evt.target.parentNode;
-                if (evt.touches) {
+                if (evt.touches && evt.touches.length === 1) {
                     evt.preventDefault(); // Prevents additional mouse event
                     startX = evt.touches[0].clientX;
                 } else {
@@ -104,7 +104,7 @@ const rack = document.getElementById('rack-container');
         if (draggingTile) {
             const draggingIndex = parseInt(draggingTile.dataset.index);
             let currentX;
-            if (evt.touches) {
+            if (evt.touches && evt.touches.length === 1) {
                 evt.preventDefault(); // Prevents scrolling while dragging
                 currentX = evt.touches[0].clientX;
             } else {
@@ -183,13 +183,17 @@ const rack = document.getElementById('rack-container');
 
         // Attach touch event listeners
     rack.addEventListener('touchstart', function(evt) {
-        evt.preventDefault(); // Prevents additional mouse event
-        startTileDrag(evt);
+        if (evt.touches.length === 1){
+            evt.preventDefault(); // Prevents additional mouse event
+            startTileDrag(evt);
+        }
     }, false);
 
     rack.addEventListener('touchmove', function(evt) {
-        evt.preventDefault(); // Prevents scrolling while dragging
-        tileDrag(evt);
+        if (evt.touches.length === 1){
+            evt.preventDefault(); // Prevents scrolling while dragging
+            tileDrag(evt);
+        }
     }, false);
 
     rack.addEventListener('touchend', function(evt) {

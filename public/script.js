@@ -142,17 +142,21 @@ function createGridOverlay(score) {
 }
 
 function startTabDrag(evt) {
-    originalY = rackContainer.getBoundingClientRect().top;
-    startY = evt.touches ? evt.touches[0].clientY : evt.clientY;
-    rackContainer.style.transition = 'none'; // Disable any transition
-    rackIsBeingDragged = true;
+    if (evt.touches && evt.touches.length === 1){
+        originalY = rackContainer.getBoundingClientRect().top;
+        startY = evt.touches ? evt.touches[0].clientY : evt.clientY;
+        rackContainer.style.transition = 'none'; // Disable any transition
+        rackIsBeingDragged = true;
+    }
 }
 
 function tabDrag(evt) {
-    evt.preventDefault();
-    let currentY = evt.touches ? evt.touches[0].clientY : evt.clientY;
-    let diffY = currentY - startY;
-    rackContainer.style.transform = `translateY(${diffY}px)`;
+    if (evt.touches && evt.touches.length ===1){
+        evt.preventDefault();
+        let currentY = evt.touches ? evt.touches[0].clientY : evt.clientY;
+        let diffY = currentY - startY;
+        rackContainer.style.transform = `translateY(${diffY}px)`;
+    }
 }
 
 function endTabDrag(evt) {

@@ -19,9 +19,12 @@
             <rect x="10" y="30" width="380" height="40" class="rack" />
             <rect id="drag-tab-left" x="0" y="30" width="20" height="40" fill="blue" />
             <rect id="drag-tab-right" x="0" y="30" width="20" height="40" fill="blue" />
-            <!-- Upward arrow indicating dragging direction -->
-            <polygon points="200,10 210,30 190,30" fill="black"/>
-            <line x1="200" y1="30" x2="200" y2="50" stroke="black" stroke-width="2"/>
+            <!-- Upward arrows indicating dragging direction -->
+            <!-- Arrow on top of the left rectangle -->
+            <polygon points="10,20 20,40 0,40" fill="black"/>
+            
+            <!-- Arrow on top of the right rectangle -->
+            <polygon points="390,20 400,40 380,40" fill="black"/>
         </svg>
         <div id="guess-control">
             <input type="text" id="user-guess">

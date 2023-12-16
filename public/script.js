@@ -4,7 +4,6 @@ const score = document.getElementById('score');
 const victoryMessage = document.getElementById('victory-message');
 const gameMessage = document.getElementById('game-message');
 const gameImage = document.getElementById('game-image');
-const scrambledWord = document.getElementById('scrambled-word');
 const guessControl = document.getElementById('guess-control');
 const rackContainer = document.getElementById('rack-container');
 const dragTabLeft = document.getElementById('drag-tab-left');
@@ -106,7 +105,6 @@ function resetGame() {
     rackContainer.style.display = 'none' // hide rack
     userGuess.setAttribute('hidden',true);
     userGuess.value = '';
-    document.getElementById('scrambled-word').innerText = '';
     gameMessage.textContent = ''; // Clear result text
     gameImage.onload = () => {
         gameImage.removeAttribute('hidden'); // Remove 'hidden' attribute when the image is loaded

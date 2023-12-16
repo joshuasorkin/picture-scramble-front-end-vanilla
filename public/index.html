@@ -17,11 +17,17 @@
         </div>
         <svg id="rack-container" hidden width="400" height="100">
             <rect x="10" y="30" width="380" height="40" class="rack" />
-            <rect id="drag-tab-left" x="0" y="30" width="20" height="40" fill="blue" />
-            <rect id="drag-tab-right" x="0" y="30" width="20" height="40" fill="blue" />
+            <svg id="drag-tab-left">
+                <rect x="0" y="30" width="20" height="40" fill="blue" />
+                <polygon points="10,0 20,20 0,20" fill="black"/>
+            </svg>
+            <svg id="drag-tab-right">
+                <rect id="drag-tab-right" x="0" y="30" width="20" height="40" fill="blue" />
+                <polygon points="10,0 20,20 0,20" fill="black"/>
+            </svg>
             <!-- Upward arrows indicating dragging direction -->
             <!-- Arrow on top of the left rectangle -->
-            <polygon points="10,20 20,40 0,40" fill="black"/>
+            
             
             <!-- Arrow on top of the right rectangle -->
             <polygon points="390,20 400,40 380,40" fill="black"/>

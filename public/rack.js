@@ -39,7 +39,7 @@ const rackElement = document.getElementById('rack');
         rackPadding = 20; // Padding on either side of the tiles
         containerPadding = 20;
         */
-
+        console.log({xOffsetStart},{yOffset},{tileWidth},{tileSpacing},{rackWidth})
         rackWidth = str.length * tileSpacing //+ rackPadding;
         //containerWidth = rackWidth //+ containerPadding;
 
@@ -50,6 +50,8 @@ const rackElement = document.getElementById('rack');
         tileGap = tileWidth * 0.3; // Gap based on tile width
         tileSpacing = tileWidth + tileGap;
         */
+
+        console.log({xOffsetStart},{yOffset},{tileWidth},{tileSpacing},{rackWidth},{containerWidth});
 
         // set position of drag tab right
         const dragTabRight = document.getElementById('drag-tab-right');

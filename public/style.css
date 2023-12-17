@@ -210,7 +210,10 @@ body {
     display: none; /* hide at start */
     margin: auto
 }
- 
+
+.rack, .tile, .drag-tab {
+    
+} 
 
 @media only screen and (max-width: 600px) {
     /* Increase tile size for smaller screens */

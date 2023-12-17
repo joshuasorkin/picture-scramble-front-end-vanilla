@@ -211,8 +211,9 @@ body {
     margin: auto
 }
 
-.rack, .tile, .drag-tab {
-    
+.rack, .tile, .drag-tab, .arrow {
+    width: 100%; /* Children take full width of the parent */
+    height: auto; /* Maintain aspect ratio */
 } 
 
 @media only screen and (max-width: 600px) {

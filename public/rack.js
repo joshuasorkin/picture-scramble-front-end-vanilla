@@ -123,10 +123,18 @@ const rack = document.getElementById('rack-container');
             }
             const currentTransform = draggingTile.getAttribute('transform');
             let translateX = parseInt(currentTransform.split('(')[1]) + dx;
+
+            // Use the updated rack and container dimensions
+            const rackRect = rack.getBoundingClientRect();
+            const containerRect = rack.parentNode.getBoundingClientRect();
+
+            // Define the boundaries
+            const leftBoundary = xOffsetStart;
+            const rightBoundary = rackRect.width - xOffsetStart;
             
             // Define the boundaries
-            const leftBoundary = rackPadding;
-            const rightBoundary = containerWidth - (rackPadding + containerPadding);
+            //const leftBoundary = rackPadding;
+            //const rightBoundary = containerWidth - (rackPadding + containerPadding);
     
             // Enforce the boundaries
             if (translateX < leftBoundary) {
@@ -182,6 +190,31 @@ const rack = document.getElementById('rack-container');
             console.log({rackString});
         }
     }
+
+    function updateTilePositions() {
+        const rackRect = rack.getBoundingClientRect();
+        const containerRect = rack.parentNode.getBoundingClientRect();
+    
+        xOffsetStart = rackRect.width * 0.05; // 5% of rack width as start offset
+        yOffset = rackRect.height / 2; // Vertically center in the rack
+        tileWidth = rackRect.width / (tiles.length + 2); // Dynamic tile width
+        tileGap = tileWidth * 0.3; // Gap based on tile width
+        tileSpacing = tileWidth + tileGap;
+    
+        // Update positions of all tiles
+        tiles.forEach((tile, index) => {
+            const x = xOffsetStart + index * tileSpacing;
+            tile.element.setAttribute('transform', `translate(${x}, ${yOffset})`);
+        });
+    
+        // Update drag tab and rack width
+        dragTabRight.setAttribute('x', rackRect.width - dragTabRight.getBBox().width);
+        rackElement.setAttribute('width', rackRect.width.toString());
+    }
+
+    // Call this function initially and on window resize
+    updateTilePositions();
+    window.addEventListener('resize', updateTilePositions);
 
     rack.addEventListener('mousedown', startTileDrag);
     document.addEventListener('mousemove', tileDrag);

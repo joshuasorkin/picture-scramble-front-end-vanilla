@@ -1,4 +1,3 @@
-const userGuess = document.getElementById('user-guess');
 const score = document.getElementById('score');
 const victoryMessage = document.getElementById('victory-message');
 const gameMessage = document.getElementById('game-message');
@@ -14,7 +13,6 @@ skipButton.addEventListener('click',resetGame);
 
 async function submitGuess(){
     try {
-        //const userInput = userGuess.value.toLowerCase();
         const userInput = rackString.toLowerCase();
         console.log({userInput});
         // Set the text to rainbow flashing
@@ -101,8 +99,6 @@ function resetGame() {
     gameImage.style.transform = 'none'; // Reset image rotation
     victoryMessage.style.display = 'none'; // Hide victory message
     rackContainer.style.display = 'none' // hide rack
-    userGuess.setAttribute('hidden',true);
-    userGuess.value = '';
     gameMessage.textContent = ''; // Clear result text
     gameImage.onload = () => {
         gameImage.removeAttribute('hidden'); // Remove 'hidden' attribute when the image is loaded

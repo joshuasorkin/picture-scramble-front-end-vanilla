@@ -202,10 +202,23 @@ body {
 }
 
 #rack-container {
+    display:flex;
     justify-content: center;
     width: 100%; /* Make the SVG responsive */
     max-width: 600px; /* Maximum width */
     height: auto; /* Maintain aspect ratio */
     display: none; /* hide at start */
     margin: auto
+}
+ 
+
+@media only screen and (max-width: 600px) {
+    /* Increase tile size for smaller screens */
+    .tile {
+        width: 30px; /* Larger tile size */
+        height: 30px;
+    }
+    .tile-text {
+        font-size: 18px; /* Larger font size */
+    }
 }

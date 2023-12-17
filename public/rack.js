@@ -39,6 +39,12 @@ const rack = document.getElementById('rack-container');
         rackWidth = str.length * tileSpacing + rackPadding;
         containerWidth = rackWidth + containerPadding;
 
+        // Responsive sizing
+        containerWidth = rackContainer.clientWidth; // Get the width of the container
+        tileWidth = containerWidth / (str.length + 2); // Adjust the tile width based on the container width
+        tileGap = tileWidth * 0.3; // Gap based on tile width
+        tileSpacing = tileWidth + tileGap;
+
         // set position of drag tab right
         const dragTabRight = document.getElementById('drag-tab-right');
         dragTabRight.setAttribute('x',rackWidth.toString());

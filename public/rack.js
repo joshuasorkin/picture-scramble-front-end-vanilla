@@ -1,4 +1,5 @@
 const rack = document.getElementById('rack-container');
+const rackElement = document.getElementById('rack');
     let draggingTile = null;
     let startX;
     let tiles = [];

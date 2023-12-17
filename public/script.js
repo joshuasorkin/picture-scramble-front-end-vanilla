@@ -1,5 +1,4 @@
 const userGuess = document.getElementById('user-guess');
-const submitGuessButton = document.getElementById('submit-guess-button');
 const score = document.getElementById('score');
 const victoryMessage = document.getElementById('victory-message');
 const gameMessage = document.getElementById('game-message');
@@ -101,7 +100,6 @@ function resetGame() {
     gameImage.removeEventListener('click',resetGame);
     gameImage.style.transform = 'none'; // Reset image rotation
     victoryMessage.style.display = 'none'; // Hide victory message
-    submitGuessButton.setAttribute('hidden',true);
     rackContainer.style.display = 'none' // hide rack
     userGuess.setAttribute('hidden',true);
     userGuess.value = '';

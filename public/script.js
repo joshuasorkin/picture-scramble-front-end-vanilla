@@ -29,14 +29,7 @@ async function submitGuess(){
         console.log({result});
         guessControl.removeAttribute('hidden');
         if (result.checkResult) {
-            skipButton.style.display = 'none';
-            gameMessage.setAttribute('hidden',true);
-            playerScore++;
-            score.textContent = playerScore;
-            victoryMessage.style.display = 'block'; // Show victory message
-            victoryMessage.innerText = 'You win!';
-            gameMessage.textContent = "";
-            spinImage(result.compliment);
+            winGame();
         } else {
             gameMessage.textContent = "Try again";
             // Wait for 2 seconds and remove the text
@@ -52,6 +45,18 @@ async function submitGuess(){
 
 let gameId;
 let playerScore = 0;
+
+//operations to execute when player wins
+async function winGame() {
+    skipButton.style.display = 'none';
+    gameMessage.setAttribute('hidden',true);
+    playerScore++;
+    score.textContent = playerScore;
+    victoryMessage.style.display = 'block'; // Show victory message
+    victoryMessage.innerText = 'You win!';
+    gameMessage.textContent = "";
+    spinImage(result.compliment);
+}
 
 async function startNewGame() {
     try {

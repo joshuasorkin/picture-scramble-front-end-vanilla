@@ -53,7 +53,6 @@ async function winGame() {
     playerScore++;
     score.textContent = playerScore;
     victoryMessage.style.display = 'block'; // Show victory message
-    victoryMessage.innerText = 'You win!';
     gameMessage.textContent = "";
     spinImage(result.compliment);
 }

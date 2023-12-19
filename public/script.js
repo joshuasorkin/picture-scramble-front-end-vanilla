@@ -40,7 +40,6 @@ async function submitGuess(){
             victoryMessage.innerText = result.compliment+"\nClick to continue...";
             victoryMessage.addEventListener('click', resetGame);
             gameImage.addEventListener('click', resetGame);
-            //createGridOverlay(playerScore);
         } else {
             gameMessage.textContent = "Try again";
             // Wait for 2 seconds and remove the text
@@ -109,28 +108,6 @@ function spinImage() {
     const img = gameImage;
     img.style.transition = "transform 2s";
     img.style.transform = "rotate(360deg)";
-}
-
-function createGridOverlay(score) {
-    // Clear any existing grid
-    const container = document.getElementById('imageContainer');
-    container.querySelectorAll('.grid-overlay').forEach(grid => grid.remove());
-
-    // Create the grid overlay
-    const grid = document.createElement('div');
-    grid.className = 'grid-overlay';
-    grid.style.gridTemplateColumns = `repeat(${score}, 1fr)`;
-    grid.style.gridTemplateRows = `repeat(${score}, 1fr)`;
-
-    // Add cells to the grid
-    for (let i = 0; i < score * score; i++) {
-        const cell = document.createElement('div');
-        cell.className = 'grid-cell';
-        grid.appendChild(cell);
-    }
-
-    // Append the grid overlay to the container
-    container.appendChild(grid);
 }
 
 function startTabDrag(evt) {

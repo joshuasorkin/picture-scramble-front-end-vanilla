@@ -25,3 +25,7 @@ yarn-error.log*
 
 #assets
 *.jpg
+
+Dockerfile
+fly.toml
+.dockerignore

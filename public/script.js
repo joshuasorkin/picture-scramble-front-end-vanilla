@@ -36,10 +36,7 @@ async function submitGuess(){
             victoryMessage.style.display = 'block'; // Show victory message
             victoryMessage.innerText = 'You win!';
             gameMessage.textContent = "";
-            spinImage();
-            victoryMessage.innerText = result.compliment+"\nClick to continue...";
-            victoryMessage.addEventListener('click', resetGame);
-            gameImage.addEventListener('click', resetGame);
+            spinImage(result.compliment);
         } else {
             gameMessage.textContent = "Try again";
             // Wait for 2 seconds and remove the text
@@ -93,6 +90,7 @@ async function startNewGame() {
 
 function resetGame() {
     gameImage.removeEventListener('click',resetGame);
+    victoryMessage.removeEventListener('click',resetGame);
     gameImage.style.transform = 'none'; // Reset image rotation
     victoryMessage.style.display = 'none'; // Hide victory message
     rackContainer.style.display = 'none' // hide rack
@@ -104,10 +102,17 @@ function resetGame() {
     gameImage.src = 'utu-generating-game.png'; // Show Utu
 }
 
-function spinImage() {
+function spinImage(compliment) {
     const img = gameImage;
     img.style.transition = "transform 2s";
     img.style.transform = "rotate(360deg)";
+
+    img.addEventListener('transitionend', function() {
+        victoryMessage.innerText = compliment + "\nClick to continue...";
+        victoryMessage.addEventListener('click', resetGame, {once: true});
+        gameImage.addEventListener('click', resetGame, {once: true});
+    }, { once: true }); // The { once: true } option auto-removes the event listener after it fires once.
+
 }
 
 function startTabDrag(evt) {

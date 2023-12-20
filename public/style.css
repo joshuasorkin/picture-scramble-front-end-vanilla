@@ -126,10 +126,13 @@ body {
     text-align: center;
     font-size: 2em;
     /* Additional styling */
+    margin-top: 0;
 }
 
 
-
+#scrambled-word {
+    display:none;
+}
 
 
 @keyframes shimmer {

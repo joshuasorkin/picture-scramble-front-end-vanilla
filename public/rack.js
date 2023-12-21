@@ -30,7 +30,7 @@ const rack = document.getElementById('rack-container');
 
         xOffsetStart = 25;
         yOffset = 35;
-        tileWidth = 20;
+        tileWidth = 30;
         tileGap = 10;
         tileSpacing = tileWidth + tileGap;
         rackPadding = 20; // Padding on either side of the tiles

@@ -29,7 +29,7 @@ function createTiles(str) {
     existingTiles.forEach(tile => tile.remove());
 
     xOffsetStart = 25;
-    yOffset = 35;
+    yOffset = 5;
     tileWidth = 30;
     tileGap = 10;
     tileSpacing = tileWidth + tileGap;
@@ -49,6 +49,9 @@ function createTiles(str) {
 
     //set the width of the rack container
     rack.setAttribute('width', containerWidth.toString());
+
+    //set the height of the rack container
+    rack.setAttribute('height', tileSpacing.toString());
 
     //reset rackString
     rackString = '';

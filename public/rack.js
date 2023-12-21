@@ -30,6 +30,7 @@ function createTiles(str) {
     existingTiles.forEach(tile => tile.remove());
 
     var viewportWidth = window.innerWidth || document.documentElement.clientWidth;
+    console.log('viewportWidth: ' + viewportWidth + "px");
     let TILE_SIZE = viewportWidth / 17;
     let TILE_SPACE = TILE_SIZE / 3;
 
@@ -39,8 +40,6 @@ function createTiles(str) {
     rackPadding = TILE_SPACE * 2; // Padding on either side of the tiles
     containerPadding = TILE_SPACE * 2;
     xOffsetStart = (TILE_SIZE / 2) + TILE_SPACE;
-    console.log(TILE_SIZE);
-    console.log(xOffsetStart);
     yOffset = TILE_SPACE / 2;
 
     const TOTAL_TILE_SIZE = TILE_SIZE + tileGap;

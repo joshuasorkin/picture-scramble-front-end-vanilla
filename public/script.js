@@ -89,6 +89,7 @@ async function startNewGame() {
 
         // Set the text to rainbow flashing
         gameMessage.classList.add('rainbow-text');
+        /**
         const response = await fetch(`/api/new-game?score=${playerScore}`);
         gameMessage.classList.remove('rainbow-text');
 
@@ -96,6 +97,12 @@ async function startNewGame() {
             throw new Error(`HTTP error! status: ${response.status}`);
         }
         const data = await response.json();
+        **/
+        const data = {
+            scramble: 'TURKEY',
+            gameID: '7337',
+            picture: 'https://upload.wikimedia.org/wikipedia/commons/thumb/8/8a/Male_wild_turkey_%28Meleagris_gallopavo%29_strutting.jpg/220px-Male_wild_turkey_%28Meleagris_gallopavo%29_strutting.jpg', 
+        };
         console.log({data});
         gameId = data.gameId;
         const img = gameImage;

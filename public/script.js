@@ -213,4 +213,12 @@ dragTabRight.addEventListener('mousedown', startTabDrag);
 document.addEventListener('mousemove', tabDrag);
 document.addEventListener('mouseup', endTabDrag);
 
+// Function to handle orientation change
+function handleOrientationChange() {
+    createTiles(rackString);
+}
+
+// Add event listener for orientation change
+window.addEventListener("orientationchange", handleOrientationChange);
+
 resetGame();

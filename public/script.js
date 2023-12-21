@@ -226,6 +226,6 @@ function handleOrientationChange() {
 }
 
 // Add event listener for orientation change
-window.addEventListener("orientationchange", handleOrientationChange);
+window.addEventListener("resize", handleOrientationChange);
 
 resetGame();

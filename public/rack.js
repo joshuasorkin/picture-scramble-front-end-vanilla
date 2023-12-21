@@ -1,6 +1,4 @@
 
-const TILE_SIZE = 30;
-const TILE_SPACE = 10;
 
 let draggingTile = null;
 let startX;
@@ -30,6 +28,9 @@ function createTiles(str) {
     // Remove existing tiles
     const existingTiles = rackContainer.querySelectorAll('.tile');
     existingTiles.forEach(tile => tile.remove());
+
+    let TILE_SIZE = window.innerWidth / 19;
+    let TILE_SPACE = TILE_SIZE / 3;
 
     tileWidth = TILE_SIZE;
     tileGap = TILE_SPACE;

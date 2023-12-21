@@ -41,6 +41,7 @@ body {
     border: 1px solid #000; /* Optional: adds a border */
     display: block;
     width: 100%; /* Or set a specific width */
+    min-height: 100%;
     margin: auto; /* Centering if needed */
     position: relative; /* Added to position children absolutely within it */
 }

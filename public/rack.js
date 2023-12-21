@@ -29,7 +29,8 @@ function createTiles(str) {
     const existingTiles = rackContainer.querySelectorAll('.tile');
     existingTiles.forEach(tile => tile.remove());
 
-    let TILE_SIZE = window.innerWidth / 19;
+    var viewportWidth = window.innerWidth || document.documentElement.clientWidth;
+    let TILE_SIZE = viewportWidth / 17;
     let TILE_SPACE = TILE_SIZE / 3;
 
     tileWidth = TILE_SIZE;

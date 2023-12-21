@@ -99,7 +99,7 @@ async function startNewGame() {
         const data = await response.json();
         **/
         const data = {
-            scramble: 'TOURNAMENT',
+            scramble: 'TURKEY',
             gameID: '7337',
             picture: 'https://upload.wikimedia.org/wikipedia/commons/thumb/8/8a/Male_wild_turkey_%28Meleagris_gallopavo%29_strutting.jpg/220px-Male_wild_turkey_%28Meleagris_gallopavo%29_strutting.jpg', 
         };

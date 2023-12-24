@@ -52,6 +52,7 @@ async function submitGuess(){
         console.log({result});
         guessControl.removeAttribute('hidden');
         if (result.checkResult) {
+            removeDragTabEvents();
             skipButton.style.display = 'none';
             gameMessage.setAttribute('hidden',true);
             playerScore++;
@@ -98,6 +99,7 @@ async function startNewGame() {
         };
         img.onload = () => {
             img.removeAttribute('hidden'); // Remove 'hidden' attribute when the image is loaded
+            addDragTabEvents();
             rackContainer.style.display = 'block';
             createTiles(data.scramble.toUpperCase());
             skipButton.style.display = 'block';

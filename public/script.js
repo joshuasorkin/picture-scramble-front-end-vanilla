@@ -55,7 +55,6 @@ async function submitGuess(){
             removeDragTabEvents();
             console.log("removing tile drag events...");
             removeRackEventListeners();
-            removeTileEventListeners();
             skipButton.style.display = 'none';
             gameMessage.setAttribute('hidden',true);
             playerScore++;

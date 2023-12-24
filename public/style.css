@@ -211,3 +211,17 @@ body {
     margin-top: 20px;
     margin-bottom: 20px;
 }
+
+@keyframes bounce {
+    0%, 100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-10px);
+    }
+  }
+
+#bouncing-rectangle {
+animation: bounce 0.5s;
+animation-timing-function: ease-in-out;
+}

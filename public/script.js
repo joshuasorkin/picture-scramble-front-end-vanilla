@@ -90,7 +90,11 @@ async function startNewGame() {
         // Set the text to rainbow flashing
         gameMessage.classList.add('rainbow-text');
         //const response = await fetch(`/api/new-game?score=${playerScore}`);
-        const response = "{gameId: '65878a5731e1b533a661c878', scramble: 'aakrdarv', picture: 'utu-generating-game.png'}";
+        const response = {
+            gameId: '65878a5731e1b533a661c878', 
+            scramble: 'aakrdarv', 
+            picture: 'utu-generating-game.png'
+        }
         gameMessage.classList.remove('rainbow-text');
 
         /*
@@ -98,7 +102,8 @@ async function startNewGame() {
             throw new Error(`HTTP error! status: ${response.status}`);
         }
         */
-        const data = await response.json();
+        //const data = await response.json();
+        const data = response;
         console.log({data});
         gameId = data.gameId;
         const img = gameImage;

@@ -243,3 +243,13 @@ function removeRackEventListeners(){
     }
 
 }
+
+function removeTileEventListeners() {
+    const tiles = rackContainer.querySelectorAll('.tile');
+    tiles.forEach(tile => {
+        tile.removeEventListener('touchstart', touchStartHandler);
+        tile.removeEventListener('touchmove', touchMoveHandler);
+        tile.removeEventListener('touchend', touchEndHandler);
+        // Similarly, remove any other event listeners you have added
+    });
+}

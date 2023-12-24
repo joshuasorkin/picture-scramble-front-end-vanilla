@@ -201,18 +201,22 @@ function endTabDrag(evt) {
 
     rackIsBeingDragged = false;
 }
+function addDragTabEvents(){
+    dragTabBottom.addEventListener('touchstart', startTabDrag);
+    dragTabBottom.addEventListener('touchmove', tabDrag);
+    dragTabBottom.addEventListener('touchend', endTabDrag);
+    dragTabBottom.addEventListener('mousedown', startTabDrag);
 
-const dragTabs = [dragTabBottom];
+    document.addEventListener('mousemove', tabDrag);
+    document.addEventListener('mouseup', endTabDrag);
+}
 
-dragTabs.forEach(dragTab =>{
-    dragTab.addEventListener('touchstart', startTabDrag);
-    dragTab.addEventListener('touchmove', tabDrag);
-    dragTab.addEventListener('touchend', endTabDrag);
-    dragTab.addEventListener('mousedown', startTabDrag);
-});
-
-document.addEventListener('mousemove', tabDrag);
-document.addEventListener('mouseup', endTabDrag);
+//note: only implementing this for mobile, not testing on desktop right now
+function removeDragTabEvents(){
+    dragTabBottom.removeEventListener('touchstart', startTabDrag);
+    dragTabBottom.removeEventListener('touchmove', tabDrag);
+    dragTabBottom.removeEventListener('touchend', endTabDrag);
+}
 
 // Function to handle orientation change
 function handleOrientationChange() {

@@ -31,7 +31,8 @@ function createTiles(str) {
 
     var viewportWidth = window.innerWidth || document.documentElement.clientWidth;
     console.log('viewportWidth: ' + viewportWidth + "px");
-    let viewportDivision = 10;
+    //todo: viewportDivision will probably need to be dynamic depending on device detected and landscape/portrait
+    let viewportDivision = 11;
     let TILE_SIZE = viewportWidth / viewportDivision;
     let TILE_SPACE = TILE_SIZE / 3;
 
@@ -40,8 +41,9 @@ function createTiles(str) {
     tileSpacing = tileWidth + tileGap;
     rackPadding = TILE_SPACE * 2; // Padding on either side of the tiles
     containerPadding = TILE_SPACE * 2;
-    xOffsetStart = (TILE_SIZE / 2) + TILE_SPACE;
-    yOffset = TILE_SPACE / 2;
+    xOffsetStart = (TILE_SIZE / 2);
+    //yOffset = TILE_SPACE / 2;
+    yOffset = 0;
 
     const TOTAL_TILE_SIZE = TILE_SIZE + tileGap;
     rackWidth = str.length * TOTAL_TILE_SIZE;

@@ -216,26 +216,6 @@ dragTabs.forEach(dragTab =>{
 document.addEventListener('mousemove', tabDrag);
 document.addEventListener('mouseup', endTabDrag);
 
-/*
-dragTabLeft.addEventListener('touchstart', startTabDrag);
-dragTabLeft.addEventListener('touchmove', tabDrag);
-dragTabLeft.addEventListener('touchend', endTabDrag);
-
-// Add corresponding mouse event listeners for non-touch devices
-dragTabLeft.addEventListener('mousedown', startTabDrag);
-document.addEventListener('mousemove', tabDrag);
-document.addEventListener('mouseup', endTabDrag);
-
-dragTabRight.addEventListener('touchstart', startTabDrag);
-dragTabRight.addEventListener('touchmove', tabDrag);
-dragTabRight.addEventListener('touchend', endTabDrag);
-
-// Add corresponding mouse event listeners for non-touch devices
-dragTabRight.addEventListener('mousedown', startTabDrag);
-document.addEventListener('mousemove', tabDrag);
-document.addEventListener('mouseup', endTabDrag);
-*/
-
 // Function to handle orientation change
 function handleOrientationChange() {
     createTiles(rackString);

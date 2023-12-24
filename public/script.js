@@ -57,10 +57,8 @@ async function submitGuess(){
             playerScore++;
             score.textContent = playerScore;
             victoryMessage.style.display = 'block'; // Show victory message
-            victoryMessage.innerText = 'You win!';
             gameMessage.textContent = "";
-            spinImage();
-            victoryMessage.innerText = result.compliment+"\nClick to continue...";
+            spinImage(result.compliment);
             victoryMessage.addEventListener('click', resetGame);
             gameImage.addEventListener('click', resetGame);
             //createGridOverlay(playerScore);
@@ -134,10 +132,14 @@ function resetGame() {
     gameImage.src = 'utu-generating-game.png'; // Show Utu
 }
 
-function spinImage() {
+function spinImage(compliment) {
     const img = gameImage;
     img.style.transition = "transform 2s";
     img.style.transform = "rotate(360deg)";
+
+    img.addEventListener('transitionend', function() {
+        victoryMessage.innerText = compliment + "\nClick to continue...";
+    }, { once: true }); // The { once: true } option auto-removes the event listener after it fires once.
 }
 
 function createGridOverlay(score) {

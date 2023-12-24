@@ -117,7 +117,7 @@ function createTiles(str) {
 
     dragTabBottom.setAttribute('x', dragTabWidth);
     dragTabBottom.setAttribute('y', dragTabHeight);
-    dragTabBottom.setAttribute('height', dragTabHeight / 2);
+    dragTabBottom.setAttribute('height', TILE_SIZE / 2);
     dragTabBottom.setAttribute('width',rackWidth.toString());
 
     

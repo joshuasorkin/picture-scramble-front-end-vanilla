@@ -35,7 +35,7 @@ function createTiles(str) {
     let TILE_SPACE = TILE_SIZE / 3;
 
     tileWidth = TILE_SIZE;
-    tileGap = TILE_SPACE;
+    tileGap = 0;
     tileSpacing = tileWidth + tileGap;
     rackPadding = TILE_SPACE * 2; // Padding on either side of the tiles
     containerPadding = TILE_SPACE * 2;

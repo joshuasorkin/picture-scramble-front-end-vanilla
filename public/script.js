@@ -9,6 +9,7 @@ const guessControl = document.getElementById('guess-control');
 const rackContainer = document.getElementById('rack-container');
 const dragTabLeft = document.getElementById('drag-tab-left');
 const dragTabRight = document.getElementById('drag-tab-right');
+const dragTabBottom = document.getElementById('drag-tab-bottom');
 const skipButton = document.querySelector('.skip-button');
 let startY, originalY;
 
@@ -203,6 +204,18 @@ function endTabDrag(evt) {
     rackIsBeingDragged = false;
 }
 
+const dragTabs = [dragTabLeft,dragTabRight,dragTabBottom];
+
+dragTabs.forEach(dragTab =>{
+    dragTab.addEventListener('touchstart', startTabDrag);
+    dragTab.addEventListener('touchmove', tabDrag);
+    dragTab.addEventListener('touchend', endTabDrag);
+    dragTab.addEventListener('mousedown', startTabDrag);
+    dragTab.addEventListener('mousemove', tabDrag);
+    dragTab.addEventListener('mouseup', endTabDrag);
+})
+
+/*
 dragTabLeft.addEventListener('touchstart', startTabDrag);
 dragTabLeft.addEventListener('touchmove', tabDrag);
 dragTabLeft.addEventListener('touchend', endTabDrag);
@@ -220,6 +233,7 @@ dragTabRight.addEventListener('touchend', endTabDrag);
 dragTabRight.addEventListener('mousedown', startTabDrag);
 document.addEventListener('mousemove', tabDrag);
 document.addEventListener('mouseup', endTabDrag);
+*/
 
 // Function to handle orientation change
 function handleOrientationChange() {

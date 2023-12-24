@@ -53,6 +53,7 @@ async function submitGuess(){
         guessControl.removeAttribute('hidden');
         if (result.checkResult) {
             removeDragTabEvents();
+            console.log("removing tile drag events...");
             removeRackEventListeners();
             skipButton.style.display = 'none';
             gameMessage.setAttribute('hidden',true);

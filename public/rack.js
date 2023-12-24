@@ -210,10 +210,6 @@ function reorderTiles() {
     }
 }
 
-rackContainer.addEventListener('mousedown', startTileDrag);
-document.addEventListener('mousemove', tileDrag);
-document.addEventListener('mouseup', endTileDrag);
-
 function touchStartHandler(evt){
     evt.preventDefault(); // Prevents additional mouse event
     startTileDrag(evt);

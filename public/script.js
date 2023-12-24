@@ -106,6 +106,7 @@ async function startNewGame() {
             rackContainer.style.display = 'block';
             createTiles(data.scramble.toUpperCase());
             skipButton.style.display = 'block';
+            triggerBounceAnimation();
         };
         gameImage.src = data.picture;
         gameMessage.textContent = ``;
@@ -208,6 +209,12 @@ document.addEventListener('mouseup', endTabDrag);
 // Function to handle orientation change
 function handleOrientationChange() {
     createTiles(rackString);
+}
+
+function triggerBounceAnimation() {
+    rackContainer.style.animation = "none"; // Reset the animation
+    void rackContainer.offsetWidth; // Trigger reflow to apply reset
+    rackContainer.style.animation = "bounce 0.5s ease-in-out";
 }
 
 // Add event listener for orientation change

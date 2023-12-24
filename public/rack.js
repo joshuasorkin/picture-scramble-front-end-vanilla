@@ -59,7 +59,7 @@ function createTiles(str) {
     //rackContainer.setAttribute('width', containerWidth.toString());
 
     //set the height of the rackContainer container
-    rackContainer.setAttribute('height', tileSpacing.toString());
+    rackContainer.setAttribute('height', tileSpacing.toString() * 2);
 
     //reset rackString
     rackString = '';

@@ -31,7 +31,8 @@ function createTiles(str) {
 
     var viewportWidth = window.innerWidth || document.documentElement.clientWidth;
     console.log('viewportWidth: ' + viewportWidth + "px");
-    let TILE_SIZE = viewportWidth / 17;
+    let viewportDivision = 10;
+    let TILE_SIZE = viewportWidth / viewportDivision;
     let TILE_SPACE = TILE_SIZE / 3;
 
     tileWidth = TILE_SIZE;

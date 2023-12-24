@@ -93,22 +93,12 @@ function createTiles(str) {
         return { element: group, x, char };
     });
 
-    const dragTabRight = document.getElementById('drag-tab-right');
-    const dragTabLeft = document.getElementById('drag-tab-left');
     const dragTabBottom = document.getElementById('drag-tab-bottom');
 
     // set height and width of drag tabs and height of rackContainer
     const dragTabHeight = tileSpacing.toString() + "px";
     const calcDragTabWidth = (tileSpacing / 2);
     const dragTabWidth = calcDragTabWidth.toString() + "px";
-
-    // set position of drag tab right
-    dragTabRight.setAttribute('x',(rackWidth + calcDragTabWidth).toString());
-
-    dragTabLeft.setAttribute('height', dragTabHeight);
-    dragTabLeft.setAttribute('width', dragTabWidth);
-    dragTabRight.setAttribute('height', dragTabHeight);
-    dragTabRight.setAttribute('width', dragTabWidth);
 
     const rack = document.getElementById('rack');
     rack.setAttribute('height', dragTabHeight);

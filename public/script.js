@@ -56,11 +56,8 @@ async function submitGuess(){
             gameMessage.setAttribute('hidden',true);
             playerScore++;
             score.textContent = playerScore;
-            victoryMessage.style.display = 'block'; // Show victory message
             gameMessage.textContent = "";
             spinImage(result.compliment);
-            victoryMessage.addEventListener('click', resetGame);
-            gameImage.addEventListener('click', resetGame);
             //createGridOverlay(playerScore);
         } else {
             gameMessage.textContent = "Try again";
@@ -133,13 +130,20 @@ function resetGame() {
     gameImage.src = 'utu-generating-game.png'; // Show Utu
 }
 
+function setVictory(compliment){
+    victoryMessage.innerText = compliment + "\nClick to continue...";
+    victoryMessage.style.display = 'block'; // Show victory message
+    victoryMessage.addEventListener('click', resetGame);
+    gameImage.addEventListener('click', resetGame);
+}
+
 function spinImage(compliment) {
     const img = gameImage;
     img.style.transition = "transform 2s";
     img.style.transform = "rotate(360deg)";
 
     img.addEventListener('transitionend', function() {
-        victoryMessage.innerText = compliment + "\nClick to continue...";
+        setVictory(compliment);
     }, { once: true }); // The { once: true } option auto-removes the event listener after it fires once.
 }
 

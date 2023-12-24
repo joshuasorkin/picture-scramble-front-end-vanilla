@@ -226,13 +226,20 @@ function touchEndHandler(evt){
 
 function addRackEventListeners(){
         // Attach touch event listeners
+        console.log("adding rack listeners...");
     rackContainer.addEventListener('touchstart', touchStartHandler);
     rackContainer.addEventListener('touchmove', touchMoveHandler);
     rackContainer.addEventListener('touchend', touchEndHandler);
 }
 
 function removeRackEventListeners(){
+    try{
     rackContainer.removeEventListener('touchstart', touchStartHandler);
     rackContainer.removeEventListener('touchmove', touchMoveHandler);
     rackContainer.removeEventListener('touchend', touchEndHandler);
+    }
+    catch(err){
+        console.log("error:",err)
+    }
+
 }

@@ -90,7 +90,7 @@ async function startNewGame() {
         // Set the text to rainbow flashing
         gameMessage.classList.add('rainbow-text');
         //const response = await fetch(`/api/new-game?score=${playerScore}`);
-        const response = process.env.RESPONSE_STUB;
+        const response = "{gameId: '65878a5731e1b533a661c878', scramble: 'aakrdarv', picture: 'https://i.imgur.com/ye5JRcz.jpg'}";
         gameMessage.classList.remove('rainbow-text');
 
         if (!response.ok) {

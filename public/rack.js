@@ -59,7 +59,7 @@ function createTiles(str) {
     //rackContainer.setAttribute('width', containerWidth.toString());
 
     //set the height of the rackContainer container
-    rackContainer.setAttribute('height', tileSpacing.toString() * 1.5);
+    rackContainer.setAttribute('height', tileSpacing.toString() * 2);
 
     //reset rackString
     rackString = '';
@@ -117,7 +117,7 @@ function createTiles(str) {
 
     dragTabBottom.setAttribute('x', dragTabWidth);
     dragTabBottom.setAttribute('y', dragTabHeight);
-    dragTabBottom.setAttribute('height', TILE_SIZE / 2);
+    dragTabBottom.setAttribute('height', TILE_SIZE);
     dragTabBottom.setAttribute('width',rackWidth.toString());
 
     

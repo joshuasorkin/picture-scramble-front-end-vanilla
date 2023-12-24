@@ -53,6 +53,7 @@ async function submitGuess(){
         guessControl.removeAttribute('hidden');
         if (result.checkResult) {
             removeDragTabEvents();
+            removeRackEventListeners();
             skipButton.style.display = 'none';
             gameMessage.setAttribute('hidden',true);
             playerScore++;
@@ -100,6 +101,7 @@ async function startNewGame() {
         img.onload = () => {
             img.removeAttribute('hidden'); // Remove 'hidden' attribute when the image is loaded
             addDragTabEvents();
+            addRackEventListeners();
             rackContainer.style.display = 'block';
             createTiles(data.scramble.toUpperCase());
             skipButton.style.display = 'block';
@@ -230,6 +232,22 @@ function triggerBounceAnimation() {
     void rackContainer.offsetWidth; // Trigger reflow to apply reset
     rackContainer.style.animation = "bounce 1s ease-in-out";
 }
+
+
+    // Attach touch event listeners
+rackContainer.addEventListener('touchstart', function(evt) {
+    evt.preventDefault(); // Prevents additional mouse event
+    startTileDrag(evt);
+}, false);
+
+rackContainer.addEventListener('touchmove', function(evt) {
+    evt.preventDefault(); // Prevents scrolling while dragging
+    tileDrag(evt);
+}, false);
+
+rackContainer.addEventListener('touchend', function(evt) {
+    endTileDrag(evt);
+}, false);
 
 // Add event listener for orientation change
 window.addEventListener("resize", handleOrientationChange);

@@ -214,17 +214,29 @@ rackContainer.addEventListener('mousedown', startTileDrag);
 document.addEventListener('mousemove', tileDrag);
 document.addEventListener('mouseup', endTileDrag);
 
-    // Attach touch event listeners
-rackContainer.addEventListener('touchstart', function(evt) {
+function touchStartHandler(evt){
     evt.preventDefault(); // Prevents additional mouse event
     startTileDrag(evt);
-}, false);
+}
 
-rackContainer.addEventListener('touchmove', function(evt) {
-    evt.preventDefault(); // Prevents scrolling while dragging
+function touchMoveHandler(evt){
+    evt.preventDefault(); // Prevents additional mouse event
     tileDrag(evt);
-}, false);
+}
 
-rackContainer.addEventListener('touchend', function(evt) {
+function touchEndHandler(evt){
     endTileDrag(evt);
-}, false);
+}
+
+function addRackEventListeners(){
+        // Attach touch event listeners
+    rackContainer.addEventListener('touchstart', touchStartHandler);
+    rackContainer.addEventListener('touchmove', touchMoveHandler);
+    rackContainer.addEventListener('touchend', touchEndHandler);
+}
+
+function removeRackEventListeners(){
+    rackContainer.removeEventListener('touchstart', touchStartHandler);
+    rackContainer.removeEventListener('touchmove', touchMoveHandler);
+    rackContainer.removeEventListener('touchend', touchEndHandler);
+}

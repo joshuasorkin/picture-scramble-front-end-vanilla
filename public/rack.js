@@ -95,6 +95,7 @@ function createTiles(str) {
 
     const dragTabRight = document.getElementById('drag-tab-right');
     const dragTabLeft = document.getElementById('drag-tab-left');
+    const dragTabBottom = document.getElementById('drag-tab-bottom');
 
     // set height and width of drag tabs and height of rackContainer
     const dragTabHeight = tileSpacing.toString() + "px";
@@ -113,6 +114,12 @@ function createTiles(str) {
     rack.setAttribute('height', dragTabHeight);
     rack.setAttribute('width', rackWidth.toString());
     rack.setAttribute('x', dragTabWidth);
+
+    dragTabBottom.setAttribute('x', dragTabWidth);
+    dragTabBottom.setAttribute('y', dragTabHeight);
+    dragTabBottom.setAttribute('height', dragTabHeight);
+    dragTabBottom.setAttribute('width',rackWidth.toString());
+
     
     console.log({tiles});
     console.log({rackString});

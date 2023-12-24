@@ -114,6 +114,7 @@ async function startNewGame() {
 
 function resetGame() {
     gameImage.removeEventListener('click',resetGame);
+    victoryMessage.removeEventListener('click',resetGame);
     gameImage.style.transform = 'none'; // Reset image rotation
     victoryMessage.style.display = 'none'; // Hide victory message
     victoryMessage.innerText = ''; // Blank out victory message text

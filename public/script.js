@@ -7,8 +7,6 @@ const gameImage = document.getElementById('game-image');
 const scrambledWord = document.getElementById('scrambled-word');
 const guessControl = document.getElementById('guess-control');
 const rackContainer = document.getElementById('rack-container');
-const dragTabLeft = document.getElementById('drag-tab-left');
-const dragTabRight = document.getElementById('drag-tab-right');
 const dragTabBottom = document.getElementById('drag-tab-bottom');
 const skipButton = document.querySelector('.skip-button');
 let startY, originalY;
@@ -204,7 +202,7 @@ function endTabDrag(evt) {
     rackIsBeingDragged = false;
 }
 
-const dragTabs = [dragTabLeft,dragTabRight,dragTabBottom];
+const dragTabs = [dragTabBottom];
 
 dragTabs.forEach(dragTab =>{
     dragTab.addEventListener('touchstart', startTabDrag);

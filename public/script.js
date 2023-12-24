@@ -211,9 +211,10 @@ dragTabs.forEach(dragTab =>{
     dragTab.addEventListener('touchmove', tabDrag);
     dragTab.addEventListener('touchend', endTabDrag);
     dragTab.addEventListener('mousedown', startTabDrag);
-    dragTab.addEventListener('mousemove', tabDrag);
-    dragTab.addEventListener('mouseup', endTabDrag);
-})
+});
+
+document.addEventListener('mousemove', tabDrag);
+document.addEventListener('mouseup', endTabDrag);
 
 /*
 dragTabLeft.addEventListener('touchstart', startTabDrag);

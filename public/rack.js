@@ -13,6 +13,7 @@ let containerPadding;
 let rackWidth;
 let containerWidth;
 let rackString;
+let bevelRadius;
 
 let rackContainerIsBeingDragged = false;
 
@@ -44,6 +45,7 @@ function createTiles(str) {
     xOffsetStart = (TILE_SIZE / 2);
     //yOffset = TILE_SPACE / 2;
     yOffset = 0;
+    bevelRadius = TILE_SIZE / 4;
 
     const TOTAL_TILE_SIZE = TILE_SIZE + tileGap;
     rackWidth = str.length * TOTAL_TILE_SIZE;
@@ -74,6 +76,8 @@ function createTiles(str) {
         const rect = document.createElementNS("http://www.w3.org/2000/svg", 'rect');
         rect.setAttribute('width', tileWidth);
         rect.setAttribute('height', tileWidth);
+        rect.setAttribute('rx', bevelRadius);
+        rect.setAttribute('ry', bevelRadius);
 
         const text = document.createElementNS("http://www.w3.org/2000/svg", 'text');
         text.setAttribute('x', tileWidth / 2);

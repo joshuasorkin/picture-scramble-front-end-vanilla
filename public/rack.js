@@ -228,9 +228,3 @@ rackContainer.addEventListener('touchmove', function(evt) {
 rackContainer.addEventListener('touchend', function(evt) {
     endTileDrag(evt);
 }, false);
-
-function triggerBounceAnimation() {
-    rackContainer.style.animation = "none"; // Reset the animation
-    void svgRect.offsetWidth; // Trigger reflow to apply reset
-    rackContainer.style.animation = "bounce 0.5s ease-in-out";
-}

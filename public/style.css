@@ -216,12 +216,10 @@ body {
     0%, 100% {
       transform: translateY(0);
     }
-    50% {
+    20%, 80% {
       transform: translateY(-10px);
     }
+    40%, 60% {
+      transform: translateY(-5px);
+    }
   }
-
-#bouncing-rectangle {
-animation: bounce 0.5s;
-animation-timing-function: ease-in-out;
-}

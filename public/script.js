@@ -214,7 +214,7 @@ function handleOrientationChange() {
 function triggerBounceAnimation() {
     rackContainer.style.animation = "none"; // Reset the animation
     void rackContainer.offsetWidth; // Trigger reflow to apply reset
-    rackContainer.style.animation = "bounce 0.5s ease-in-out";
+    rackContainer.style.animation = "bounce 1s ease-in-out";
 }
 
 // Add event listener for orientation change

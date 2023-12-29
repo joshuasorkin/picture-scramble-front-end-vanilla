@@ -1,9 +1,21 @@
 const express = require('express');
 const dotenv = require('dotenv');
 const path = require('path');
+const session = require('express-session');
+const MongoStore = require('connect-mongo');
 dotenv.config();
 const app = express();
 const port = 3000;
+const mongo_uri = process.env.MONGO_URI;
+
+//set secure: process.env.SECURE_BOOLEAN
+app.use(session({
+    secret: process.env.SECRET_KEY, // Secret key for signing the session ID cookie
+    resave: false,
+    saveUninitialized: true,
+    store: MongoStore.create({ mongo_uri }),
+    cookie: { secure: false } // Set to true if using HTTPS
+  }));
 
 app.get('/api/new-game', async (req, res) => {
     try {

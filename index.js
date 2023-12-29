@@ -22,6 +22,8 @@ app.get('/api/new-game', async (req, res) => {
     try {
         console.log("generating game...");
         const score = req.query.score;
+        const language = req.session.language;
+        console.log({language});
         let url;
         if (score !== undefined){
             url = process.env.BACK_END_URI+`/new-game?score=${score}`

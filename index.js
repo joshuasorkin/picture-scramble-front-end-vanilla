@@ -62,9 +62,15 @@ app.get('/api/check-game', async (req, res) => {
 
 app.use(express.static('public'));
 
+app.get('/language/:language', (req,res) => {
+    req.session.language = req.params.language;
+    res.sendFile(path.join(__dirname,'public','index.html'));
+});
+
 app.get('/:topic?',(req,res) => {
     res.sendFile(path.join(__dirname,'public','index.html'));
 });
+
 
 
 

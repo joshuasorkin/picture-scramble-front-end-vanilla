@@ -90,7 +90,7 @@ body {
         text-shadow: 0 0 5px #E0FFFF, 0 0 10px #E0FFFF, 0 0 15px #E0FFFF, 0 0 20px #E0FFFF, 0 0 35px #E0FFFF, 0 0 40px #E0FFFF, 0 0 50px #E0FFFF, 0 0 75px #E0FFFF;
     }
     75% {
-        color:springgreen;
+        color:deeppink;
         text-shadow: 0 0 10px #FFD700, 0 0 20px #FFD700, 0 0 30px #FFD700, 0 0 40px #FF8C00, 0 0 70px #FF8C00, 0 0 80px #FF8C00, 0 0 100px #FF8C00, 0 0 150px #FF8C00;        
     }
     100% {

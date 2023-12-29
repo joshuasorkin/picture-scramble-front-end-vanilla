@@ -7,13 +7,14 @@ dotenv.config();
 const app = express();
 const port = 3000;
 const mongo_uri = process.env.MONGO_URI;
+console.log({mongo_uri});
 
 //set secure: process.env.SECURE_BOOLEAN
 app.use(session({
     secret: process.env.SECRET_KEY, // Secret key for signing the session ID cookie
     resave: false,
     saveUninitialized: true,
-    store: MongoStore.create({ mongo_uri }),
+    store: MongoStore.create({ mongoUrl:mongo_uri }),
     cookie: { secure: false } // Set to true if using HTTPS
   }));
 

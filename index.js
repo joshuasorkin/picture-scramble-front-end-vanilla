@@ -18,20 +18,39 @@ app.use(session({
     cookie: { secure: false } // Set to true if using HTTPS
   }));
 
-app.get('/api/new-game', async (req, res) => {
+  app.get('/api/new-game', async (req, res) => {
     try {
         console.log("generating game...");
+
+        // Retrieve score and language from the request
         const score = req.query.score;
         const language = req.session.language;
         console.log({language});
-        let url;
-        if (score !== undefined){
-            url = process.env.BACK_END_URI+`/new-game?score=${score}`
+
+        // Initialize the base URL
+        let url = process.env.BACK_END_URI + '/new-game';
+
+        // Array to hold query parameters
+        const queryParams = [];
+
+        // Check if score is not undefined and append it to queryParams
+        if (score !== undefined) {
+            queryParams.push(`score=${encodeURIComponent(score)}`);
         }
-        else{
-            url = process.env.BACK_END_URI+`/new-game`;
+
+        // Check if language is not undefined and append it to queryParams
+        if (language !== undefined) {
+            queryParams.push(`language=${encodeURIComponent(language)}`);
         }
+
+        // If there are any query parameters, append them to the URL
+        if (queryParams.length > 0) {
+            url += '?' + queryParams.join('&');
+        }
+
         console.log({url});
+
+        // Fetching the data from the URL
         const response = await fetch(url);
         if (!response.ok) {
             throw new Error(`HTTP error! status: ${response.status}`);
@@ -42,6 +61,7 @@ app.get('/api/new-game', async (req, res) => {
         res.status(500).json({ error: error.message });
     }
 });
+
 
 // Proxy endpoint for check-game
 app.get('/api/check-game', async (req, res) => {

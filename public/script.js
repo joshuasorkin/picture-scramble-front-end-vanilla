@@ -133,7 +133,7 @@ function resetGame() {
         gameImage.removeAttribute('hidden'); // Remove 'hidden' attribute when the image is loaded
         startNewGame();
     };
-    gameImage.src = '/public/utu-generating-game.png'; // Show Utu
+    gameImage.src = '/utu-generating-game.png'; // Show Utu
 }
 
 function setVictory(compliment){

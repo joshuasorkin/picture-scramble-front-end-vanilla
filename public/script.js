@@ -173,10 +173,10 @@ function createOverlayCanvas() {
     canvas.style.top = rect.top + 'px';
     canvas.style.zIndex = '10'; // Ensure the canvas is above the game-image
 
-    // Set the canvas background to black
+    // Get the context of the canvas and draw the image
     const ctx = canvas.getContext('2d');
-    ctx.fillStyle = 'black';
-    ctx.fillRect(0, 0, canvas.width, canvas.height);
+    ctx.drawImage(gameImage, 0, 0, canvas.width, canvas.height);
+    console.log("drew image")
 
     // Append the canvas to the body (or to the specific parent element of game-image)
     document.body.appendChild(canvas);

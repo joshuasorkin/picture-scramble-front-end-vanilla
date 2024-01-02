@@ -197,6 +197,12 @@ body {
     stroke: #8b4513; /* Saddle brown color */
     stroke-width: 1px;
 }
+
+.tile-mismatch {
+    fill: red;
+    stroke: #8b4513;
+    stroke-width: 1px;
+}
 .tile-text {
     font-size: 14px;
     font-family: Arial, sans-serif;

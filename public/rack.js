@@ -25,6 +25,17 @@ function getRackString() {
     }, '');
 }
 
+function setMismatches(mismatches){
+    const existingTiles = rackContainer.querySelectorAll('.tile');
+    existingTiles.forEach(tile => tile.classList.remove('tile-mismatch'));
+    mismatches.forEach(mismatch => {
+            var tileElements = document.querySelectorAll('.tile[data-index="' + mismatch + '"]');
+            tileElements.forEach(function(tileElement) {
+                tileElement.classList.add('tile-mismatch');
+            });
+        });
+}
+
 function createTiles(str) {
     // Remove existing tiles
     const existingTiles = rackContainer.querySelectorAll('.tile');

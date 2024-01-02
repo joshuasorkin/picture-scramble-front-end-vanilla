@@ -10,6 +10,7 @@ const rackContainer = document.getElementById('rack-container');
 const dragTabBottom = document.getElementById('drag-tab-bottom');
 const skipButton = document.querySelector('.skip-button');
 let startY, originalY;
+let mismatches;
 
 skipButton.addEventListener('click',resetGame);
 
@@ -50,6 +51,7 @@ async function submitGuess(){
         }
         const result = await response.json();
         console.log({result});
+        mismatches = result.mismatches;
         guessControl.removeAttribute('hidden');
         if (result.checkResult) {
             removeDragTabEvents();
@@ -63,6 +65,7 @@ async function submitGuess(){
             spinImage(result.compliment);
             //createGridOverlay(playerScore);
         } else {
+            setMismatches(mismatches);
             gameMessage.textContent = "Try again";
             // Wait for 2 seconds and remove the text
             setTimeout(() => {
@@ -226,6 +229,7 @@ function removeDragTabEvents(){
 // Function to handle orientation change
 function handleOrientationChange() {
     createTiles(rackString);
+    setMismatches(mismatches);
 }
 
 function triggerBounceAnimation() {

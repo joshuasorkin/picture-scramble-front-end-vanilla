@@ -10,7 +10,7 @@ const rackContainer = document.getElementById('rack-container');
 const dragTabBottom = document.getElementById('drag-tab-bottom');
 const skipButton = document.querySelector('.skip-button');
 let startY, originalY;
-let mismatches;
+let mismatches = [];
 
 skipButton.addEventListener('click',resetGame);
 
@@ -65,7 +65,7 @@ async function submitGuess(){
             spinImage(result.compliment);
             //createGridOverlay(playerScore);
         } else {
-            setMismatches(mismatches);
+            setMismatches();
             gameMessage.textContent = "Try again";
             // Wait for 2 seconds and remove the text
             setTimeout(() => {

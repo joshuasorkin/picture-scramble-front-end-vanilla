@@ -25,7 +25,7 @@ function getRackString() {
     }, '');
 }
 
-function setMismatches(mismatches){
+function setMismatches(){
     const existingTiles = rackContainer.querySelectorAll('.tile');
     existingTiles.forEach(tile => tile.classList.remove('tile-mismatch'));
     mismatches.forEach(mismatch => {

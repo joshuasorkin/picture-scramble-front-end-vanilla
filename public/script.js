@@ -9,7 +9,9 @@ const guessControl = document.getElementById('guess-control');
 const rackContainer = document.getElementById('rack-container');
 const dragTabBottom = document.getElementById('drag-tab-bottom');
 const skipButton = document.querySelector('.skip-button');
+let ctx;
 let startY, originalY;
+let imgData, originalPixels, randomizedPixels
 
 skipButton.addEventListener('click',resetGame);
 
@@ -60,7 +62,8 @@ async function submitGuess(){
             playerScore++;
             score.textContent = playerScore;
             gameMessage.textContent = "";
-            spinImage(result.compliment);
+            //spinImage(result.compliment);
+            animatePixels();
             //createGridOverlay(playerScore);
         } else {
             gameMessage.textContent = "Try again";
@@ -174,13 +177,52 @@ function createOverlayCanvas() {
     canvas.style.zIndex = '10'; // Ensure the canvas is above the game-image
 
     // Get the context of the canvas and draw the image
-    const ctx = canvas.getContext('2d');
+    ctx = canvas.getContext('2d');
     ctx.drawImage(gameImage, 0, 0, canvas.width, canvas.height);
     console.log("drew image")
 
     // Append the canvas to the body (or to the specific parent element of game-image)
     document.body.appendChild(canvas);
 }
+
+function animatePixels(){
+    imgData = ctx.getImageData(0, 0, img.width, img.height);
+    originalPixels = [...imgData.data];
+    randomizedPixels = shufflePixels(originalPixels);
+    requestAnimationFrame(updateCanvas);
+}
+
+// Function to shuffle pixels
+function shufflePixels(pixels) {
+    let randomPixels = new Array(pixels.length);
+    for(let i = 0; i < pixels.length; i += 4) {
+        const randomIndex = Math.floor(Math.random() * (pixels.length / 4)) * 4;
+        randomPixels[randomIndex] = pixels[i];         // R
+        randomPixels[randomIndex + 1] = pixels[i + 1]; // G
+        randomPixels[randomIndex + 2] = pixels[i + 2]; // B
+        randomPixels[randomIndex + 3] = pixels[i + 3]; // A
+    }
+    return randomPixels;
+}
+
+// Function to update canvas
+function updateCanvas() {
+    // Gradually move pixels back to original position
+    for(let i = 0; i < imgData.data.length; i++) {
+        imgData.data[i] += (originalPixels[i] - imgData.data[i]) * 0.05;
+    }
+
+    ctx.putImageData(imgData, 0, 0);
+    animationFrameId = requestAnimationFrame(updateCanvas);
+}
+
+// Stop the animation (optional)
+function stopAnimation() {
+    cancelAnimationFrame(animationFrameId);
+}
+
+
+
 
 function createGridOverlay(score) {
     // Clear any existing grid

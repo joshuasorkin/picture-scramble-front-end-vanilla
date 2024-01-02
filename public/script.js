@@ -186,7 +186,7 @@ function createOverlayCanvas() {
 }
 
 function animatePixels(){
-    imgData = ctx.getImageData(0, 0, img.width, img.height);
+    imgData = ctx.getImageData(0, 0, gameImage.width, gameImage.height);
     originalPixels = [...imgData.data];
     randomizedPixels = shufflePixels(originalPixels);
     requestAnimationFrame(updateCanvas);

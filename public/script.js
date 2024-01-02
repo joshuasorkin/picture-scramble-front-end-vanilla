@@ -186,10 +186,20 @@ function createOverlayCanvas() {
 }
 
 function animatePixels(){
+    console.log("animating...");
     imgData = ctx.getImageData(0, 0, gameImage.width, gameImage.height);
     originalPixels = [...imgData.data];
     randomizedPixels = shufflePixels(originalPixels);
-    requestAnimationFrame(updateCanvas);
+    setRandomizedPixels();
+    //updateCanvas();
+}
+
+// Function to set randomized pixels
+function setRandomizedPixels() {
+    for(let i = 0; i < imgData.data.length; i++) {
+        imgData.data[i] = randomizedPixels[i] || originalPixels[i];
+    }
+    ctx.putImageData(imgData, 0, 0);
 }
 
 // Function to shuffle pixels
@@ -213,7 +223,7 @@ function updateCanvas() {
     }
 
     ctx.putImageData(imgData, 0, 0);
-    animationFrameId = requestAnimationFrame(updateCanvas);
+    //animationFrameId = requestAnimationFrame(updateCanvas);
 }
 
 // Stop the animation (optional)

@@ -52,6 +52,7 @@ async function submitGuess(){
         const result = await response.json();
         console.log({result});
         mismatches = result.mismatches;
+        setMismatches();
         guessControl.removeAttribute('hidden');
         if (result.checkResult) {
             removeDragTabEvents();
@@ -65,7 +66,6 @@ async function submitGuess(){
             spinImage(result.compliment);
             //createGridOverlay(playerScore);
         } else {
-            setMismatches();
             gameMessage.textContent = "Try again";
             // Wait for 2 seconds and remove the text
             setTimeout(() => {

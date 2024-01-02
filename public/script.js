@@ -110,6 +110,7 @@ async function startNewGame() {
         };
         gameImage.src = data.picture;
         gameMessage.textContent = ``;
+        createOverlayCanvas();
 
     } catch (error) {
         console.error('Error:', error);
@@ -151,6 +152,34 @@ function spinImage(compliment) {
     img.addEventListener('transitionend', function() {
         setVictory(compliment);
     }, { once: true }); // The { once: true } option auto-removes the event listener after it fires once.
+}
+
+function createOverlayCanvas() {
+    // Get the game-image element
+    const gameImage = document.getElementById('game-image');
+
+    // Get the bounding rectangle of the game-image
+    const rect = gameImage.getBoundingClientRect();
+
+    // Create a new canvas element
+    const canvas = document.createElement('canvas');
+    canvas.id = 'overlay-canvas';
+
+    // Set the canvas dimensions and position to match the game-image
+    canvas.width = rect.width;
+    canvas.height = rect.height;
+    canvas.style.position = 'absolute';
+    canvas.style.left = rect.left + 'px';
+    canvas.style.top = rect.top + 'px';
+    canvas.style.zIndex = '10'; // Ensure the canvas is above the game-image
+
+    // Set the canvas background to black
+    const ctx = canvas.getContext('2d');
+    ctx.fillStyle = 'black';
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+    // Append the canvas to the body (or to the specific parent element of game-image)
+    document.body.appendChild(canvas);
 }
 
 function createGridOverlay(score) {

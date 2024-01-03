@@ -202,7 +202,7 @@ function createOverlayCanvas() {
 }
 
 function deleteOverlayCanvas(){
-    document.body.removeChild("overlay-canvas");
+    document.getElementById('overlay-canvas').remove();
 }
 
 function pixelate(image, pixelation) {

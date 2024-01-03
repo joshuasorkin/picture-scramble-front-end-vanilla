@@ -54,6 +54,7 @@ async function submitGuess(){
         console.log({result});
         guessControl.removeAttribute('hidden');
         if (result.checkResult) {
+            deleteOverlayCanvas();
             removeDragTabEvents();
             console.log("removing tile drag events...");
             removeRackEventListeners();
@@ -62,8 +63,7 @@ async function submitGuess(){
             playerScore++;
             score.textContent = playerScore;
             gameMessage.textContent = "";
-            //spinImage(result.compliment);
-            pixelate(gameImage,10)
+            spinImage(result.compliment);
             //createGridOverlay(playerScore);
         } else {
             gameMessage.textContent = "Try again";
@@ -115,6 +115,10 @@ async function startNewGame() {
         gameMessage.textContent = ``;
         createOverlayCanvas();
         setNextPixelate();
+        document.getElementById("overlay-canvas").addEventListener("click",function(event){
+            setNextPixelate();
+        })
+
 
     } catch (error) {
         console.error('Error:', error);
@@ -131,7 +135,7 @@ function setNextPixelate(){
 
 
 function resetGame() {
-    pixelateValues = [5, 10];
+    pixelateValues = [1, 5, 10];
     gameImage.removeEventListener('click',resetGame);
     victoryMessage.removeEventListener('click',resetGame);
     gameImage.style.transform = 'none'; // Reset image rotation
@@ -193,6 +197,10 @@ function createOverlayCanvas() {
 
     // Append the canvas to the body (or to the specific parent element of game-image)
     document.body.appendChild(canvas);
+}
+
+function deleteOverlayCanvas(){
+    document.body.removeChild("overlay-canvas");
 }
 
 function pixelate(image, pixelation) {

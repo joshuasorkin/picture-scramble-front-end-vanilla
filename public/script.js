@@ -63,7 +63,7 @@ async function submitGuess(){
             score.textContent = playerScore;
             gameMessage.textContent = "";
             //spinImage(result.compliment);
-            animatePixels();
+            pixelate(gameImage,2)
             //createGridOverlay(playerScore);
         } else {
             gameMessage.textContent = "Try again";

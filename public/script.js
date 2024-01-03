@@ -11,7 +11,7 @@ const dragTabBottom = document.getElementById('drag-tab-bottom');
 const skipButton = document.querySelector('.skip-button');
 let ctx;
 let startY, originalY;
-let imgData, originalPixels, randomizedPixels
+let pixelateValues;
 
 skipButton.addEventListener('click',resetGame);
 
@@ -63,7 +63,7 @@ async function submitGuess(){
             score.textContent = playerScore;
             gameMessage.textContent = "";
             //spinImage(result.compliment);
-            pixelate(gameImage,2)
+            pixelate(gameImage,10)
             //createGridOverlay(playerScore);
         } else {
             gameMessage.textContent = "Try again";
@@ -114,6 +114,7 @@ async function startNewGame() {
         gameImage.src = data.picture;
         gameMessage.textContent = ``;
         createOverlayCanvas();
+        setNextPixelate();
 
     } catch (error) {
         console.error('Error:', error);
@@ -121,7 +122,16 @@ async function startNewGame() {
     }
 }
 
+function setNextPixelate(){
+    const pixelateValue = pixelateValues.pop();
+    if (pixelateValue !== undefined){
+        pixelate(gameImage,pixelateValue);
+    }
+}
+
+
 function resetGame() {
+    pixelateValues = [5, 10];
     gameImage.removeEventListener('click',resetGame);
     victoryMessage.removeEventListener('click',resetGame);
     gameImage.style.transform = 'none'; // Reset image rotation

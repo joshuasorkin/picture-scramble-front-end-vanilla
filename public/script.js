@@ -186,7 +186,7 @@ function createOverlayCanvas() {
 }
 
 function pixelate(image, pixelation) {
-    const canvas = gameCanvas;
+    const canvas = document.getElementById("overlay-canvas")
 
     // Resize the canvas to the size of the image
     canvas.width = image.width;

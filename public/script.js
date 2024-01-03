@@ -185,51 +185,7 @@ function createOverlayCanvas() {
     document.body.appendChild(canvas);
 }
 
-function animatePixels(){
-    console.log("animating...");
-    imgData = ctx.getImageData(0, 0, gameImage.width, gameImage.height);
-    originalPixels = [...imgData.data];
-    randomizedPixels = shufflePixels(originalPixels);
-    setRandomizedPixels();
-    //updateCanvas();
-}
 
-// Function to set randomized pixels
-function setRandomizedPixels() {
-    for(let i = 0; i < imgData.data.length; i++) {
-        imgData.data[i] = randomizedPixels[i] || originalPixels[i];
-    }
-    ctx.putImageData(imgData, 0, 0);
-}
-
-// Function to shuffle pixels
-function shufflePixels(pixels) {
-    let randomPixels = new Array(pixels.length);
-    for(let i = 0; i < pixels.length; i += 4) {
-        const randomIndex = Math.floor(Math.random() * (pixels.length / 4)) * 4;
-        randomPixels[randomIndex] = pixels[i];         // R
-        randomPixels[randomIndex + 1] = pixels[i + 1]; // G
-        randomPixels[randomIndex + 2] = pixels[i + 2]; // B
-        randomPixels[randomIndex + 3] = pixels[i + 3]; // A
-    }
-    return randomPixels;
-}
-
-// Function to update canvas
-function updateCanvas() {
-    // Gradually move pixels back to original position
-    for(let i = 0; i < imgData.data.length; i++) {
-        imgData.data[i] += (originalPixels[i] - imgData.data[i]) * 0.05;
-    }
-
-    ctx.putImageData(imgData, 0, 0);
-    //animationFrameId = requestAnimationFrame(updateCanvas);
-}
-
-// Stop the animation (optional)
-function stopAnimation() {
-    cancelAnimationFrame(animationFrameId);
-}
 
 
 

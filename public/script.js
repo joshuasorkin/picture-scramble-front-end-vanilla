@@ -104,6 +104,7 @@ async function startNewGame() {
         };
         img.onload = () => {
             img.removeAttribute('hidden'); // Remove 'hidden' attribute when the image is loaded
+            initializePixelatedCanvas();
             addDragTabEvents();
             addRackEventListeners();
             rackContainer.style.display = 'block';
@@ -113,11 +114,6 @@ async function startNewGame() {
         };
         gameImage.src = data.picture;
         gameMessage.textContent = ``;
-        createOverlayCanvas();
-        setNextPixelate();
-        document.getElementById("overlay-canvas").addEventListener("click",function(event){
-            setNextPixelate();
-        })
 
 
     } catch (error) {
@@ -128,11 +124,19 @@ async function startNewGame() {
 
 function setNextPixelate(){
     const pixelateValue = pixelateValues.pop();
+    console.log(`Pixelating at value ${pixelateValue}`);
     if (pixelateValue !== undefined){
         pixelate(gameImage,pixelateValue);
     }
 }
 
+function initializePixelatedCanvas(){
+    createOverlayCanvas();
+    setNextPixelate();
+    document.getElementById("overlay-canvas").addEventListener("click",function(event){
+        setNextPixelate();
+    }
+}
 
 function resetGame() {
     pixelateValues = [1, 5, 10];

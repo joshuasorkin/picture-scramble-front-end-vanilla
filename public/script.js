@@ -114,8 +114,6 @@ async function startNewGame() {
         };
         gameImage.src = data.picture;
         gameMessage.textContent = ``;
-
-
     } catch (error) {
         console.error('Error:', error);
         gameMessage.textContent = `Error: ${error.message}`;
@@ -135,7 +133,7 @@ function initializePixelatedCanvas(){
     setNextPixelate();
     document.getElementById("overlay-canvas").addEventListener("click",function(event){
         setNextPixelate();
-    }
+    });
 }
 
 function resetGame() {

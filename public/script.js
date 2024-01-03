@@ -185,7 +185,21 @@ function createOverlayCanvas() {
     document.body.appendChild(canvas);
 }
 
+function pixelate(image, pixelation) {
 
+    // Resize the canvas to the size of the image
+    canvas.width = image.width;
+    canvas.height = image.height;
+
+    // The level of pixelation, lower values have more detail
+    var pixelSize = pixelation;
+
+    // Draw the image in a smaller size (pixelated)
+    ctx.drawImage(image, 0, 0, image.width / pixelSize, image.height / pixelSize);
+
+    // Scale the smaller image back up to the original size
+    ctx.drawImage(canvas, 0, 0, image.width / pixelSize, image.height / pixelSize, 0, 0, canvas.width, canvas.height);
+}
 
 
 

@@ -9,6 +9,7 @@ const guessControl = document.getElementById('guess-control');
 const rackContainer = document.getElementById('rack-container');
 const dragTabBottom = document.getElementById('drag-tab-bottom');
 const skipButton = document.querySelector('.skip-button');
+let overlayCanvas;
 let ctx;
 let startY, originalY;
 let pixelateValues;
@@ -125,6 +126,10 @@ function setNextPixelate(){
     console.log(`Pixelating at value ${pixelateValue}`);
     if (pixelateValue !== undefined){
         pixelate(gameImage,pixelateValue);
+    }
+    //if we're at full resolution, set canvas' zIndex below gameImage so that rack will slide over it
+    if (pixelateValues.length === 0){
+        overlayCanvas.style.zIndex = gameImage.style.zIndex - 1;
     }
 }
 

@@ -14,6 +14,7 @@ let ctx;
 let startY, originalY;
 let pixelateValues;
 let mismatches = [];
+let puzzleValue;
 
 skipButton.addEventListener('click',resetGame);
 
@@ -64,7 +65,7 @@ async function submitGuess(){
             removeRackEventListeners();
             skipButton.style.display = 'none';
             gameMessage.setAttribute('hidden',true);
-            playerScore++;
+            playerScore+=puzzleValue;
             score.textContent = playerScore;
             gameMessage.textContent = "";
             spinImage(result.compliment);
@@ -137,11 +138,13 @@ function initializePixelatedCanvas(){
     setNextPixelate();
     document.getElementById("overlay-canvas").addEventListener("click",function(event){
         setNextPixelate();
+        decreasePuzzleValue();
     });
 }
 
 function resetGame() {
     pixelateValues = [1, 5, 15];
+    puzzleValue = 10;
     gameImage.removeEventListener('click',resetGame);
     victoryMessage.removeEventListener('click',resetGame);
     gameImage.style.transform = 'none'; // Reset image rotation
@@ -226,6 +229,12 @@ function pixelate(image, pixelation) {
 
     // Scale the smaller image back up to the original size
     ctx.drawImage(canvas, 0, 0, image.width / pixelSize, image.height / pixelSize, 0, 0, canvas.width, canvas.height);
+}
+
+function decreasePuzzleValue(){
+    if (puzzleValue > 1){
+        puzzleValue--;
+    }
 }
 
 

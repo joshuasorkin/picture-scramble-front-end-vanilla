@@ -189,8 +189,8 @@ function createOverlayCanvas() {
     canvas.width = rect.width;
     canvas.height = rect.height;
     canvas.style.position = 'absolute';
-    canvas.style.left = rect.left + 'px';
-    canvas.style.top = rect.top + 'px';
+    canvas.style.left = gameImage.offsetLeft + 'px';
+    canvas.style.top = gameImage.offsetTop + 'px';
     canvas.style.zIndex = '10'; // Ensure the canvas is above the game-image
 
     // Get the context of the canvas and draw the image

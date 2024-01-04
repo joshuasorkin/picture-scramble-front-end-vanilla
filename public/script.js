@@ -9,7 +9,10 @@ const guessControl = document.getElementById('guess-control');
 const rackContainer = document.getElementById('rack-container');
 const dragTabBottom = document.getElementById('drag-tab-bottom');
 const skipButton = document.querySelector('.skip-button');
+let overlayCanvas;
+let ctx;
 let startY, originalY;
+let pixelateValues;
 let mismatches = [];
 
 skipButton.addEventListener('click',resetGame);
@@ -55,6 +58,7 @@ async function submitGuess(){
         setMismatches();
         guessControl.removeAttribute('hidden');
         if (result.checkResult) {
+            deleteOverlayCanvas();
             removeDragTabEvents();
             console.log("removing tile drag events...");
             removeRackEventListeners();
@@ -104,6 +108,7 @@ async function startNewGame() {
         };
         img.onload = () => {
             img.removeAttribute('hidden'); // Remove 'hidden' attribute when the image is loaded
+            initializePixelatedCanvas();
             addDragTabEvents();
             addRackEventListeners();
             rackContainer.style.display = 'block';
@@ -113,14 +118,30 @@ async function startNewGame() {
         };
         gameImage.src = data.picture;
         gameMessage.textContent = ``;
-
     } catch (error) {
         console.error('Error:', error);
         gameMessage.textContent = `Error: ${error.message}`;
     }
 }
 
+function setNextPixelate(){
+    const pixelateValue = pixelateValues.pop();
+    console.log(`Pixelating at value ${pixelateValue}`);
+    if (pixelateValue !== undefined){
+        pixelate(gameImage,pixelateValue);
+    }
+}
+
+function initializePixelatedCanvas(){
+    createOverlayCanvas();
+    setNextPixelate();
+    document.getElementById("overlay-canvas").addEventListener("click",function(event){
+        setNextPixelate();
+    });
+}
+
 function resetGame() {
+    pixelateValues = [1, 5, 15];
     gameImage.removeEventListener('click',resetGame);
     victoryMessage.removeEventListener('click',resetGame);
     gameImage.style.transform = 'none'; // Reset image rotation
@@ -155,6 +176,60 @@ function spinImage(compliment) {
         setVictory(compliment);
     }, { once: true }); // The { once: true } option auto-removes the event listener after it fires once.
 }
+
+function createOverlayCanvas() {
+    // Get the game-image element
+    const gameImage = document.getElementById('game-image');
+
+    // Get the bounding rectangle of the game-image
+    const rect = gameImage.getBoundingClientRect();
+
+    // Create a new canvas element
+    const canvas = document.createElement('canvas');
+    canvas.id = 'overlay-canvas';
+
+    // Set the canvas dimensions and position to match the game-image
+    canvas.width = rect.width;
+    canvas.height = rect.height;
+    canvas.style.position = 'absolute';
+    canvas.style.left = gameImage.offsetLeft + 'px';
+    canvas.style.top = gameImage.offsetTop + 'px';
+    canvas.style.zIndex = '10'; // Ensure the canvas is above the game-image
+
+    // Get the context of the canvas and draw the image
+    ctx = canvas.getContext('2d');
+    ctx.drawImage(gameImage, 0, 0, canvas.width, canvas.height);
+    console.log("drew image")
+
+    // Append the canvas to the body (or to the specific parent element of game-image)
+    document.getElementById("image-container").appendChild(canvas);
+    overlayCanvas = document.getElementById("overlay-canvas");
+    rackContainer.style.zIndex = parseInt(canvas.style.zIndex, 10) + 1;
+}
+
+function deleteOverlayCanvas(){
+    document.getElementById('overlay-canvas').remove();
+}
+
+function pixelate(image, pixelation) {
+    const canvas = document.getElementById("overlay-canvas")
+
+    // Resize the canvas to the size of the image
+    canvas.width = image.width;
+    canvas.height = image.height;
+
+    // The level of pixelation, lower values have more detail
+    var pixelSize = pixelation;
+
+    // Draw the image in a smaller size (pixelated)
+    ctx.drawImage(image, 0, 0, image.width / pixelSize, image.height / pixelSize);
+
+    // Scale the smaller image back up to the original size
+    ctx.drawImage(canvas, 0, 0, image.width / pixelSize, image.height / pixelSize, 0, 0, canvas.width, canvas.height);
+}
+
+
+
 
 function createGridOverlay(score) {
     // Clear any existing grid

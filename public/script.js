@@ -201,8 +201,7 @@ function createOverlayCanvas() {
     // Append the canvas to the body (or to the specific parent element of game-image)
     document.body.appendChild(canvas);
 
-    //set canvas' zIndex below rack so that rack will slide over it
-    overlayCanvas.style.zIndex = rackContainer.style.zIndex - 1;
+    canvas.style.zIndex = rackContainer.style.zIndex - 1;
 }
 
 function deleteOverlayCanvas(){

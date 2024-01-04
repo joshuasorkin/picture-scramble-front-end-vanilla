@@ -138,7 +138,7 @@ function initializePixelatedCanvas(){
 }
 
 function resetGame() {
-    pixelateValues = [1, 5, 10];
+    pixelateValues = [1, 5, 10, 15];
     gameImage.removeEventListener('click',resetGame);
     victoryMessage.removeEventListener('click',resetGame);
     gameImage.style.transform = 'none'; // Reset image rotation

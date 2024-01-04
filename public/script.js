@@ -71,6 +71,7 @@ async function submitGuess(){
             spinImage(result.compliment);
             //createGridOverlay(playerScore);
         } else {
+            decreasePuzzleValue();
             gameMessage.textContent = "Try again";
             // Wait for 2 seconds and remove the text
             setTimeout(() => {

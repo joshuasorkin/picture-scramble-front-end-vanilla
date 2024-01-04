@@ -212,6 +212,7 @@ body {
 }
 
 #rack-container {
+    position: relative;
     justify-content: center;
     height: auto; /* Maintain aspect ratio */
     display: none; /* hide at start */

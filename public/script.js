@@ -57,7 +57,6 @@ async function submitGuess(){
             score.textContent = playerScore;
             gameMessage.textContent = "";
             spinImage(result.compliment);
-            //createGridOverlay(playerScore);
         } else {
             decreasePuzzleValue();
             gameMessage.textContent = "Try again";
@@ -221,31 +220,6 @@ function decreasePuzzleValue(){
     if (puzzleValue > 1){
         puzzleValue--;
     }
-}
-
-
-
-
-function createGridOverlay(score) {
-    // Clear any existing grid
-    const container = document.getElementById('imageContainer');
-    container.querySelectorAll('.grid-overlay').forEach(grid => grid.remove());
-
-    // Create the grid overlay
-    const grid = document.createElement('div');
-    grid.className = 'grid-overlay';
-    grid.style.gridTemplateColumns = `repeat(${score}, 1fr)`;
-    grid.style.gridTemplateRows = `repeat(${score}, 1fr)`;
-
-    // Add cells to the grid
-    for (let i = 0; i < score * score; i++) {
-        const cell = document.createElement('div');
-        cell.className = 'grid-cell';
-        grid.appendChild(cell);
-    }
-
-    // Append the grid overlay to the container
-    container.appendChild(grid);
 }
 
 function startTabDrag(evt) {

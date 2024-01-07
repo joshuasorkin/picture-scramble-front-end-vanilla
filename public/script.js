@@ -74,12 +74,7 @@ async function submitGuess(){
         if (result.checkResult) {
             handleSubmissionSuccess(result);
         } else {
-            decreasePuzzleValue();
-            gameMessage.textContent = "Try again";
-            // Wait for 2 seconds and remove the text
-            setTimeout(() => {
-                gameMessage.textContent = '';
-            }, 2000); // 2000 milliseconds = 2 seconds
+            handleSubmissionFailure();
         }
     } catch (error) {
         console.error('Error:', error);

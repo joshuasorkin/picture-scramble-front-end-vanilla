@@ -3,7 +3,6 @@ const victoryMessage = document.getElementById('victory-message');
 const gameMessage = document.getElementById('game-message');
 const gameImage = document.getElementById('game-image');
 const scrambledWord = document.getElementById('scrambled-word');
-const guessControl = document.getElementById('guess-control');
 const rackContainer = document.getElementById('rack-container');
 const dragTabBottom = document.getElementById('drag-tab-bottom');
 const skipButton = document.querySelector('.skip-button');
@@ -55,7 +54,6 @@ async function submitGuess(){
         const userInput = rackString.toLowerCase();
         console.log({userInput});
         // Set the text to rainbow flashing
-        guessControl.setAttribute('hidden',true);
         gameMessage.classList.add('rainbow-text');
         gameMessage.removeAttribute('hidden');
         gameMessage.textContent = 'Checking Answer';

@@ -68,7 +68,6 @@ async function submitGuess(){
         console.log({result});
         mismatches = result.mismatches;
         setMismatches();
-        guessControl.removeAttribute('hidden');
         if (result.checkResult) {
             handleSubmissionSuccess(result);
         } else {

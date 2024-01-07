@@ -13,6 +13,8 @@ let startY, originalY;
 let pixelateValues;
 let mismatches = [];
 let puzzleValue;
+let gameId;
+let playerScore = 0;
 
 skipButton.addEventListener('click',resetGame);
 
@@ -70,9 +72,6 @@ async function submitGuess(){
         gameMessage.textContent = `Error: ${error.message}`;
     }
 }
-
-let gameId;
-let playerScore = 0;
 
 async function startNewGame() {
     try {

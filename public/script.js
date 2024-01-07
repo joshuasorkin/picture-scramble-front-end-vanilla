@@ -1,5 +1,3 @@
-const userGuess = document.getElementById('user-guess');
-const submitGuessButton = document.getElementById('submit-guess-button');
 const score = document.getElementById('score');
 const victoryMessage = document.getElementById('victory-message');
 const gameMessage = document.getElementById('game-message');
@@ -18,15 +16,6 @@ let puzzleValue;
 
 skipButton.addEventListener('click',resetGame);
 
-userGuess.addEventListener('keypress', function(event) {
-    if (event.key === 'Enter') {
-        event.preventDefault(); // Prevent the default action to avoid form submission or page reload
-        submitGuess();
-    }
-});
-
-submitGuessButton.addEventListener('click', submitGuess);
-
 scrambledWord.addEventListener('click', function() {
     const text = this.innerText;
     navigator.clipboard.writeText(text).then(() => {
@@ -38,7 +27,6 @@ scrambledWord.addEventListener('click', function() {
 
 async function submitGuess(){
     try {
-        //const userInput = userGuess.value.toLowerCase();
         const userInput = rackString.toLowerCase();
         console.log({userInput});
         // Set the text to rainbow flashing
@@ -151,10 +139,7 @@ function resetGame() {
     gameImage.style.transform = 'none'; // Reset image rotation
     victoryMessage.style.display = 'none'; // Hide victory message
     victoryMessage.innerText = ''; // Blank out victory message text
-    submitGuessButton.setAttribute('hidden',true);
     rackContainer.style.display = 'none' // hide rack
-    userGuess.setAttribute('hidden',true);
-    userGuess.value = '';
     document.getElementById('scrambled-word').innerText = '';
     gameMessage.textContent = ''; // Clear result text
     gameImage.onload = () => {

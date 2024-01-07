@@ -27,6 +27,29 @@ scrambledWord.addEventListener('click', function() {
     });
 });
 
+
+function handleSubmissionSuccess(result){
+    deleteOverlayCanvas();
+    removeDragTabEvents();
+    console.log("removing tile drag events...");
+    removeRackEventListeners();
+    skipButton.style.display = 'none';
+    gameMessage.setAttribute('hidden',true);
+    playerScore+=puzzleValue;
+    score.textContent = playerScore;
+    gameMessage.textContent = "";
+    spinImage(result.compliment);
+}
+
+function handleSubmissionFailure(){
+    decreasePuzzleValue();
+    gameMessage.textContent = "Try again";
+    // Wait for 2 seconds and remove the text
+    setTimeout(() => {
+        gameMessage.textContent = '';
+    }, 2000); // 2000 milliseconds = 2 seconds
+}
+
 async function submitGuess(){
     try {
         const userInput = rackString.toLowerCase();
@@ -49,16 +72,7 @@ async function submitGuess(){
         setMismatches();
         guessControl.removeAttribute('hidden');
         if (result.checkResult) {
-            deleteOverlayCanvas();
-            removeDragTabEvents();
-            console.log("removing tile drag events...");
-            removeRackEventListeners();
-            skipButton.style.display = 'none';
-            gameMessage.setAttribute('hidden',true);
-            playerScore+=puzzleValue;
-            score.textContent = playerScore;
-            gameMessage.textContent = "";
-            spinImage(result.compliment);
+            handleSubmissionSuccess(result);
         } else {
             decreasePuzzleValue();
             gameMessage.textContent = "Try again";

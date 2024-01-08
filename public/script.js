@@ -108,6 +108,7 @@ async function startNewGame() {
             rackContainer.style.display = 'block';
             createTiles(data.scramble.toUpperCase());
             skipButton.style.display = 'block';
+            skipButton.addEventListener('click',resetGame),{once:true};
             triggerBounceAnimation();
         };
         gameImage.src = data.picture;

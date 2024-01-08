@@ -28,8 +28,6 @@ scrambledWord.addEventListener('click', function() {
 
 
 function handleSubmissionSuccess(result){
-    gameImage.removeEventListener('click',resetGame);
-    victoryMessage.removeEventListener('click',resetGame);
     deleteOverlayCanvas();
     removeDragTabEvents();
     console.log("removing tile drag events...");
@@ -158,8 +156,8 @@ function resetGame() {
 function setVictory(compliment){
     victoryMessage.innerText = compliment + "\nClick to continue...";
     victoryMessage.style.display = 'block'; // Show victory message
-    victoryMessage.addEventListener('click', resetGame);
-    gameImage.addEventListener('click', resetGame);
+    victoryMessage.addEventListener('click', resetGame,{once:true});
+    gameImage.addEventListener('click', resetGame,{once:true});
 }
 
 function spinImage(compliment) {

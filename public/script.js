@@ -28,6 +28,8 @@ scrambledWord.addEventListener('click', function() {
 
 
 function handleSubmissionSuccess(result){
+    gameImage.removeEventListener('click',resetGame);
+    victoryMessage.removeEventListener('click',resetGame);
     deleteOverlayCanvas();
     removeDragTabEvents();
     console.log("removing tile drag events...");

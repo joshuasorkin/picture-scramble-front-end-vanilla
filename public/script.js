@@ -118,6 +118,7 @@ async function startNewGame() {
 }
 
 function setNextPixelate(){
+    return;
     const pixelateValue = pixelateValues.pop();
     console.log(`Pixelating at value ${pixelateValue}`);
     if (pixelateValue !== undefined){
@@ -126,6 +127,7 @@ function setNextPixelate(){
 }
 
 function initializePixelatedCanvas(){
+    return;
     createOverlayCanvas();
     setNextPixelate();
     document.getElementById("overlay-canvas").addEventListener("click",function(event){

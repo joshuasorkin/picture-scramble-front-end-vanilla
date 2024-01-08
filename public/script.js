@@ -15,8 +15,6 @@ let puzzleValue;
 let gameId;
 let playerScore = 0;
 
-skipButton.addEventListener('click',resetGame);
-
 scrambledWord.addEventListener('click', function() {
     const text = this.innerText;
     navigator.clipboard.writeText(text).then(() => {

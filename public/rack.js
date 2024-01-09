@@ -209,8 +209,9 @@ function reorderTiles() {
     const newIndex_preRound = leftXOfDraggedTile / tileSpacing;
     console.log({newIndex_preRound});
     let newIndex = Math.floor(leftXOfDraggedTile / tileSpacing);
-    if(newIndex < draggingIndex){
+    if(newIndex <= draggingIndex){
         newIndex++;
+        console.log("adjusted newIndex:",newIndex);
     }
     //check if tile has moved left of first tile
     if (newIndex <= 0){

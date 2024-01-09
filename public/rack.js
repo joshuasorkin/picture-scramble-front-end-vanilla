@@ -144,6 +144,8 @@ function startTileDrag(evt) {
             // Determine the distance from the click to the left side of the tile
             clickOffset = startX - tileLeft;
 
+            console.log({clickOffset});
+
             draggingTile.classList.add('dragging');     
             rackContainer.classList.add('no-select');
             // Move the dragging tile to the end of the SVG for higher stacking order
@@ -202,7 +204,8 @@ function reorderTiles() {
     const currentTransform = draggingTile.getAttribute('transform');
     const translateX = parseInt(currentTransform.split('(')[1]);
     console.log({draggingIndex},{currentTransform},{translateX});
-    let newIndex = Math.round((translateX - tileWidth) / tileSpacing);
+    const leftXOfDraggedTile = translateX - clickOffset;
+    let newIndex = Math.round(leftXOfDraggedTile / tileSpacing);
     //check if tile has moved left of first tile
     if (newIndex <= 0){
         newIndex = 0

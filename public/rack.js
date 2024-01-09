@@ -126,7 +126,7 @@ function createTiles(str) {
 
     // Define the boundaries
     leftBoundary = tileSpacing / 4;
-    rightBoundary = containerWidth - (rackPadding + containerPadding);
+    rightBoundary = rack.getAttribute('x') + rack.getAttribute('width') + (tileSpacing / 4);
     
     console.log({tiles});
     console.log({rackString});

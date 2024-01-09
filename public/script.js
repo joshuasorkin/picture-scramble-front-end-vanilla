@@ -101,13 +101,13 @@ async function startNewGame() {
         img.onload = () => {
             img.removeAttribute('hidden'); // Remove 'hidden' attribute when the image is loaded
             initializePixelatedCanvas();
-            addDragTabEvents();
-            addRackEventListeners();
             rackContainer.style.display = 'block';
             createTiles(data.scramble.toUpperCase());
             skipButton.style.display = 'block';
             skipButton.addEventListener('click',resetGame),{once:true};
             triggerBounceAnimation();
+            addDragTabEvents();
+            addRackEventListeners();
         };
         gameImage.src = data.picture;
         gameMessage.textContent = ``;
@@ -137,6 +137,7 @@ function initializePixelatedCanvas(){
 }
 
 function resetGame() {
+    console.log("resetting game...");
     pixelateValues = [1, 5, 15];
     puzzleValue = 10;
     gameImage.removeEventListener('click',resetGame);
@@ -155,6 +156,7 @@ function resetGame() {
 }
 
 function setVictory(compliment){
+    console.log("setting victory...")
     victoryMessage.innerText = compliment + "\nClick to continue...";
     victoryMessage.style.display = 'block'; // Show victory message
     victoryMessage.addEventListener('click', resetGame,{once:true});

@@ -257,7 +257,7 @@ function endTabDrag(evt) {
 
     // Check if rack overlaps with game image
     //if (rackRect.bottom > imageRect.top && rackRect.top < imageRect.bottom) {
-    if (rackRect.top < imageRect.bottom) {
+    if (rackIsBeingDragged && rackRect.top < imageRect.bottom) {
         console.log("rackRect.top",rackRect.top,"imageRect.bottom",imageRect.bottom);
         console.log("Rack reached the game image!");
         // Handle the event where rack overlaps with game image

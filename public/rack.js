@@ -173,8 +173,10 @@ function tileDrag(evt) {
         let translateX = parseInt(currentTransform.split('(')[1]) + dx;
         
         // Define the boundaries
-        const leftBoundary = rackPadding;
+        //const leftBoundary = rackPadding;
+        const leftBoundary = 0;
         const rightBoundary = containerWidth - (rackPadding + containerPadding);
+        console.log({leftBoundary},{rightBoundary});
 
         // Enforce the boundaries
         if (translateX < leftBoundary) {

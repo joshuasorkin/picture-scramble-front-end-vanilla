@@ -15,6 +15,8 @@ let containerWidth;
 let rackString;
 let bevelRadius;
 let clickOffset;
+let leftBoundary;
+let rightBoundary;
 
 let rackContainerIsBeingDragged = false;
 
@@ -122,6 +124,9 @@ function createTiles(str) {
     dragTabBottom.setAttribute('height', TILE_SIZE);
     dragTabBottom.setAttribute('width',rackWidth.toString());
 
+    // Define the boundaries
+    leftBoundary = 0;
+    rightBoundary = containerWidth - (rackPadding + containerPadding);
     
     console.log({tiles});
     console.log({rackString});
@@ -150,6 +155,7 @@ function startTileDrag(evt) {
             rackContainer.classList.add('no-select');
             // Move the dragging tile to the end of the SVG for higher stacking order
             draggingTile.parentNode.appendChild(draggingTile);
+            
         }
     }
 }
@@ -172,11 +178,7 @@ function tileDrag(evt) {
         const currentTransform = draggingTile.getAttribute('transform');
         let translateX = parseInt(currentTransform.split('(')[1]) + dx;
         
-        // Define the boundaries
-        //const leftBoundary = rackPadding;
-        const leftBoundary = 0;
-        const rightBoundary = containerWidth - (rackPadding + containerPadding);
-        console.log({leftBoundary},{rightBoundary});
+        
 
         // Enforce the boundaries
         if (translateX < leftBoundary) {

@@ -227,16 +227,16 @@ function reorderTiles() {
         // Remove the dragging tile from the array and splice it into the new position
         const [movedTile] = tiles.splice(draggingIndex, 1);
         tiles.splice(newIndex, 0, movedTile);
-
-        // Update positions of all tiles
-        tiles.forEach((tile, index) => {
-            const x = xOffsetStart + index * tileSpacing;
-            tile.element.setAttribute('transform', `translate(${x}, ${yOffset})`);
-            tile.element.dataset.index = index;
-            rackString += tile.char;
-        });
-        console.log({rackString});
     }
+    // Update positions of all tiles
+    tiles.forEach((tile, index) => {
+        const x = xOffsetStart + index * tileSpacing;
+        tile.element.setAttribute('transform', `translate(${x}, ${yOffset})`);
+        tile.element.dataset.index = index;
+        rackString += tile.char;
+    });
+    console.log({rackString});
+    
 }
 
 function touchStartHandler(evt){

@@ -205,7 +205,10 @@ function reorderTiles() {
     const translateX = parseInt(currentTransform.split('(')[1]);
     console.log({draggingIndex},{currentTransform},{translateX});
     const leftXOfDraggedTile = translateX - clickOffset;
-    let newIndex = Math.round(leftXOfDraggedTile / tileSpacing);
+    console.log({leftXOfDraggedTile});
+    const newIndex_preRound = leftXOfDraggedTile / tileSpacing;
+    console.log({newIndex_preRound});
+    let newIndex = Math.floor(leftXOfDraggedTile / tileSpacing);
     //check if tile has moved left of first tile
     if (newIndex <= 0){
         newIndex = 0

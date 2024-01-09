@@ -14,6 +14,7 @@ let mismatches = [];
 let puzzleValue;
 let gameId;
 let playerScore = 0;
+let rackIsBeingDragged = false;
 
 scrambledWord.addEventListener('click', function() {
     const text = this.innerText;

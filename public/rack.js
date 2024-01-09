@@ -125,7 +125,7 @@ function createTiles(str) {
     dragTabBottom.setAttribute('width',rackWidth.toString());
 
     // Define the boundaries
-    leftBoundary = 0;
+    leftBoundary = rackPadding + containerPadding;
     rightBoundary = containerWidth - (rackPadding + containerPadding);
     
     console.log({tiles});

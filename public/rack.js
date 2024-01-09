@@ -14,6 +14,7 @@ let rackWidth;
 let containerWidth;
 let rackString;
 let bevelRadius;
+let clickOffset;
 
 let rackContainerIsBeingDragged = false;
 
@@ -136,6 +137,13 @@ function startTileDrag(evt) {
             } else {
                 startX = evt.clientX;
             }
+
+            // Get the x-coordinate of the left side of the tile
+            const tileLeft = draggingTile.getBoundingClientRect().left;
+            
+            // Determine the distance from the click to the left side of the tile
+            clickOffset = startX - tileLeft;
+
             draggingTile.classList.add('dragging');     
             rackContainer.classList.add('no-select');
             // Move the dragging tile to the end of the SVG for higher stacking order

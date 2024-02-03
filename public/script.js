@@ -16,16 +16,6 @@ let gameId;
 let playerScore = 0;
 let rackIsBeingDragged = false;
 
-scrambledWord.addEventListener('click', function() {
-    const text = this.innerText;
-    navigator.clipboard.writeText(text).then(() => {
-        console.log('Text copied to clipboard');
-    }).catch(err => {
-        console.error('Failed to copy text: ', err);
-    });
-});
-
-
 function handleSubmissionSuccess(result){
     deleteOverlayCanvas();
     console.log("removing drag tab events...");

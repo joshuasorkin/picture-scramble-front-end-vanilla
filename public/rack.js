@@ -66,11 +66,7 @@ function createTiles(str) {
     containerWidth = rackWidth + TOTAL_TILE_SIZE; // add TOTAL_TILE_SIZE to account for 1 drag tab
 
     // Set the width of the rackContainer
-    //const rackContainer = document.getElementById('rack-container');
     rackContainer.setAttribute('width', containerWidth.toString());
-
-    //set the width of the rackContainer container
-    //rackContainer.setAttribute('width', containerWidth.toString());
 
     //set the height of the rackContainer container
     rackContainer.setAttribute('height', tileSpacing.toString() * 2);

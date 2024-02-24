@@ -87,9 +87,19 @@ async function fetchGameDataFromServer(){
         throw new Error(`HTTP error! status: ${response.status}`);
     }
     const gameData = await response.json();
+    const imageBlobUrl = getImageBlobUrl(gameData.image);
+    gameData.image = imageBlobUrl;
     return gameData;
 }
 
+function getImageBlobUrl(imageBuffer){
+    // Convert the PNG buffer to a Blob
+    const imageBlob = new Blob([puzzleData.image], { type: 'image/png' });
+
+    // Create a Blob URL for the image
+    const imageBlobUrl = URL.createObjectURL(imageBlob);
+    return imageBlobUrl;
+}
 
 async function startNewGame() {
     try {

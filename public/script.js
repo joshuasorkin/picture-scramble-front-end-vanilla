@@ -153,6 +153,11 @@ async function startNewGame() {
         gameImage.src = data.picture;
         gameMessage.textContent = ``;
         fetchGameDataFromServer(true);
+        //this way we will gradually increase the size of our game cache
+        //instead of always being only 1 game ahead
+        if(preloadGameData.length<4){
+            fetchGameDataFromServer(true);
+        }
     } catch (error) {
         console.error('Error:', error);
         gameMessage.textContent = `Error: ${error.message}`;

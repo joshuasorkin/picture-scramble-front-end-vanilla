@@ -195,6 +195,7 @@ function resetGame() {
         //revoke the blob url from the previous game, if it exists
         if(currentBlobUrl){
             URL.revokeObjectURL(currentBlobUrl);
+            console.log("revoked blob url:",currentBlobUrl);
         }
         gameImage.removeAttribute('hidden'); // Remove 'hidden' attribute when the image is loaded
         startNewGame();

@@ -87,8 +87,8 @@ async function fetchGameDataFromServer(isPreload){
         throw new Error(`HTTP error! status: ${response.status}`);
     }
     const gameData = await response.json();
-    const imageBlobUrl = getImageBlobUrl(gameData.picture);
-    gameData.picture = imageBlobUrl;
+    //const imageBlobUrl = getImageBlobUrl(gameData.picture);
+    //gameData.picture = imageBlobUrl;
     if(isPreload){
         preloadGameData.push(gameData);
     }

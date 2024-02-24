@@ -16,6 +16,7 @@ let gameId;
 let playerScore = 0;
 let rackIsBeingDragged = false;
 let preloadGameData = [];
+let currentBlobUrl;
 
 function handleSubmissionSuccess(result){
     deleteOverlayCanvas();
@@ -101,7 +102,9 @@ async function fetchAndCacheImage(imageUrl) {
         throw new Error(`HTTP error! status: ${response.status}`);
     }
     const imageBlob = await response.blob(); // Get the image as a Blob
-    return URL.createObjectURL(imageBlob); // Convert the Blob into a Blob URL
+    const url = URL.createObjectURL(imageBlob); // Convert the Blob into a Blob URL
+    currentBlobUrl = url;  //set the current blob url for later revocation
+    return url;
 }
 
 async function startNewGame() {
@@ -164,6 +167,7 @@ function resetGame() {
     console.log("resetting game...");
     pixelateValues = [1, 5, 15];
     puzzleValue = 10;
+
     gameImage.removeEventListener('click',resetGame);
     victoryMessage.removeEventListener('click',resetGame);
     gameImage.style.transform = 'none'; // Reset image rotation
@@ -173,6 +177,10 @@ function resetGame() {
     document.getElementById('scrambled-word').innerText = '';
     gameMessage.textContent = ''; // Clear result text
     gameImage.onload = () => {
+        //revoke the blob url from the previous game, if it exists
+        if(currentBlobUrl){
+            URL.revokeObjectURL(currentBlobUrl);
+        }
         gameImage.removeAttribute('hidden'); // Remove 'hidden' attribute when the image is loaded
         startNewGame();
     };

@@ -72,8 +72,8 @@ async function submitGuess(){
 
 async function getGameData(){
     let gameData;
-    if(preloadedGameData.length>0){
-        gameData = preloadedGameData.shift();
+    if(preloadGameData.length>0){
+        gameData = preloadGameData.shift();
     }
     else{
         gameData = await fetchGameDataFromServer();

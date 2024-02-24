@@ -95,13 +95,13 @@ async function fetchGameDataFromServer(isPreload){
     return gameData;
 }
 
-function getImageBlobUrl(imageBuffer){
-    // Convert the PNG buffer to a Blob
-    const imageBlob = new Blob([imageBuffer], { type: 'image/png' });
-
-    // Create a Blob URL for the image
-    const imageBlobUrl = URL.createObjectURL(imageBlob);
-    return imageBlobUrl;
+async function fetchAndCacheImage(imageUrl) {
+    const response = await fetch(imageUrl);
+    if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+    }
+    const imageBlob = await response.blob(); // Get the image as a Blob
+    return URL.createObjectURL(imageBlob); // Convert the Blob into a Blob URL
 }
 
 async function startNewGame() {

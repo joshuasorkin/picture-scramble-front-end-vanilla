@@ -81,7 +81,7 @@ async function getGameData(){
     return gameData;
 }
 
-async function fetchGameDataFromServer(){
+async function fetchGameDataFromServer(isPreload){
     const response = await fetch(`/api/new-game?score=${playerScore}`);
     if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
@@ -89,6 +89,9 @@ async function fetchGameDataFromServer(){
     const gameData = await response.json();
     const imageBlobUrl = getImageBlobUrl(gameData.image);
     gameData.image = imageBlobUrl;
+    if(isPreload){
+        preloadGameData.push(gameData);
+    }
     return gameData;
 }
 

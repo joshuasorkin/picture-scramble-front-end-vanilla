@@ -15,6 +15,7 @@ let puzzleValue;
 let gameId;
 let playerScore = 0;
 let rackIsBeingDragged = false;
+let preloadGameData = [];
 
 function handleSubmissionSuccess(result){
     deleteOverlayCanvas();
@@ -69,6 +70,27 @@ async function submitGuess(){
     }
 }
 
+async function getGameData(){
+    let gameData;
+    if(preloadedGameData.length>0){
+        gameData = preloadedGameData.shift();
+    }
+    else{
+        gameData = await fetchGameDataFromServer();
+    }
+    return gameData;
+}
+
+async function fetchGameDataFromServer(){
+    const response = await fetch(`/api/new-game?score=${playerScore}`);
+    if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+    }
+    const gameData = await response.json();
+    return gameData;
+}
+
+
 async function startNewGame() {
     try {
         gameMessage.removeAttribute('hidden');
@@ -77,12 +99,8 @@ async function startNewGame() {
 
         // Set the text to rainbow flashing
         gameMessage.classList.add('rainbow-text');
-        const response = await fetch(`/api/new-game?score=${playerScore}`);
+        const data = await getGameData();
         gameMessage.classList.remove('rainbow-text');
-        if (!response.ok) {
-            throw new Error(`HTTP error! status: ${response.status}`);
-        }
-        const data = await response.json();
         console.log({data});
         gameId = data.gameId;
         const img = gameImage;

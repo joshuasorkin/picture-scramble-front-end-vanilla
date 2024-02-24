@@ -56,6 +56,9 @@ app.use(session({
             throw new Error(`HTTP error! status: ${response.status}`);
         }
         const data = await response.json();
+        //isInternalUrl shows whether picture url is from the app's own back end server
+        //so we know whether to store the image as a local Blob
+        data.isInternalUrl = (data.picture.startsWith(process.env.BACK_END_URI));
         res.json(data);
     } catch (error) {
         res.status(500).json({ error: error.message });

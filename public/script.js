@@ -88,8 +88,12 @@ async function fetchGameDataFromServer(isPreload){
         throw new Error(`HTTP error! status: ${response.status}`);
     }
     const gameData = await response.json();
-    const imageBlobUrl = await fetchAndCacheImage(gameData.picture);
-    gameData.picture = imageBlobUrl;
+    //only make a Blob if it's from our own server,
+    //as OpenAI's server causes CORS error if we try to fetch() the image
+    if(gameData.isInternalUrl){
+        const imageBlobUrl = await fetchAndCacheImage(gameData.picture);
+        gameData.picture = imageBlobUrl;
+    }
     if(isPreload){
         preloadGameData.push(gameData);
     }

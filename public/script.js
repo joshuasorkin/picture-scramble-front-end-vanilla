@@ -134,6 +134,7 @@ async function startNewGame() {
         };
         gameImage.src = data.picture;
         gameMessage.textContent = ``;
+        fetchGameDataFromServer(true);
     } catch (error) {
         console.error('Error:', error);
         gameMessage.textContent = `Error: ${error.message}`;

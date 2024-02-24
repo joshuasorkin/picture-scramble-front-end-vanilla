@@ -91,8 +91,12 @@ async function fetchGameDataFromServer(isPreload){
     //only make a Blob if it's from our own server,
     //as OpenAI's server causes CORS error if we try to fetch() the image
     if(gameData.isInternalUrl){
+        console.log("is internal url");
         const imageBlobUrl = await fetchAndCacheImage(gameData.picture);
         gameData.picture = imageBlobUrl;
+    }
+    else{
+        console.log("not internal url");
     }
     if(isPreload){
         preloadGameData.push(gameData);

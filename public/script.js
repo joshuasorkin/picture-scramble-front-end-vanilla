@@ -97,7 +97,7 @@ async function fetchGameDataFromServer(isPreload){
 
 function getImageBlobUrl(imageBuffer){
     // Convert the PNG buffer to a Blob
-    const imageBlob = new Blob([puzzleData.image], { type: 'image/png' });
+    const imageBlob = new Blob([imageBuffer], { type: 'image/png' });
 
     // Create a Blob URL for the image
     const imageBlobUrl = URL.createObjectURL(imageBlob);

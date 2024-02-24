@@ -79,6 +79,12 @@ async function getGameData(){
     else{
         gameData = await fetchGameDataFromServer();
     }
+    if (gameData.isInternalUrl){
+        currentBlobUrl = gameData.picture;  //set the current blob url for later revocation
+    }
+    else{
+        currentBlobUrl = null; //no blob url needed for later revocation
+    }
     return gameData;
 }
 
@@ -105,13 +111,14 @@ async function fetchGameDataFromServer(isPreload){
 }
 
 async function fetchAndCacheImage(imageUrl) {
+    console.log("fetching for cache:",imageUrl);
     const response = await fetch(imageUrl);
     if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
     }
     const imageBlob = await response.blob(); // Get the image as a Blob
     const url = URL.createObjectURL(imageBlob); // Convert the Blob into a Blob URL
-    currentBlobUrl = url;  //set the current blob url for later revocation
+    console.log("created blob url:",url);
     return url;
 }
 

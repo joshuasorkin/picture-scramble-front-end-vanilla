@@ -89,6 +89,10 @@ async function getGameData(){
 }
 
 async function fetchGameDataFromServer(isPreload){
+    //don't let the preload array get too large
+    if(isPreload && preloadGameData.length>6){
+        return;
+    }
     const response = await fetch(`/api/new-game?score=${playerScore}`);
     if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
@@ -153,11 +157,9 @@ async function startNewGame() {
         gameImage.src = data.picture;
         gameMessage.textContent = ``;
         fetchGameDataFromServer(true);
+        fetchGameDataFromServer(true);
         //this way we will gradually increase the size of our game cache
         //instead of always being only 1 game ahead
-        if(preloadGameData.length<4){
-            fetchGameDataFromServer(true);
-        }
     } catch (error) {
         console.error('Error:', error);
         gameMessage.textContent = `Error: ${error.message}`;

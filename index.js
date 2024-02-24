@@ -58,6 +58,10 @@ app.use(session({
         const data = await response.json();
         //isInternalUrl shows whether picture url is from the app's own back end server
         //so we know whether to store the image as a local Blob
+        //we use INTERNAL_URI instead of BACK_END_URI
+        //because during testing, BACK_END_URI is set to the local ngrok tunnel URL
+        //but the image URL will be set to the production back end
+        //todo: decide if we should set the image URL to the local ngrok
         data.isInternalUrl = (data.picture.startsWith(process.env.INTERNAL_URI));
         res.json(data);
     } catch (error) {

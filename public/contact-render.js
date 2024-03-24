@@ -9,7 +9,8 @@ function renderContact(contactInfo) {
     contactLinks.innerHTML = titleHtml;
   
     if (!contactInfo || contactInfo === undefined){
-      contactContent
+      contactLinks.innerHTML += `<a href="${default_contact_info}"></a>`
+      return;
     }
 
     // Iterate through the contactInfo object

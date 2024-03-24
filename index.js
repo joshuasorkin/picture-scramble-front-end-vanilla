@@ -90,10 +90,9 @@ app.get('/language/:language', (req,res) => {
     res.sendFile(path.join(__dirname,'public','index.html'));
 });
 
-
-
-
-
+app.get('/api/default-contact', (req,res) => {
+    res.send(process.env.DEFAULT_CONTACT_INFO);
+});
 
 app.listen(port, () => {
     console.log(`Server is running on http://localhost:${port}`);

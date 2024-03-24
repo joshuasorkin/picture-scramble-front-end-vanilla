@@ -21,7 +21,10 @@ let currentBlobUrl;
 let solutionHash;
 let compliment;
 let contact;
+let default_contact_info;
 const encoder = new TextEncoder();
+
+
 
 document.getElementById('linkedImageContainer').addEventListener('click', function() {
     console.log("clicked");
@@ -212,7 +215,10 @@ function initializePixelatedCanvas(){
     });
 }
 
-function resetGame() {
+async function resetGame() {
+    if(!default_contact_info){
+        default_contact_info = await fetch(`/api/default-contact`);
+    }
     pixelateValues = [1, 5, 15];
     puzzleValue = 10;
 

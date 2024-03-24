@@ -21,6 +21,15 @@
   gtag('config', 'G-FK6QKFEM2X');
 </script>
 <body>
+    <!-- Overlay, hidden by default -->
+    <div id="contactOverlay" style="display: none;">
+        <div id="contactContent">
+            <!-- Close Button -->
+            <button id="closeBtn">X</button>
+            <!-- Container for Contact Links -->
+            <div id="contactLinks"></div>
+        </div>
+    </div>
     <div id="game-area">
         <h1 id="gameTitle">Utu's Wild Words</h1>
         <div id="image-container">
@@ -34,6 +43,8 @@
         </svg>
         <p id="game-message"></p>
         <div id="footer">
+            <!-- Contact Button -->
+            <button id="contactBtn">Artist</button>
             <a href="https://linktr.ee/sigilToNoise" target="_blank" id="linkedImageContainer">
                 <img src="/linktree-qr.jpg" alt="Linktree">
             </a>

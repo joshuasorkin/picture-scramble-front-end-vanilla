@@ -1,10 +1,17 @@
 function renderContact(contactInfo) {
     // Find the container where the contact info will be displayed
-    const contactContent = document.getElementById('contactLinks');
+    const contactLinks = document.getElementById('contactLinks');
   
     // Clear previous content
-    contactContent.innerHTML = '';
+    contactLinks.innerHTML = '';
+    // Add a title at the top
+    let titleHtml = '<h2 style="text-align: center; margin-top: 0;">Artist</h2>';
+    contactLinks.innerHTML = titleHtml;
   
+    if (!contactInfo || contactInfo === undefined){
+      contactContent
+    }
+
     // Iterate through the contactInfo object
     for (const [key, value] of Object.entries(contactInfo)) {
       let htmlContent = '';
@@ -26,7 +33,7 @@ function renderContact(contactInfo) {
       }
   
       // Append the content to the contactContent element
-      contactContent.innerHTML += htmlContent;
+      contactLinks.innerHTML += htmlContent;
     }
   }
   

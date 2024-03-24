@@ -241,7 +241,7 @@ body {
 
 
   #contactOverlay {
-    position: fixed; /* Stay in place */
+    position: relative; /* Stay in place */
     z-index: 1; /* Sit on top */
     left: 0;
     top: 0;
@@ -260,10 +260,15 @@ body {
   }
   
   #closeBtn {
+    position: absolute;
     color: #aaa;
     float: right;
     font-size: 28px;
     font-weight: bold;
+    top: 10px; /* Adjust as needed */
+    right: 10px; /* Adjust as needed */
+    width: 44px;
+    height: 44px;
   }
   
   #closeBtn:hover,

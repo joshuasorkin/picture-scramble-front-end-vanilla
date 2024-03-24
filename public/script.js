@@ -162,6 +162,7 @@ async function startNewGame() {
         solutionHash = data.solutionHash;
         compliment = data.compliment;
         contact = data.contact;
+        console.log({contact});
         renderContact(contact);
         const img = gameImage;
         img.onerror = () => {

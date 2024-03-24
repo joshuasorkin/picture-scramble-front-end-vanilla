@@ -110,6 +110,7 @@ async function getGameData(){
     else{
         currentBlobUrl = null; //no blob url needed for later revocation
     }
+    console.log({gameData});
     return gameData;
 }
 

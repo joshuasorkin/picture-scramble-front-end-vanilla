@@ -162,6 +162,7 @@ async function startNewGame() {
         solutionHash = data.solutionHash;
         compliment = data.compliment;
         contact = data.contact;
+        renderContact(contact);
         const img = gameImage;
         img.onerror = () => {
             console.error('Error loading image:', data.picture);

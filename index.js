@@ -94,7 +94,7 @@ app.use((req, res, next) => {
     } else {
       // Desktop users will use the default path, which could be served from /public/desktop
       // If you just have one version for desktop and another for mobile, you might not need to change the URL for desktop users
-      // req.url = '/desktop' + req.url; 
+      req.url = '/desktop' + req.url; 
     }
     next();
   });

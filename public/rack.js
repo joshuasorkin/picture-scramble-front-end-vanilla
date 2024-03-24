@@ -127,6 +127,8 @@ async function createTiles(str) {
     console.log({tiles});
     console.log({rackString});
     const userInputHash = await sha256Hash(rackString.toLowerCase());
+    console.log({userInputHash});
+    console.log({solutionHash});
     if (userInputHash === solutionHash){
         submitGuess(true);
     }

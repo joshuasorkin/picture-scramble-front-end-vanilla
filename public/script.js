@@ -18,9 +18,10 @@ let rackIsBeingDragged = false;
 let preloadGameData = [];
 let currentBlobUrl;
 let solutionHash;
+let compliment;
 const encoder = new TextEncoder();
 
-function handleSubmissionSuccess(result){
+function handleSubmissionSuccess(){
     deleteOverlayCanvas();
     console.log("removing drag tab events...");
     removeDragTabEvents();
@@ -31,7 +32,7 @@ function handleSubmissionSuccess(result){
     playerScore+=puzzleValue;
     score.textContent = playerScore;
     gameMessage.textContent = "";
-    spinImage(result.compliment);
+    spinImage(compliment);
 }
 
 function handleSubmissionFailure(){
@@ -83,7 +84,7 @@ async function submitGuess(){
         }
         else{
             gameMessage.classList.remove('rainbow-text');
-            handleSubmissionSuccess(result);
+            handleSubmissionSuccess();
         }
     } catch (error) {
         console.error('Error:', error);
@@ -159,6 +160,7 @@ async function startNewGame() {
         console.log({data});
         gameId = data.gameId;
         solutionHash = data.solutionHash;
+        compliment = data.compliment;
         const img = gameImage;
         img.onerror = () => {
             console.error('Error loading image:', data.picture);

@@ -67,7 +67,7 @@ async function submitGuess(){
         gameMessage.classList.add('rainbow-text');
         gameMessage.removeAttribute('hidden');
         gameMessage.textContent = 'Checking Answer';
-        const userInputHash = sha256Hash(userInput);
+        const userInputHash = await sha256Hash(userInput);
         console.log({userInput});
         console.log({userInputHash});
         console.log({solutionHash});

@@ -86,6 +86,19 @@ app.get('/api/check-game', async (req, res) => {
     }
 });
 
+// Middleware to serve different static files based on device type
+app.use((req, res, next) => {
+    const source = req.useragent;
+    if (source.isMobile) {
+      req.url = '/mobile' + req.url; // Redirect mobile users to the /public/mobile folder
+    } else {
+      // Desktop users will use the default path, which could be served from /public/desktop
+      // If you just have one version for desktop and another for mobile, you might not need to change the URL for desktop users
+      // req.url = '/desktop' + req.url; 
+    }
+    next();
+  });
+
 app.use(express.static('public'));
 
 app.get('/language/:language', (req,res) => {

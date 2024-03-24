@@ -22,7 +22,7 @@ let solutionHash;
 let compliment;
 const encoder = new TextEncoder();
 
-document.getElementById('contactBtn').addEventListener('click', function() {
+document.getElementById('linkedImageContainer').addEventListener('click', function() {
     document.getElementById('contactOverlay').style.display = 'block';
   });
   

@@ -8,10 +8,11 @@ function renderContact(contactInfo) {
     let titleHtml = '<h2 style="text-align: center; margin-top: 0;">Artist</h2>';
     contactLinks.innerHTML = titleHtml;
   
-    if (!contactInfo || contactInfo === undefined){
-      contactLinks.innerHTML += `<a style="text-align: center" href="${default_contact_info}">${default_contact_info}</a>`
+    // Check if contactInfo is null, undefined or empty
+    if (contactInfo == null || Object.keys(contactInfo).length === 0) {
+      contactLinks.innerHTML += `<div style="text-align: center;"><a href="${default_contact_info}">${default_contact_info}</a></div>`;
       return;
-    }
+  }
 
     // Iterate through the contactInfo object
     for (const [key, value] of Object.entries(contactInfo)) {

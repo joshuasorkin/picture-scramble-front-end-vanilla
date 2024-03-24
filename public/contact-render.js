@@ -9,7 +9,7 @@ function renderContact(contactInfo) {
     contactLinks.innerHTML = titleHtml;
   
     if (!contactInfo || contactInfo === undefined){
-      contactLinks.innerHTML += `<a href="${default_contact_info}">${default_contact_info}</a>`
+      contactLinks.innerHTML += `<a style="text-align: center" href="${default_contact_info}">${default_contact_info}</a>`
       return;
     }
 

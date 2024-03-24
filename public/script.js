@@ -66,21 +66,24 @@ async function submitGuess(){
         gameMessage.classList.add('rainbow-text');
         gameMessage.removeAttribute('hidden');
         gameMessage.textContent = 'Checking Answer';
-        const response = await fetch(`/api/check-game?gameId=${gameId}&playerSolution=${userInput}`);
-        gameMessage.classList.remove('rainbow-text');
-        console.log("fetch complete")
-        console.log({response});
-        if (!response.ok) {
-            throw new Error(`HTTP error! status: ${response.status}`);
-        }
-        const result = await response.json();
-        console.log({result});
-        mismatches = result.mismatches;
-        setMismatches();
-        if (result.checkResult) {
-            handleSubmissionSuccess(result);
-        } else {
+        const userInputIsSolution = sha256Hash(userInput) === solutionHash;
+        if (!userInputIsSolution){
+            const response = await fetch(`/api/check-game?gameId=${gameId}&playerSolution=${userInput}`);
+            gameMessage.classList.remove('rainbow-text');
+            console.log("fetch complete")
+            console.log({response});
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+            const result = await response.json();
+            console.log({result});
+            mismatches = result.mismatches;
+            setMismatches();
             handleSubmissionFailure();
+        }
+        else{
+            gameMessage.classList.remove('rainbow-text');
+            handleSubmissionSuccess(result);
         }
     } catch (error) {
         console.error('Error:', error);
@@ -155,6 +158,7 @@ async function startNewGame() {
         gameMessage.classList.remove('rainbow-text');
         console.log({data});
         gameId = data.gameId;
+        solutionHash = data.solutionHash;
         const img = gameImage;
         img.onerror = () => {
             console.error('Error loading image:', data.picture);

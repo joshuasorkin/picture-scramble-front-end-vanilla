@@ -20,6 +20,7 @@ let preloadGameData = [];
 let currentBlobUrl;
 let solutionHash;
 let compliment;
+let contact;
 const encoder = new TextEncoder();
 
 document.getElementById('linkedImageContainer').addEventListener('click', function() {
@@ -160,6 +161,7 @@ async function startNewGame() {
         gameId = data.gameId;
         solutionHash = data.solutionHash;
         compliment = data.compliment;
+        contact = data.contact;
         const img = gameImage;
         img.onerror = () => {
             console.error('Error loading image:', data.picture);

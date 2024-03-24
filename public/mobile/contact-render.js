@@ -27,6 +27,10 @@ function renderContact(contactInfo) {
           // For 'phone', create a clickable link
           htmlContent = `<p><strong>Phone:</strong> <a href="tel:${value}">${value}</a></p>`;
           break;
+        case 'email':
+          // For 'email', create a clickable mail link
+          htmlContent = `<p><strong>Email:</strong> <a href="mailto:${value}">${value}</a></p>`;
+          break;
         default:
           // For social media (default case), create a clickable link
           // Assume the key is the social media platform name, and the value is the user handle or ID

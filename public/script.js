@@ -23,9 +23,7 @@ const encoder = new TextEncoder();
 
 function handleSubmissionSuccess(){
     deleteOverlayCanvas();
-    console.log("removing drag tab events...");
     removeDragTabEvents();
-    console.log("removing tile drag events...");
     removeRackEventListeners();
     skipButton.style.display = 'none';
     gameMessage.setAttribute('hidden',true);
@@ -59,29 +57,24 @@ async function sha256Hash(str) {
 }
 
 
+
+
 async function submitGuess(){
     try {
         const userInput = rackString.toLowerCase();
-        console.log({userInput});
         // Set the text to rainbow flashing
         gameMessage.classList.add('rainbow-text');
         gameMessage.removeAttribute('hidden');
         gameMessage.textContent = 'Checking Answer';
         const userInputHash = await sha256Hash(userInput);
-        console.log({userInput});
-        console.log({userInputHash});
-        console.log({solutionHash});
         const userInputIsSolution = userInputHash === solutionHash;
         if (!userInputIsSolution){
             const response = await fetch(`/api/check-game?gameId=${gameId}&playerSolution=${userInput}`);
             gameMessage.classList.remove('rainbow-text');
-            console.log("fetch complete")
-            console.log({response});
             if (!response.ok) {
                 throw new Error(`HTTP error! status: ${response.status}`);
             }
             const result = await response.json();
-            console.log({result});
             mismatches = result.mismatches;
             setMismatches();
             handleSubmissionFailure();
@@ -110,7 +103,6 @@ async function getGameData(){
     else{
         currentBlobUrl = null; //no blob url needed for later revocation
     }
-    console.log({gameData});
     return gameData;
 }
 
@@ -127,12 +119,10 @@ async function fetchGameDataFromServer(isPreload){
     //only make a Blob if it's from our own server,
     //as OpenAI's server causes CORS error if we try to fetch() the image
     if(gameData.isInternalUrl){
-        console.log("is internal url");
         const imageBlobUrl = await fetchAndCacheImage(gameData.picture);
         gameData.picture = imageBlobUrl;
     }
     else{
-        console.log("not internal url");
     }
     if(isPreload){
         preloadGameData.push(gameData);
@@ -141,14 +131,12 @@ async function fetchGameDataFromServer(isPreload){
 }
 
 async function fetchAndCacheImage(imageUrl) {
-    console.log("fetching for cache:",imageUrl);
     const response = await fetch(imageUrl);
     if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
     }
     const imageBlob = await response.blob(); // Get the image as a Blob
     const url = URL.createObjectURL(imageBlob); // Convert the Blob into a Blob URL
-    console.log("created blob url:",url);
     return url;
 }
 
@@ -162,7 +150,6 @@ async function startNewGame() {
         gameMessage.classList.add('rainbow-text');
         const data = await getGameData();
         gameMessage.classList.remove('rainbow-text');
-        console.log({data});
         gameId = data.gameId;
         solutionHash = data.solutionHash;
         compliment = data.compliment;
@@ -214,7 +201,6 @@ function initializePixelatedCanvas(){
 }
 
 function resetGame() {
-    console.log("resetting game...");
     pixelateValues = [1, 5, 15];
     puzzleValue = 10;
 
@@ -230,7 +216,6 @@ function resetGame() {
         //revoke the blob url from the previous game, if it exists
         if(currentBlobUrl){
             URL.revokeObjectURL(currentBlobUrl);
-            console.log("revoked blob url:",currentBlobUrl);
         }
         gameImage.removeAttribute('hidden'); // Remove 'hidden' attribute when the image is loaded
         startNewGame();
@@ -239,7 +224,6 @@ function resetGame() {
 }
 
 function setVictory(compliment){
-    console.log("setting victory...")
     victoryMessage.innerText = compliment + "\nClick to continue...";
     victoryMessage.style.display = 'block'; // Show victory message
     victoryMessage.addEventListener('click', resetGame,{once:true});
@@ -340,8 +324,6 @@ function endTabDrag(evt) {
     // Check if rack overlaps with game image
     //if (rackRect.bottom > imageRect.top && rackRect.top < imageRect.bottom) {
     if (rackIsBeingDragged && rackRect.top < imageRect.bottom) {
-        console.log("rackRect.top",rackRect.top,"imageRect.bottom",imageRect.bottom);
-        console.log("Rack reached the game image!");
         // Handle the event where rack overlaps with game image
         submitGuess();
     }

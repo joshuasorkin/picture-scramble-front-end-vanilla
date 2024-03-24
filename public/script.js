@@ -67,7 +67,11 @@ async function submitGuess(){
         gameMessage.classList.add('rainbow-text');
         gameMessage.removeAttribute('hidden');
         gameMessage.textContent = 'Checking Answer';
-        const userInputIsSolution = sha256Hash(userInput) === solutionHash;
+        const userInputHash = sha256Hash(userInput);
+        console.log({userInput});
+        console.log({userInputHash});
+        console.log({solutionHash});
+        const userInputIsSolution = userInputHash === solutionHash;
         if (!userInputIsSolution){
             const response = await fetch(`/api/check-game?gameId=${gameId}&playerSolution=${userInput}`);
             gameMessage.classList.remove('rainbow-text');

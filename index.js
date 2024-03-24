@@ -91,7 +91,10 @@ app.get('/api/default-contact', (req,res) => {
     res.send(process.env.DEFAULT_CONTACT_INFO);
 });
 
-
+app.get('/language/:language', (req,res) => {
+    req.session.language = req.params.language;
+    res.sendFile(path.join(__dirname,'public/mobile','index.html'));
+});
 
 // Middleware to serve different static files based on device type
 app.use((req, res, next) => {
@@ -108,10 +111,7 @@ app.use((req, res, next) => {
 
 app.use(express.static('public'));
 
-app.get('/language/:language', (req,res) => {
-    req.session.language = req.params.language;
-    res.sendFile(path.join(__dirname,'public/mobile','index.html'));
-});
+
 
 
 app.listen(port, () => {

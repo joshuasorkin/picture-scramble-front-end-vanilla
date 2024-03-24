@@ -7,6 +7,7 @@ const useragent = require('express-useragent');
 
 dotenv.config();
 const app = express();
+app.use(useragent.express());
 const port = 3000;
 const mongo_uri = process.env.MONGO_URI;
 

@@ -39,7 +39,7 @@ function setMismatches(){
         });
 }
 
-function createTiles(str) {
+async function createTiles(str) {
     // Remove existing tiles
     const existingTiles = rackContainer.querySelectorAll('.tile');
     existingTiles.forEach(tile => tile.remove());
@@ -126,7 +126,10 @@ function createTiles(str) {
     
     console.log({tiles});
     console.log({rackString});
-    appState.rackString = rackString;
+    const userInputHash = await sha256Hash(rackString.toLowerCase());
+    if (userInputHash === solutionHash){
+        submitGuess(true);
+    }
 }
 
 function startTileDrag(evt) {

@@ -60,15 +60,13 @@ async function sha256Hash(str) {
 
 
 
-async function submitGuess(){
+async function submitGuess(userInputIsSolution){
     try {
         const userInput = rackString.toLowerCase();
         // Set the text to rainbow flashing
         gameMessage.classList.add('rainbow-text');
         gameMessage.removeAttribute('hidden');
         gameMessage.textContent = 'Checking Answer';
-        const userInputHash = await sha256Hash(userInput);
-        const userInputIsSolution = userInputHash === solutionHash;
         if (!userInputIsSolution){
             const response = await fetch(`/api/check-game?gameId=${gameId}&playerSolution=${userInput}`);
             gameMessage.classList.remove('rainbow-text');

@@ -22,6 +22,14 @@ let solutionHash;
 let compliment;
 const encoder = new TextEncoder();
 
+document.getElementById('contactBtn').addEventListener('click', function() {
+    document.getElementById('contactOverlay').style.display = 'block';
+  });
+  
+  document.getElementById('closeBtn').addEventListener('click', function() {
+    document.getElementById('contactOverlay').style.display = 'none';
+  });
+
 function handleSubmissionSuccess(){
     deleteOverlayCanvas();
     removeDragTabEvents();

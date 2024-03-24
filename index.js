@@ -63,7 +63,6 @@ app.use(session({
         //but the image URL will be set to the production back end
         //todo: decide if we should set the image URL to the local ngrok
         data.isInternalUrl = (data.picture.startsWith(process.env.INTERNAL_URI));
-        console.log({data});
         res.json(data);
     } catch (error) {
         res.status(500).json({ error: error.message });

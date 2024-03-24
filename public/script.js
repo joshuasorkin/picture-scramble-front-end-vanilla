@@ -217,7 +217,7 @@ function initializePixelatedCanvas(){
 
 async function resetGame() {
     if(!default_contact_info){
-       const response = await fetch(`/api/default-contact`).text();
+       const response = await fetch(`/api/default-contact`);
        default_contact_info = await response.text();
     }
     pixelateValues = [1, 5, 15];

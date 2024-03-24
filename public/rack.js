@@ -126,6 +126,7 @@ function createTiles(str) {
     
     console.log({tiles});
     console.log({rackString});
+    appState.rackString = rackString;
 }
 
 function startTileDrag(evt) {

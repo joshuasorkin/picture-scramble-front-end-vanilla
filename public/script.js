@@ -1,3 +1,4 @@
+const appState = new AppState();
 const score = document.getElementById('score');
 const victoryMessage = document.getElementById('victory-message');
 const gameMessage = document.getElementById('game-message');

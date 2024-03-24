@@ -10,7 +10,7 @@ function renderContact(contactInfo) {
   
     // Check if contactInfo is null, undefined or empty
     if (contactInfo == null || Object.keys(contactInfo).length === 0) {
-      contactLinks.innerHTML += `<div style="text-align: center;"><a href="${default_contact_info}">${default_contact_info}</a></div>`;
+      contactLinks.innerHTML += `<div style="text-align: center;"><a href="${default_contact_info}" target="_blank">${default_contact_info}</a></div>`;
       return;
   }
 

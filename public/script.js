@@ -24,6 +24,7 @@ let contact;
 const encoder = new TextEncoder();
 
 document.getElementById('linkedImageContainer').addEventListener('click', function() {
+    console.log("clicked");
     document.getElementById('contactOverlay').style.display = 'block';
   });
   

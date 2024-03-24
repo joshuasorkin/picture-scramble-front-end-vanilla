@@ -1,6 +1,6 @@
 function renderContact(contactInfo) {
     // Find the container where the contact info will be displayed
-    const contactContent = document.getElementById('contactContent');
+    const contactContent = document.getElementById('contactLinks');
   
     // Clear previous content
     contactContent.innerHTML = '';

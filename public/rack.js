@@ -39,7 +39,7 @@ function setMismatches(){
         });
 }
 
-async function createTiles(str) {
+function createTiles(str) {
     // Remove existing tiles
     const existingTiles = rackContainer.querySelectorAll('.tile');
     existingTiles.forEach(tile => tile.remove());
@@ -126,12 +126,6 @@ async function createTiles(str) {
     
     console.log({tiles});
     console.log({rackString});
-    const userInputHash = await sha256Hash(rackString.toLowerCase());
-    console.log({userInputHash});
-    console.log({solutionHash});
-    if (userInputHash === solutionHash){
-        submitGuess(true);
-    }
 }
 
 function startTileDrag(evt) {
@@ -205,7 +199,7 @@ function endTileDrag(evt) {
     }  
 }
 
-function reorderTiles() {
+async function reorderTiles() {
     const draggingIndex = parseInt(draggingTile.dataset.index);
     const currentTransform = draggingTile.getAttribute('transform');
     const translateX = parseInt(currentTransform.split('(')[1]);
@@ -242,6 +236,13 @@ function reorderTiles() {
         rackString += tile.char;
     });
     console.log({rackString});
+
+    const userInputHash = await sha256Hash(rackString.toLowerCase());
+    console.log({userInputHash});
+    console.log({solutionHash});
+    if (userInputHash === solutionHash){
+        submitGuess(true);
+    }
     
 }
 

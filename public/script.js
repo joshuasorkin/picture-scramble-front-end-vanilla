@@ -165,7 +165,7 @@ async function startNewGame() {
         gameId = data.gameId;
         solutionHash = data.solutionHash;
         compliment = data.compliment;
-        contact = data.contact;
+        //contact = data.contact;
         console.log({contact});
         renderContact(contact);
         const img = gameImage;

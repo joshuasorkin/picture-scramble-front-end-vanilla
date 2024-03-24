@@ -7,7 +7,6 @@ dotenv.config();
 const app = express();
 const port = 3000;
 const mongo_uri = process.env.MONGO_URI;
-console.log({mongo_uri});
 
 //set secure: process.env.SECURE_BOOLEAN
 app.use(session({
@@ -25,7 +24,6 @@ app.use(session({
         // Retrieve score and language from the request
         const score = req.query.score;
         const language = req.session.language;
-        console.log({language});
 
         // Initialize the base URL
         let url = process.env.BACK_END_URI + '/new-game';
@@ -47,8 +45,6 @@ app.use(session({
         if (queryParams.length > 0) {
             url += '?' + queryParams.join('&');
         }
-
-        console.log({url});
 
         // Fetching the data from the URL
         const response = await fetch(url);
@@ -75,13 +71,11 @@ app.get('/api/check-game', async (req, res) => {
     try {
         const { gameId, playerSolution } = req.query;
         const url = process.env.BACK_END_URI+`/check-game?gameId=${gameId}&playerSolution=${playerSolution}`;
-        console.log({url});
         const response = await fetch(url);
         if (!response.ok) {
             throw new Error(`HTTP error! status: ${response.status}`);
         }
         const data = await response.json();
-        console.log({data});
         res.json(data); // Send the response back to the frontend
     } catch (error) {
         console.error('Error:', error);

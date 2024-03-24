@@ -17,6 +17,8 @@ let playerScore = 0;
 let rackIsBeingDragged = false;
 let preloadGameData = [];
 let currentBlobUrl;
+let solutionHash;
+const encoder = new TextEncoder();
 
 function handleSubmissionSuccess(result){
     deleteOverlayCanvas();
@@ -40,6 +42,21 @@ function handleSubmissionFailure(){
         gameMessage.textContent = '';
     }, 2000); // 2000 milliseconds = 2 seconds
 }
+
+async function sha256Hash(str) {
+    // Encode the string into UTF-8 bytes
+    const data = encoder.encode(str);
+  
+    // Hash the data with SHA-256
+    const hashBuffer = await crypto.subtle.digest('SHA-256', data);
+  
+    // Convert the buffer to a hexadecimal string
+    const hashArray = Array.from(new Uint8Array(hashBuffer));
+    const hashHex = hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+  
+    return hashHex;
+}
+
 
 async function submitGuess(){
     try {

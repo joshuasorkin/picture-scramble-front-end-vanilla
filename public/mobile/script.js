@@ -147,10 +147,27 @@ async function fetchAndCacheImage(imageUrl) {
     if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
     }
-    const imageBlob = await response.blob(); // Get the image as a Blob
-    const url = URL.createObjectURL(imageBlob); // Convert the Blob into a Blob URL
-    return url;
+
+    // Check if the response is JSON (from myserver) or a Blob (from anotherserver)
+    const contentType = response.headers.get("content-type");
+    if (contentType && contentType.includes("application/json")) {
+        const jsonData = await response.json(); // parse the JSON to get the object
+        if(jsonData.contact){
+            const contact = jsonData.contact; // Access metadata, if you need to use it
+        }
+        console.log({contact}); // Example action, like logging the metadata
+
+        // Convert base64 image string to Blob
+        const base64Image = jsonData.image.split(';base64,').pop();
+        const imageBlob = await (await fetch(`data:image/png;base64,${base64Image}`)).blob();
+        return URL.createObjectURL(imageBlob);
+    } else {
+        // Handle as Blob for images directly from anotherserver or as fallback
+        const imageBlob = await response.blob();
+        return URL.createObjectURL(imageBlob);
+    }
 }
+
 
 async function startNewGame() {
     try {

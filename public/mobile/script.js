@@ -152,6 +152,7 @@ async function fetchGameDataFromServer(isPreload){
 
 async function fetchAndCacheImage(imageUrl) {
     try{
+        console.log(`fetching image data from ${imageUrl}`);
         const response = await fetch(imageUrl);
         if (!response.ok) {
             throw new Error(`HTTP error! status: ${response.status}`);
@@ -161,6 +162,7 @@ async function fetchAndCacheImage(imageUrl) {
         const contentType = response.headers.get("content-type");
         if (contentType && contentType.includes("application/json")) {
             const jsonData = await response.json(); // parse the JSON to get the object
+            console.log({jsonData});
             if(jsonData.contact){
                 contact = jsonData.contact; // Access metadata, if you need to use it
             }

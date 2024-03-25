@@ -192,6 +192,12 @@ async function startNewGame() {
         // Set the text to rainbow flashing
         gameMessage.classList.add('rainbow-text');
         const data = await getGameData();
+        if(data.error){
+            gameMessage.classList.remove('rainbow-text');
+            console.log("Error fetching game data:",data.error);
+            gameMessage.textContent = "Sorry, I couldn't make a game.  Details in the console.  Try reloading the page!"
+            return;
+        }
         gameMessage.classList.remove('rainbow-text');
         gameId = data.gameId;
         solutionHash = data.solutionHash;

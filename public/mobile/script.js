@@ -153,7 +153,14 @@ async function fetchGameDataFromServer(isPreload){
 async function fetchAndCacheImage(imageUrl) {
     try{
         console.log(`fetching image data from ${imageUrl}`);
-        const response = await fetch(imageUrl);
+        const response = await fetch(imageUrl,{
+                method: "get",
+                headers: new Headers({
+                  "ngrok-skip-browser-warning": "69420",
+                })
+        });
+        console.log(`completed fetch from ${imageUrl}`);
+        console.log({response});
         if (!response.ok) {
             throw new Error(`HTTP error! status: ${response.status}`);
         }

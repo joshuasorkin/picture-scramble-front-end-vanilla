@@ -168,6 +168,7 @@ async function fetchAndCacheImage(imageUrl) {
         // Check if the response is JSON (from myserver) or a Blob (from anotherserver)
         const contentType = response.headers.get("content-type");
         console.log({contentType});
+        let result;
         if (contentType && contentType.includes("application/json")) {
             const jsonData = await response.json(); // parse the JSON to get the object
             console.log({jsonData});
@@ -180,12 +181,11 @@ async function fetchAndCacheImage(imageUrl) {
             const base64Image = jsonData.image.split(';base64,').pop();
             const imageBlob = await (await fetch(`data:image/png;base64,${base64Image}`)).blob();
             const imageBlobUrl = URL.createObjectURL(imageBlob);
-            const result = {imageBlobUrl, contact};
+            result = {imageBlobUrl, contact};
         } else {
             // Handle as Blob for images directly from anotherserver or as fallback
             const imageBlob = await response.blob();
             return URL.createObjectURL(imageBlob);
-            const result = {imageBlobUrl,contact};
         }
         return result;
     }

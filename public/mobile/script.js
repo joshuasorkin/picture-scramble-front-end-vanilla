@@ -160,6 +160,7 @@ async function fetchAndCacheImage(imageUrl) {
         let contact;
         // Check if the response is JSON (from myserver) or a Blob (from anotherserver)
         const contentType = response.headers.get("content-type");
+        console.log({contentType});
         if (contentType && contentType.includes("application/json")) {
             const jsonData = await response.json(); // parse the JSON to get the object
             console.log({jsonData});

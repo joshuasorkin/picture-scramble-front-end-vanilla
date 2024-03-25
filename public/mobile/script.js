@@ -110,9 +110,11 @@ async function getGameData(){
         gameData = await fetchGameDataFromServer();
     }
     if (gameData.isInternalUrl){
+        console.log("getting image data from internal url");
         currentBlobUrl = gameData.picture;  //set the current blob url for later revocation
     }
     else{
+        console.log("getting image data from openai");
         currentBlobUrl = null; //no blob url needed for later revocation
     }
     return gameData;
@@ -123,6 +125,7 @@ async function fetchGameDataFromServer(isPreload){
     if(isPreload && preloadGameData.length>6){
         return;
     }
+
     const response = await fetch(`/api/new-game?score=${playerScore}`);
     if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
@@ -192,6 +195,8 @@ async function startNewGame() {
         // Set the text to rainbow flashing
         gameMessage.classList.add('rainbow-text');
         const data = await getGameData();
+        console.log({data});
+
         if(data.error){
             gameMessage.classList.remove('rainbow-text');
             console.log("Error fetching game data:",data.error);

@@ -156,9 +156,9 @@ async function fetchAndCacheImage(imageUrl) {
         const response = await fetch(imageUrl,{
                 method: "get",
                 //disable ngrok for production
-                /*headers: new Headers({
+                headers: new Headers({
                   "ngrok-skip-browser-warning": "69420",
-                })*/
+                })
         });
         console.log(`completed fetch from ${imageUrl}`);
         console.log({response});
